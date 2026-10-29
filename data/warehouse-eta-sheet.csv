@@ -1,0 +1,10 @@
+sku,product_handle,title_en,market_code,on_hand_qty,container_eta,price_local,backorder_allowed
+MOD-TBL-OAK-300,extendable-dining-table-oak,Extendable Dining Table (Smoked Oak),UK,24,,1499.00,true
+MOD-TBL-OAK-300,extendable-dining-table-oak,Extendable Dining Table (Smoked Oak),DE,0,2026-11-24,1699.00,true
+MOD-TBL-OAK-300,extendable-dining-table-oak,Extendable Dining Table (Smoked Oak),AU,15,,2499.00,true
+MOD-BNC-OAK-300,extendable-dining-bench-oak,Extendable Dining Bench (Smoked Oak),UK,18,,699.00,true
+MOD-BNC-OAK-300,extendable-dining-bench-oak,Extendable Dining Bench (Smoked Oak),DE,11,,799.00,true
+MOD-BNC-OAK-300,extendable-dining-bench-oak,Extendable Dining Bench (Smoked Oak),AU,0,2026-12-05,1199.00,true
+MOD-SB-WAL-180,modular-panel-sideboard-walnut,Modular Panel Sideboard (American Walnut),UK,0,2026-11-30,1299.00,true
+MOD-SB-WAL-180,modular-panel-sideboard-walnut,Modular Panel Sideboard (American Walnut),DE,9,,1449.00,true
+MOD-SB-WAL-180,modular-panel-sideboard-walnut,Modular Panel Sideboard (American Walnut),AU,7,,2199.00,true

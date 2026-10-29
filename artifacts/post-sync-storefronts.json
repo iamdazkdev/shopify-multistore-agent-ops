@@ -1,0 +1,143 @@
+{
+  "captured_at": "2026-10-29T09:38:29.628Z",
+  "stores": {
+    "UK": {
+      "currency": "GBP",
+      "locale": "en",
+      "pixel_tracking_currency": "GBP",
+      "products": [
+        {
+          "handle": "extendable-dining-table-oak",
+          "title": "Extendable Dining Table (Smoked Oak)",
+          "sku": "MOD-TBL-OAK-300",
+          "status": "ACTIVE",
+          "tags": [
+            "modular",
+            "AgentSynced"
+          ],
+          "price": "1499.00",
+          "inventory_qty": 24,
+          "estimated_delivery_metafield": "In stock | Ships within 5 business days"
+        },
+        {
+          "handle": "extendable-dining-bench-oak",
+          "title": "Extendable Dining Bench (Smoked Oak)",
+          "sku": "MOD-BNC-OAK-300",
+          "status": "ACTIVE",
+          "tags": [
+            "modular",
+            "AgentSynced"
+          ],
+          "price": "699.00",
+          "inventory_qty": 18,
+          "estimated_delivery_metafield": "In stock | Ships within 5 business days"
+        },
+        {
+          "handle": "modular-panel-sideboard-walnut",
+          "title": "Modular Panel Sideboard (American Walnut)",
+          "sku": "MOD-SB-WAL-180",
+          "status": "ACTIVE",
+          "tags": [
+            "modular",
+            "AgentSynced"
+          ],
+          "price": "1299.00",
+          "inventory_qty": 0,
+          "estimated_delivery_metafield": "Pre-order | Estimated delivery by 04/12/2026"
+        }
+      ]
+    },
+    "DE": {
+      "currency": "EUR",
+      "locale": "de",
+      "pixel_tracking_currency": "EUR",
+      "products": [
+        {
+          "handle": "extendable-dining-table-oak",
+          "title": "Ausziehbarer Esstisch (Räuchereiche)",
+          "sku": "MOD-TBL-OAK-300",
+          "status": "ACTIVE",
+          "tags": [
+            "modular",
+            "AgentSynced"
+          ],
+          "price": "1699.00",
+          "inventory_qty": 0,
+          "estimated_delivery_metafield": "Vorbestellung | Voraussichtliche Lieferung bis 29.11.2026"
+        },
+        {
+          "handle": "extendable-dining-bench-oak",
+          "title": "Ausziehbare Sitzbank (Räuchereiche)",
+          "sku": "MOD-BNC-OAK-300",
+          "status": "ACTIVE",
+          "tags": [
+            "modular",
+            "AgentSynced"
+          ],
+          "price": "799.00",
+          "inventory_qty": 11,
+          "estimated_delivery_metafield": "Auf Lager | Versandfertig in 6 Werktagen"
+        },
+        {
+          "handle": "modular-panel-sideboard-walnut",
+          "title": "Modulares Sideboard (Amerikanischer Nussbaum)",
+          "sku": "MOD-SB-WAL-180",
+          "status": "ACTIVE",
+          "tags": [
+            "modular",
+            "AgentSynced"
+          ],
+          "price": "1449.00",
+          "inventory_qty": 9,
+          "estimated_delivery_metafield": "Auf Lager | Versandfertig in 6 Werktagen"
+        }
+      ]
+    },
+    "AU": {
+      "currency": "AUD",
+      "locale": "en",
+      "pixel_tracking_currency": "AUD",
+      "products": [
+        {
+          "handle": "extendable-dining-table-oak",
+          "title": "Extendable Dining Table (Smoked Oak)",
+          "sku": "MOD-TBL-OAK-300",
+          "status": "ACTIVE",
+          "tags": [
+            "modular",
+            "AgentSynced"
+          ],
+          "price": "2499.00",
+          "inventory_qty": 15,
+          "estimated_delivery_metafield": "In stock | Ready to dispatch in 7 business days"
+        },
+        {
+          "handle": "extendable-dining-bench-oak",
+          "title": "Extendable Dining Bench (Smoked Oak)",
+          "sku": "MOD-BNC-OAK-300",
+          "status": "ACTIVE",
+          "tags": [
+            "modular",
+            "AgentSynced"
+          ],
+          "price": "1199.00",
+          "inventory_qty": 0,
+          "estimated_delivery_metafield": "Pre-order | Estimated delivery by 11/12/2026"
+        },
+        {
+          "handle": "modular-panel-sideboard-walnut",
+          "title": "Modular Panel Sideboard (American Walnut)",
+          "sku": "MOD-SB-WAL-180",
+          "status": "ACTIVE",
+          "tags": [
+            "modular",
+            "AgentSynced"
+          ],
+          "price": "2199.00",
+          "inventory_qty": 7,
+          "estimated_delivery_metafield": "In stock | Ready to dispatch in 7 business days"
+        }
+      ]
+    }
+  }
+}

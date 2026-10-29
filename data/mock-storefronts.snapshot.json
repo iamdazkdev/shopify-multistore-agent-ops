@@ -1,0 +1,67 @@
+{
+  "captured_at": "2026-10-29T08:00:00Z",
+  "description": "Baseline storefront snapshot containing common multi-store operational regressions caught by qa-audit.js",
+  "stores": {
+    "UK": {
+      "currency": "GBP",
+      "locale": "en",
+      "pixel_tracking_currency": "USD",
+      "products": [
+        {
+          "handle": "extendable-dining-table-oak",
+          "title": "Extendable Dining Table (Smoked Oak)",
+          "sku": "MOD-TBL-OAK-300",
+          "status": "ACTIVE",
+          "tags": ["modular", "dining"],
+          "price": "1428.57",
+          "inventory_qty": 24,
+          "estimated_delivery_metafield": "In stock | Ships within 5 business days"
+        }
+      ]
+    },
+    "DE": {
+      "currency": "EUR",
+      "locale": "de",
+      "pixel_tracking_currency": "EUR",
+      "products": [
+        {
+          "handle": "extendable-dining-table-oak",
+          "title": "Ausziehbarer Esstisch (Räuchereiche)",
+          "sku": "MOD-TBL-OAK-300",
+          "status": "ACTIVE",
+          "tags": ["modular", "dining"],
+          "price": "1699.00",
+          "inventory_qty": 0,
+          "estimated_delivery_metafield": "Vorbestellung | Voraussichtliche Lieferung bis 29.11.2026"
+        },
+        {
+          "handle": "qa-staging-host-testing",
+          "title": "QA Staging Host Testing",
+          "sku": "none",
+          "status": "ACTIVE",
+          "tags": ["internal_testing"],
+          "price": "3239.60",
+          "inventory_qty": 99,
+          "estimated_delivery_metafield": ""
+        }
+      ]
+    },
+    "AU": {
+      "currency": "AUD",
+      "locale": "en",
+      "pixel_tracking_currency": "AUD",
+      "products": [
+        {
+          "handle": "extendable-dining-table-oak",
+          "title": "Extendable Dining Table (Smoked Oak)",
+          "sku": "MOD-TBL-OAK-300",
+          "status": "ACTIVE",
+          "tags": ["modular", "dining"],
+          "price": "2499.00",
+          "inventory_qty": 15,
+          "estimated_delivery_metafield": "In stock | Ready to dispatch in 7 business days"
+        }
+      ]
+    }
+  }
+}

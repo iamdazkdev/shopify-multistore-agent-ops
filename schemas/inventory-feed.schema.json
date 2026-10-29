@@ -1,0 +1,22 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/iamdazkdev/shopify-multistore-agent-ops/schemas/inventory-feed.schema.json",
+  "title": "MultiStoreInventoryAndDeliveryFeed",
+  "version": "1.2.0",
+  "type": "object",
+  "required": ["sku", "product_handle", "title_en", "market_code", "on_hand_qty", "price_local", "backorder_allowed"],
+  "properties": {
+    "sku": { "type": "string", "pattern": "^[A-Z0-9-]{4,32}$" },
+    "product_handle": { "type": "string", "pattern": "^[a-z0-9-]+$" },
+    "title_en": { "type": "string", "minLength": 3, "maxLength": 120 },
+    "market_code": { "type": "string", "enum": ["UK", "DE", "AU"] },
+    "on_hand_qty": { "type": "integer", "minimum": 0 },
+    "container_eta": {
+      "type": ["string", "null"],
+      "pattern": "^\\d{4}-\\d{2}-\\d{2}$",
+      "description": "ISO-8601 vessel arrival date at regional port when on_hand_qty == 0"
+    },
+    "price_local": { "type": "string", "pattern": "^\\d+\\.\\d{2}$" },
+    "backorder_allowed": { "type": "boolean" }
+  }
+}

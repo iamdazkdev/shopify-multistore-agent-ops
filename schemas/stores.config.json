@@ -1,0 +1,47 @@
+{
+  "schema_version": "1.2.0",
+  "stores": [
+    {
+      "market_code": "UK",
+      "shop_domain_env": "SHOPIFY_UK_DOMAIN",
+      "default_domain": "modular-living-uk.myshopify.com",
+      "public_url": "https://uk.modular-living.example",
+      "currency": "GBP",
+      "locale": "en",
+      "tax_mode": "VAT_INCLUSIVE",
+      "tax_rate_pct": 20,
+      "lead_time_days_in_stock": 5,
+      "customs_buffer_days": 4,
+      "theme_branch": "storefront/UK_Live",
+      "allowed_price_endings": [".00", ".95", ".99"]
+    },
+    {
+      "market_code": "DE",
+      "shop_domain_env": "SHOPIFY_DE_DOMAIN",
+      "default_domain": "modular-living-de.myshopify.com",
+      "public_url": "https://de.modular-living.example",
+      "currency": "EUR",
+      "locale": "de",
+      "tax_mode": "VAT_INCLUSIVE",
+      "tax_rate_pct": 19,
+      "lead_time_days_in_stock": 6,
+      "customs_buffer_days": 5,
+      "theme_branch": "storefront/DE_Live",
+      "allowed_price_endings": [".00", ".95", ".99"]
+    },
+    {
+      "market_code": "AU",
+      "shop_domain_env": "SHOPIFY_AU_DOMAIN",
+      "default_domain": "modular-living-au.myshopify.com",
+      "public_url": "https://au.modular-living.example",
+      "currency": "AUD",
+      "locale": "en",
+      "tax_mode": "GST_INCLUSIVE",
+      "tax_rate_pct": 10,
+      "lead_time_days_in_stock": 7,
+      "customs_buffer_days": 6,
+      "theme_branch": "storefront/AU_Live",
+      "allowed_price_endings": [".00", ".95", ".99"]
+    }
+  ]
+}
