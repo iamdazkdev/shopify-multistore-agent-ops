@@ -1,0 +1,81 @@
+{
+  "schema_version": "2026.11",
+  "description": "Declarative Multi-Store Navigation & Mega-Menu Schema (Header, Country Switcher, Statutory Legal Footer)",
+  "menus": {
+    "main-menu": {
+      "title": "Main Header Mega-Menu",
+      "items": [
+        {
+          "title": "Expandable Dining Tables (1–12 Seaters)",
+          "url": "/collections/expandable-dining-tables-1-to-12-seaters"
+        },
+        {
+          "title": "Modular Benches & Ergonomic Seating",
+          "url": "/collections/modular-benches-and-ergonomic-seating"
+        },
+        {
+          "title": "Complete Dining Room Bundles (Save 20%)",
+          "url": "/collections/complete-dining-room-bundles-save-up-to-20"
+        },
+        {
+          "title": "Express Local Warehouse Stock (3–5 Days)",
+          "url": "/collections/in-stock-express-local-warehouse-delivery-3-5-days"
+        },
+        {
+          "title": "Shipping & Live Delivery Dates",
+          "url": "/pages/international-shipping-and-delivery-dates"
+        }
+      ]
+    },
+    "international-market-switcher": {
+      "title": "International Storefront & Currency Switcher (8 Markets)",
+      "items": [
+        {
+          "title": "🇬🇧 United Kingdom (GBP £ · 20% VAT Incl. · Coventry 3PL)",
+          "url": "/collections/uk-market-gbp-20-vat-included"
+        },
+        {
+          "title": "🇩🇪 Deutschland (EUR € · Inkl. 19% MwSt. · Rotterdam Hub)",
+          "url": "/collections/germany-de-market-eur-inkl-19-mwst"
+        },
+        {
+          "title": "🇫🇷 France (EUR € · TVA 20% Incluse · Entrepôt UE)",
+          "url": "/collections/france-fr-market-eur-tva-20-incluse"
+        },
+        {
+          "title": "🇦🇺 Australia (AUD $ · 10% GST Incl. · Sydney NSW 3PL)",
+          "url": "/collections/australia-au-market-aud-10-gst-included"
+        },
+        {
+          "title": "🇦🇪 GCC / UAE & KSA (AED · 5% VAT Incl. · Dubai Jebel Ali 3PL)",
+          "url": "/collections/gcc-uae-ksa-market-aed-5-vat-included"
+        }
+      ]
+    },
+    "footer-legal-compliance": {
+      "title": "Statutory Legal, VAT & Consumer Rights Footer Menu",
+      "items": [
+        {
+          "title": "🇩🇪 Impressum (§5 TMG) & 14-Tage-Widerrufsbelehrung",
+          "url": "/pages/de-impressum-und-widerrufsbelehrung"
+        },
+        {
+          "title": "🇫🇷 Mentions Légales (LCEN) & Droit de Rétractation",
+          "url": "/pages/fr-mentions-legales-et-retractation"
+        },
+        {
+          "title": "🇬🇧 UK HMRC VAT & Consumer Rights Act 2015",
+          "url": "/pages/uk-hmrc-vat-and-consumer-rights-notice"
+        },
+        {
+          "title": "🇦🇺 Australia ACL Warranty & 10% GST Compliance",
+          "url": "/pages/au-acl-warranty-and-gst-compliance"
+        },
+        {
+          "title": "🇦🇪 UAE FTA 5% VAT & Bilingual Tax Invoice Policy",
+          "url": "/pages/gcc-uae-fta-vat-and-localized-invoice-policy"
+        }
+      ]
+    }
+  }
+}

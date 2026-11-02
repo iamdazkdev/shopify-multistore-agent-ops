@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Transformer Table — Role 3 Shopify Operations Live KPI Dashboard</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-slate-950 text-slate-100 min-h-screen p-6 font-sans">
+  <div class="max-w-7xl mx-auto space-y-6">
+    <header class="bg-slate-900 border border-slate-800 rounded-2xl p-6 flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+      <div>
+        <div class="text-xs font-bold uppercase tracking-widest text-sky-400">Transformer Table · International D2C Operations Engine</div>
+        <h1 class="text-2xl font-bold text-white mt-1">Role 3 — Live Multi-Store Operations & KPI Command Center</h1>
+        <p class="text-xs text-slate-400 mt-1">Connected Store: <code class="text-sky-300">dazk-dev-sandbox-store.myshopify.com</code> (Shopify Plus App Development) · Last Synced: <code class="text-emerald-300">2026-11-02 08:03:40 UTC</code></p>
+      </div>
+      <div class="flex items-center gap-3">
+        <span class="px-3 py-1.5 rounded-xl bg-emerald-500/20 border border-emerald-500/40 text-emerald-300 text-xs font-bold">● ALL 6 ROLE-3 KPIS GREEN</span>
+      </div>
+    </header>
+
+    <!-- 6 ROLE-3 JD KPIS -->
+    <section class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-6 gap-4">
+      <div class="bg-slate-900 border border-slate-800 rounded-xl p-4">
+        <div class="text-xs text-slate-400 uppercase font-semibold">1. Store Health & Uptime</div>
+        <div class="text-2xl font-bold text-emerald-400 mt-1">100% PASS</div>
+        <div class="text-xs text-slate-500 mt-1">0 leaked test SKUs · 9 image-ready collections</div>
+      </div>
+      <div class="bg-slate-900 border border-slate-800 rounded-xl p-4">
+        <div class="text-xs text-slate-400 uppercase font-semibold">2. Stock & ETA Accuracy</div>
+        <div class="text-2xl font-bold text-sky-400 mt-1">18/18 SKUs</div>
+        <div class="text-xs text-slate-500 mt-1">561 units across 2 regional 3PL hubs</div>
+      </div>
+      <div class="bg-slate-900 border border-slate-800 rounded-xl p-4">
+        <div class="text-xs text-slate-400 uppercase font-semibold">3. Market Localization</div>
+        <div class="text-2xl font-bold text-indigo-400 mt-1">5 Markets</div>
+        <div class="text-xs text-slate-500 mt-1">UK · DE · FR · AU · GCC (Native-Reviewed)</div>
+      </div>
+      <div class="bg-slate-900 border border-slate-800 rounded-xl p-4">
+        <div class="text-xs text-slate-400 uppercase font-semibold">4. VAT & Legal Docs</div>
+        <div class="text-2xl font-bold text-amber-400 mt-1">9 Pages</div>
+        <div class="text-xs text-slate-500 mt-1">DE Impressum · FR CGV · UK HMRC · AU ACL · UAE FTA</div>
+      </div>
+      <div class="bg-slate-900 border border-slate-800 rounded-xl p-4">
+        <div class="text-xs text-slate-400 uppercase font-semibold">5. Manual Work Cut</div>
+        <div class="text-2xl font-bold text-emerald-400 mt-1">100% Auto</div>
+        <div class="text-xs text-slate-500 mt-1">Spreadsheets replaced by JSON/CSV Agent DAG</div>
+      </div>
+      <div class="bg-slate-900 border border-slate-800 rounded-xl p-4">
+        <div class="text-xs text-slate-400 uppercase font-semibold">6. Agent & API Uptime</div>
+        <div class="text-2xl font-bold text-sky-400 mt-1">19959/20k</div>
+        <div class="text-xs text-slate-500 mt-1">3 active Webhooks · 1,000 pts/s Plus bucket</div>
+      </div>
+    </section>
+
+    <!-- CATALOG & DELIVERY WINDOWS TABLE -->
+    <section class="bg-slate-900 border border-slate-800 rounded-2xl p-6 space-y-4">
+      <h2 class="text-lg font-bold text-white">Live Flagship Catalog, Multi-Hub Inventory & Localized Delivery Windows</h2>
+      <div class="overflow-x-auto">
+        <table class="w-full text-left border-collapse text-sm">
+          <thead>
+            <tr class="border-b border-slate-700 text-xs uppercase text-slate-400">
+              <th class="p-3">Product</th>
+              <th class="p-3">Variants</th>
+              <th class="p-3">Total 3PL Stock</th>
+              <th class="p-3">Systemized Delivery Window (ops.estimated_delivery_window)</th>
+              <th class="p-3">German Title (localization.title_de)</th>
+              <th class="p-3">QA Gate</th>
+            </tr>
+          </thead>
+          <tbody>
+        <tr class="border-b border-slate-800 hover:bg-slate-800/40">
+          <td class="p-3 font-semibold text-white">Transformer Table 4.0 — Expandable Dining Table (1 to 12 Seater)</td>
+          <td class="p-3 font-mono text-xs text-sky-400">4 SKUs</td>
+          <td class="p-3 font-bold text-emerald-400">96 units</td>
+          <td class="p-3 text-xs text-slate-300">UK/EU/AU: 3–5 Business Days | Backorder Finishes: Batch #14 (Nov 18–25, 2026)</td>
+          <td class="p-3 text-xs text-slate-300">Transformer Table 4.0 — Ausziehbarer Esstisch au...</td>
+          <td class="p-3"><span class="px-2 py-0.5 rounded-full text-xs font-bold bg-emerald-500/20 text-emerald-300">PASS</span></td>
+        </tr>
+        <tr class="border-b border-slate-800 hover:bg-slate-800/40">
+          <td class="p-3 font-semibold text-white">Transformer Bench 4.0 — Expandable Hardwood Bench (1 to 6 People)</td>
+          <td class="p-3 font-mono text-xs text-sky-400">3 SKUs</td>
+          <td class="p-3 font-bold text-emerald-400">120 units</td>
+          <td class="p-3 text-xs text-slate-300">UK/EU/AU/GCC: 3–5 Business Days (Ships with Table or Standalone)</td>
+          <td class="p-3 text-xs text-slate-300">Transformer Bench 4.0 — Ausziehbare Sitzbank mit...</td>
+          <td class="p-3"><span class="px-2 py-0.5 rounded-full text-xs font-bold bg-emerald-500/20 text-emerald-300">PASS</span></td>
+        </tr>
+        <tr class="border-b border-slate-800 hover:bg-slate-800/40">
+          <td class="p-3 font-semibold text-white">Transformer Coffee Table — Lift-Top & Hidden Panel Storage</td>
+          <td class="p-3 font-mono text-xs text-sky-400">3 SKUs</td>
+          <td class="p-3 font-bold text-emerald-400">81 units</td>
+          <td class="p-3 text-xs text-slate-300">UK/EU/AU/GCC: 3–5 Business Days</td>
+          <td class="p-3 text-xs text-slate-300">Transformer Couchtisch — Höhenverstellbar mit in...</td>
+          <td class="p-3"><span class="px-2 py-0.5 rounded-full text-xs font-bold bg-emerald-500/20 text-emerald-300">PASS</span></td>
+        </tr>
+        <tr class="border-b border-slate-800 hover:bg-slate-800/40">
+          <td class="p-3 font-semibold text-white">Transformer Round Table — 4 to 10 Seater Expandable Pedestal Table</td>
+          <td class="p-3 font-mono text-xs text-sky-400">2 SKUs</td>
+          <td class="p-3 font-bold text-emerald-400">21 units</td>
+          <td class="p-3 text-xs text-slate-300">UK/EU: 5–8 Business Days | AU/GCC: Batch #15 (Dec 02–09, 2026)</td>
+          <td class="p-3 text-xs text-slate-300">Runder Transformer Esstisch — Ausziehbar für 4 b...</td>
+          <td class="p-3"><span class="px-2 py-0.5 rounded-full text-xs font-bold bg-emerald-500/20 text-emerald-300">PASS</span></td>
+        </tr>
+        <tr class="border-b border-slate-800 hover:bg-slate-800/40">
+          <td class="p-3 font-semibold text-white">Transformer Stackable Dining Chairs (Set of 2) — Stain-Resistant Bouclé</td>
+          <td class="p-3 font-mono text-xs text-sky-400">3 SKUs</td>
+          <td class="p-3 font-bold text-emerald-400">189 units</td>
+          <td class="p-3 text-xs text-slate-300">UK/EU/AU/GCC: 3–5 Business Days</td>
+          <td class="p-3 text-xs text-slate-300">Stapelbare Esszimmerstühle (2er-Set) — Wasserabw...</td>
+          <td class="p-3"><span class="px-2 py-0.5 rounded-full text-xs font-bold bg-emerald-500/20 text-emerald-300">PASS</span></td>
+        </tr>
+        <tr class="border-b border-slate-800 hover:bg-slate-800/40">
+          <td class="p-3 font-semibold text-white">The Complete Transformer Dining Bundle (Table 4.0 + Bench 4.0 + Coffee Table + 4 Chairs)</td>
+          <td class="p-3 font-mono text-xs text-sky-400">3 SKUs</td>
+          <td class="p-3 font-bold text-emerald-400">54 units</td>
+          <td class="p-3 text-xs text-slate-300">Consolidated White-Glove Delivery: 3–5 Business Days (UK/DE/FR/AU/GCC)</td>
+          <td class="p-3 text-xs text-slate-300">Das Komplette Transformer Esszimmer-Set (Tisch 4...</td>
+          <td class="p-3"><span class="px-2 py-0.5 rounded-full text-xs font-bold bg-emerald-500/20 text-emerald-300">PASS</span></td>
+        </tr></tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- MULTI-COUNTRY ORDERS WITH LOCKED LINE-ITEM DELIVERY ATTRIBUTES -->
+    <section class="bg-slate-900 border border-slate-800 rounded-2xl p-6 space-y-4">
+      <h2 class="text-lg font-bold text-white">Live Multi-Country Orders & Checkout-Locked Delivery Promises (UK · DE · FR · AU · GCC)</h2>
+      <div class="overflow-x-auto">
+        <table class="w-full text-left border-collapse text-sm">
+          <thead>
+            <tr class="border-b border-slate-700 text-xs uppercase text-slate-400">
+              <th class="p-3">Order</th>
+              <th class="p-3">Market</th>
+              <th class="p-3">Destination</th>
+              <th class="p-3">Payment / Fulfillment</th>
+              <th class="p-3">Locked Order Attribute (Estimated Delivery)</th>
+            </tr>
+          </thead>
+          <tbody>
+        <tr class="border-b border-slate-800 hover:bg-slate-800/40">
+          <td class="p-3 font-mono font-bold text-sky-400">#1001</td>
+          <td class="p-3"><span class="px-2 py-0.5 rounded-md text-xs font-bold bg-indigo-500/20 text-indigo-300">Market: UK</span></td>
+          <td class="p-3 text-slate-200">London, GB</td>
+          <td class="p-3 text-xs font-semibold text-emerald-400">PAID / FULFILLED</td>
+          <td class="p-3 text-xs text-amber-300 font-mono">3–5 Business Days</td>
+        </tr>
+        <tr class="border-b border-slate-800 hover:bg-slate-800/40">
+          <td class="p-3 font-mono font-bold text-sky-400">#1002</td>
+          <td class="p-3"><span class="px-2 py-0.5 rounded-md text-xs font-bold bg-indigo-500/20 text-indigo-300">Market: DE</span></td>
+          <td class="p-3 text-slate-200">Berlin, DE</td>
+          <td class="p-3 text-xs font-semibold text-emerald-400">PAID / FULFILLED</td>
+          <td class="p-3 text-xs text-amber-300 font-mono">3–5 Werktage (EU-Zentrallager Rotterdam)</td>
+        </tr>
+        <tr class="border-b border-slate-800 hover:bg-slate-800/40">
+          <td class="p-3 font-mono font-bold text-sky-400">#1003</td>
+          <td class="p-3"><span class="px-2 py-0.5 rounded-md text-xs font-bold bg-indigo-500/20 text-indigo-300">Market: FR</span></td>
+          <td class="p-3 text-slate-200">Paris, FR</td>
+          <td class="p-3 text-xs font-semibold text-emerald-400">PAID / UNFULFILLED</td>
+          <td class="p-3 text-xs text-amber-300 font-mono">5–8 Jours Ouvrés (Entrepôt UE Rotterdam)</td>
+        </tr>
+        <tr class="border-b border-slate-800 hover:bg-slate-800/40">
+          <td class="p-3 font-mono font-bold text-sky-400">#1004</td>
+          <td class="p-3"><span class="px-2 py-0.5 rounded-md text-xs font-bold bg-indigo-500/20 text-indigo-300">Market: AU</span></td>
+          <td class="p-3 text-slate-200">Sydney, AU</td>
+          <td class="p-3 text-xs font-semibold text-emerald-400">PAID / UNFULFILLED</td>
+          <td class="p-3 text-xs text-amber-300 font-mono">Pre-Order Batch #14: Ships Nov 18–25, 2026 (Locked at Checkout)</td>
+        </tr>
+        <tr class="border-b border-slate-800 hover:bg-slate-800/40">
+          <td class="p-3 font-mono font-bold text-sky-400">#1005</td>
+          <td class="p-3"><span class="px-2 py-0.5 rounded-md text-xs font-bold bg-indigo-500/20 text-indigo-300">Market: GCC</span></td>
+          <td class="p-3 text-slate-200">Dubai, AE</td>
+          <td class="p-3 text-xs font-semibold text-emerald-400">PAID / FULFILLED</td>
+          <td class="p-3 text-xs text-amber-300 font-mono">3–5 Business Days (Dubai Jebel Ali Free Zone 3PL Hub)</td>
+        </tr></tbody>
+        </table>
+      </div>
+    </section>
+  </div>
+</body>
+</html>

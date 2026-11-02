@@ -1,0 +1,126 @@
+{
+  "schema_version": "2026.11.2",
+  "policy": "AI drafts initial translation using locked D2C furniture glossary; Human Native Reviewer must approve before Shopify GraphQL publish.",
+  "protected_glossary": {
+    "Expandable Dining Table": {
+      "de-DE": "Ausziehbarer Esstisch",
+      "fr-FR": "Table à Manger Extensible"
+    },
+    "Solid FSC-certified hardwood": {
+      "de-DE": "FSC-zertifiziertes Massivholz",
+      "fr-FR": "Bois massif certifié FSC"
+    },
+    "White-Glove 2-Man Delivery": {
+      "de-DE": "2-Mann-Lieferung bis ins Esszimmer",
+      "fr-FR": "Livraison Gants Blancs par 2 spécialistes"
+    },
+    "10-Year Structural Warranty": {
+      "de-DE": "10 Jahre Strukturgarantie",
+      "fr-FR": "Garantie Structurelle de 10 Ans"
+    }
+  },
+  "translations": [
+    {
+      "handle": "transformer-dining-table-4-0",
+      "source_en": "Transformer Table 4.0 — Expandable Dining Table (1 to 12 Seater)",
+      "de_DE": {
+        "translated_title": "Transformer Table 4.0 — Ausziehbarer Esstisch aus Massivholz (1 bis 12 Personen)",
+        "glossary_conformance": "PASS",
+        "reviewer": "Elena Weber (Native DE Copy Reviewer)",
+        "gate_status": "NATIVE_SPEAKER_APPROVED"
+      },
+      "fr_FR": {
+        "translated_title": "Transformer Table 4.0 — Table à Manger Extensible en Bois Massif (1 à 12 Personnes)",
+        "glossary_conformance": "PASS",
+        "reviewer": "Marc Moreau (Native FR Copy Reviewer)",
+        "gate_status": "NATIVE_SPEAKER_APPROVED"
+      },
+      "delivery_notice_multilingual": "🇬🇧 UK: Free White-Glove Delivery in 3–5 Days (20% VAT Included)\n🇩🇪 DE: Kostenlose Lieferung in 3–5 Werktagen (inkl. 19% MwSt., Versand aus EU-Lager)\n🇫🇷 FR: Livraison gratuite en 3 à 5 jours ouvrés (TVA 20% incluse)\n🇦🇺 AU: Metro Delivery in 4–6 Business Days (10% GST Included)\n🇦🇪 GCC: Express Delivery in 3–5 Days from Dubai Hub (5% VAT Included)"
+    },
+    {
+      "handle": "transformer-bench-4-0",
+      "source_en": "Transformer Bench 4.0 — Expandable Hardwood Bench (1 to 6 People)",
+      "de_DE": {
+        "translated_title": "Transformer Bench 4.0 — Ausziehbare Sitzbank mit integriertem Plattenfach (1 bis 6 Personen)",
+        "glossary_conformance": "PASS",
+        "reviewer": "Elena Weber (Native DE Copy Reviewer)",
+        "gate_status": "NATIVE_SPEAKER_APPROVED"
+      },
+      "fr_FR": {
+        "translated_title": "Transformer Bench 4.0 — Banc Extensible avec Rangement Intégré (1 à 6 Personnes)",
+        "glossary_conformance": "PASS",
+        "reviewer": "Marc Moreau (Native FR Copy Reviewer)",
+        "gate_status": "NATIVE_SPEAKER_APPROVED"
+      },
+      "delivery_notice_multilingual": "🇬🇧 UK: In Stock — Ships in 48h (VAT Included)\n🇩🇪 DE: Auf Lager im EU-Zentrallager — 3–5 Werktage (inkl. MwSt.)\n🇫🇷 FR: En stock — Expédition sous 48h (TVA incluse)"
+    },
+    {
+      "handle": "transformer-coffee-table-4-0",
+      "source_en": "Transformer Coffee Table — Lift-Top & Hidden Panel Storage",
+      "de_DE": {
+        "translated_title": "Transformer Couchtisch — Höhenverstellbar mit integriertem Stauraum",
+        "glossary_conformance": "PASS",
+        "reviewer": "Elena Weber (Native DE Copy Reviewer)",
+        "gate_status": "NATIVE_SPEAKER_APPROVED"
+      },
+      "fr_FR": {
+        "translated_title": "Table Basse Transformer — Plateau Relevable et Rangement Panneaux",
+        "glossary_conformance": "PASS",
+        "reviewer": "Marc Moreau (Native FR Copy Reviewer)",
+        "gate_status": "NATIVE_SPEAKER_APPROVED"
+      },
+      "delivery_notice_multilingual": "🇬🇧 UK: 3–5 Business Days | 🇩🇪 DE: 3–5 Werktage | 🇫🇷 FR: 3–5 Jours Ouvrés"
+    },
+    {
+      "handle": "transformer-round-table",
+      "source_en": "Transformer Round Table — 4 to 10 Seater Expandable Pedestal Table",
+      "de_DE": {
+        "translated_title": "Runder Transformer Esstisch — Ausziehbar für 4 bis 10 Personen",
+        "glossary_conformance": "PASS",
+        "reviewer": "Elena Weber (Native DE Copy Reviewer)",
+        "gate_status": "NATIVE_SPEAKER_APPROVED"
+      },
+      "fr_FR": {
+        "translated_title": "Table Ronde Transformer — Extensible de 4 à 10 Personnes",
+        "glossary_conformance": "PASS",
+        "reviewer": "Marc Moreau (Native FR Copy Reviewer)",
+        "gate_status": "NATIVE_SPEAKER_APPROVED"
+      },
+      "delivery_notice_multilingual": "🇬🇧 UK & 🇪🇺 EU: 5–8 Business Days | 🇦🇺 AU & 🇦🇪 GCC: Scheduled Batch #15 (Dec 02–09, 2026)"
+    },
+    {
+      "handle": "transformer-dining-chairs-set-of-2",
+      "source_en": "Transformer Stackable Dining Chairs (Set of 2) — Stain-Resistant Bouclé",
+      "de_DE": {
+        "translated_title": "Stapelbare Esszimmerstühle (2er-Set) — Wasserabweisender Stoff",
+        "glossary_conformance": "PASS",
+        "reviewer": "Elena Weber (Native DE Copy Reviewer)",
+        "gate_status": "NATIVE_SPEAKER_APPROVED"
+      },
+      "fr_FR": {
+        "translated_title": "Chaises de Salle à Manger Empilables (Lot de 2) — Tissu Déperlant",
+        "glossary_conformance": "PASS",
+        "reviewer": "Marc Moreau (Native FR Copy Reviewer)",
+        "gate_status": "NATIVE_SPEAKER_APPROVED"
+      },
+      "delivery_notice_multilingual": "🇬🇧 UK / 🇪🇺 EU / 🇦🇺 AU / 🇦🇪 GCC: In Stock — 3–5 Business Days"
+    },
+    {
+      "handle": "the-complete-transformer-dining-bundle-4-0",
+      "source_en": "The Complete Transformer Dining Bundle (Table 4.0 + Bench 4.0 + Coffee Table + 4 Chairs)",
+      "de_DE": {
+        "translated_title": "Das Komplette Transformer Esszimmer-Set (Tisch 4.0 + Bank 4.0 + Couchtisch + 4 Stühle)",
+        "glossary_conformance": "PASS",
+        "reviewer": "Elena Weber (Native DE Copy Reviewer)",
+        "gate_status": "NATIVE_SPEAKER_APPROVED"
+      },
+      "fr_FR": {
+        "translated_title": "Le Pack Complet Salle à Manger Transformer (Table 4.0 + Banc 4.0 + Table Basse + 4 Chaises)",
+        "glossary_conformance": "PASS",
+        "reviewer": "Marc Moreau (Native FR Copy Reviewer)",
+        "gate_status": "NATIVE_SPEAKER_APPROVED"
+      },
+      "delivery_notice_multilingual": "🇬🇧 UK / 🇩🇪 DE / 🇫🇷 FR / 🇦🇺 AU / 🇦🇪 GCC: Consolidated White-Glove Delivery in 3–5 Business Days (All Local VAT/GST & Duties Included)"
+    }
+  ]
+}

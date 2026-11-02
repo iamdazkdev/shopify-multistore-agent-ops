@@ -1,62 +1,79 @@
-# Shopify Multi-Store Operations & Agentic Sync Engine (`v2.0`)
+# Shopify Multi-Store Operations & Agentic Sync Engine (`v3.0 — Enterprise Pod Suite`)
 
-Agent-orchestrated Shopify operations pipeline (`validate → localize → human decision gate → GraphQL update → cross-store QA → live BI extraction`) built for international D2C modular furniture operations (**UK · Germany · France · Australia · GCC**).
+Agent-orchestrated Shopify operations pipeline (`validate → localize → native-speaker gate → human decision gate → GraphQL update → cross-store QA → Role 1/2/3 Pod Sync & BI Dashboard`) built for international D2C modular furniture operations (**UK 🇬🇧 · Germany 🇩🇪 · France 🇫🇷 · Australia 🇦🇺 · GCC/UAE 🇦🇪 · 1-Click 6th Market Rollout**).
 
 Connected to a **Live Shopify Plus Storefront (`dazk-dev-sandbox-store.myshopify.com`)** via **Shopify Admin GraphQL API (`2025-01`)** using OAuth `client_credentials` token exchange.
 
 ---
 
-## 1. Architecture & Agentic Workflow
+## 1. Architecture & 10-Feature Agentic Workflow
 
 ```mermaid
 flowchart LR
     Sheet["3PL Container & ETA CSV\n(data/3pl_container_schedule.csv)"] --> Validator["1. Schema & Price Guardrail\n(schemas/store_manifest.json)"]
-    Validator --> Localizer["2. Multi-Market VAT & L10n Agent\n(UK GBP · DE EUR · FR EUR · AU AUD · GCC AED)"]
+    Validator --> Localizer["2. Multi-Market VAT & Native L10n Gate\n(UK GBP · DE EUR · FR EUR · AU AUD · GCC AED)"]
     Localizer --> Gate{"Human Decision Gate\n(artifacts/pending-plan.json)"}
     Gate -->|Approved| GraphQL["3. Live Shopify GraphQL Sync\n(dazk-dev-sandbox-store.myshopify.com)"]
-    GraphQL --> QA["4. Post-Deploy QA & Campaign Gate\n(src/live-store-provisioner.py)"]
-    QA --> Exports["5. Live CSV/JSON Extraction & Rollback Snapshot\n(exports/ & logs/)"]
+    GraphQL --> QA["4. Post-Deploy QA & Legal/VAT Auditor\n(src/live-store-provisioner.py)"]
+    QA --> PodSync["5. Cross-Pod Handshake (Role 1 + Role 2) &\nSelf-Updating HTML KPI Dashboard"]
 ```
 
 ---
 
-## 2. Live Configured Storefront (`dazk-dev-sandbox-store.myshopify.com`)
+## 2. Complete 10-Feature Enterprise Suite (`Batch 1 + Batch 2`)
 
-| Dimension | Live Configuration on Shopify Plus Store |
-| :--- | :--- |
-| **Flagship Products (`6`)** | *Transformer Table 4.0 (1–12 Seater)*, *Transformer Bench 4.0 (1–6 Seater)*, *Transformer Coffee Table*, *Transformer Round Table*, *Stackable Dining Chairs (Set of 2)*, *Complete Dining Bundle (Save 20%)* |
-| **Regional Variants & Stock** | **17 Hardwood Finish SKUs** (`Scandinavian Oak`, `Smoked Hickory`, `American Walnut`, `Brazilian Sequoia Batch #14`) — **462 units** distributed across **2 Warehouse Hubs** (`Western/EU/UK 3PL` & `APAC/VN Factory Hub`) |
-| **Pinned Operational Metafields (`7`)** | `ops.fulfillment_mode`, `ops.estimated_delivery_window`, `ops.warehouse_hub`, `ops.vat_tax_class`, `localization.title_de`, `localization.title_fr`, `localization.multilingual_delivery_promise` |
-| **Country Collections (`4`)** | 🇬🇧 `UK Market (GBP · 20% VAT)` · 🇩🇪 `Germany Market (EUR · 19% MwSt)` · 🇫🇷 `France Market (EUR · 20% TVA)` · 🇦🇺 `Australia Market (AUD · 10% GST)` |
-| **Compliance & Shipping Pages (`3`)** | *International Shipping & Regional 3PL Hubs*, *Local Tax, VAT & Customs Compliance (UK HMRC · EU OSS · AU GST · GCC VAT)*, *International Storefronts & Localization Hub* |
-| **Commercial Readiness** | 4 Regional Customer Profiles (`UK`, `DE`, `FR`, `AU`) + Active Promo Code `TT-INTL-BUNDLE15` (`15% Off`) |
+### Batch 1 — Core Agentic Store Operations & IT/RPA Engineering
+1. **Cross-Hub Factory/3PL Container Sync (`src/live-ops-suite.py`)**: Distributes inventory across **Western/EU/UK 3PL Hub** and **APAC/VN Factory Hub** via GraphQL `inventorySetQuantities` and updates `ops.estimated_delivery_window` metafields.
+2. **Live Data Extraction & Instant Rollback Snapshot (`exports/`)**: Exports live SKU/location matrices, psychological local currency & VAT matrices, and point-in-time JSON rollback snapshots.
+3. **Paid Campaign & CRO Fulfillment Readiness Gate (`logs/campaign_and_drift_report.md`)**: Blocks paid ad spend on low-stock SKUs (`< 15 units` without backorder) or incomplete localization.
+4. **3 Active Shopify Webhooks + Cryptographic HMAC-SHA256 & Idempotency Engine (`src/webhook-rpa-engine.js`)**: Subscribes `PRODUCTS_UPDATE`, `INVENTORY_LEVELS_UPDATE`, and `ORDERS_CREATE` on Shopify and verifies raw HMAC in `0.03ms` (`< 5s` SLA) with `X-Shopify-Event-Id` deduplication.
+5. **Visual n8n / RPA DAG Workflow (`workflows/n8n-shopify-multistore-rpa.workflow.json`)**: 6-node importable n8n workflow connecting Shopify Webhooks, deduplication, localization, approval gate, GraphQL mutation, and post-deploy QA.
+
+### Batch 2 — JD-Specific International Expansion & Cross-Pod Suite (`src/enterprise-pod-suite.py`)
+6. **5th Market Live Provisioner (🇦🇪 GCC / UAE — Dubai Jebel Ali 3PL + 5% VAT) & 1-Click 6th Market Cloner (`npm run market:launch:sg`)**: Provisions full regional market collection, customer (`Tariq Al-Mansoor`), and fulfilled order (`#1005`) with locked `Estimated Delivery` attribute in under 15 seconds.
+7. **Statutory Legal & National VAT/GST Compliance Auditor (`logs/vat_and_legal_milestones_audit.md`)**: Publishes and audits 5 statutory regional legal pages (**DE Impressum §5 TMG & 14-Tage-Widerrufsrecht · 19% MwSt**, **FR Mentions Légales LCEN · 20% TVA**, **UK HMRC 20% VAT**, **AU ACL 10% GST**, **GCC UAE FTA 5% VAT**).
+8. **Cross-Pod Handshake Engine (`Role 3 ↔ Role 1 Growth & Role 2 CRO`)**: Generates [`exports/role1_growth_ai_shopping_feed.json`](./exports/role1_growth_ai_shopping_feed.json) (Google Shopping / Meta Catalog / AI Shopping Agent feed with hard stock & ETA gates) and [`logs/role2_cro_bundle_aov_guardrail.md`](./logs/role2_cro_bundle_aov_guardrail.md) (verifying 20% Bundle savings & `Committed` vs `Available` inventory).
+9. **Native-Speaker Localization QA & Terminology Gate (`exports/native_speaker_review_queue.json`)**: Enforces mandatory German (`Massivholz`, `Inkl. 19% MwSt.`, `Widerrufsrecht`) and French (`Bois Massif`, `TVA 20% Incluse`) furniture & tax terminology before publishing.
+10. **Executive International RevOps HTML Dashboard (`dashboard/role3_ops_dashboard.html`)**: Self-updating dark-mode executive dashboard displaying real-time Shopify Plus store health, 5-market readiness, order pipeline (`#1001`–`#1005`), and webhook status.
 
 ---
 
-## 3. Quickstart Commands
+## 3. Quickstart & Live Demo Commands
 
 ```bash
-# 1. Run automated unit & regression tests (Node.js test runner)
+# 1. Run unit & regression tests (Node.js test runner)
 npm test
 
-# 2. Run Live Store Health & Post-Deployment QA Gate against dazk-dev-sandbox-store.myshopify.com
+# 2. Run Multi-Store Simulation Pipeline (Dry-Run Plan -> Approval Gate -> Cross-Store QA)
+npm run demo
+
+# 3. Run Live Store Health & Post-Deployment QA Gate against dazk-dev-sandbox-store.myshopify.com
 npm run live:qa
 
-# 3. Run Live Data Extraction (CSV + JSON Rollback Snapshot) & Paid Campaign Readiness Gate
+# 4. Run Live 3PL Sync, CSV/JSON Extraction & Campaign Readiness Gate
 npm run live:ops
 
-# 4. Run Multi-Store Simulation Pipeline (Dry-Run Plan -> Approval Gate -> Cross-Store QA)
-npm run demo
+# 5. Run Webhook HMAC-SHA256 + Event-Id Idempotency + GraphQL Rate-Limit Inspector
+npm run demo:engineer
+
+# 6. Run Enterprise Pod Suite (GCC Market + Legal/VAT Pages + Role 1/2 Handshake + HTML Dashboard)
+npm run live:enterprise
+
+# 7. Live Interview Demo: Launch a 6th International Market (🇸🇬 Singapore — SGD · 9% GST) in 10s
+npm run market:launch:sg
 ```
 
 ---
 
 ## 4. Generated Proof Artifacts & Exports
 
+* **Executive HTML KPI Dashboard**: [`dashboard/role3_ops_dashboard.html`](./dashboard/role3_ops_dashboard.html)
 * **Live Store QA Audit Report**: [`logs/qa_audit_report.md`](./logs/qa_audit_report.md)
+* **Statutory VAT & Legal Milestones Audit**: [`logs/vat_and_legal_milestones_audit.md`](./logs/vat_and_legal_milestones_audit.md)
+* **Role 2 CRO & Bundle AOV Guardrail Report**: [`logs/role2_cro_bundle_aov_guardrail.md`](./logs/role2_cro_bundle_aov_guardrail.md)
 * **Paid Campaign & Cross-Store Drift Report**: [`logs/campaign_and_drift_report.md`](./logs/campaign_and_drift_report.md)
-* **Live Catalog, Multi-Location Stock & Localization Export**: [`exports/live_catalog_inventory_matrix.csv`](./exports/live_catalog_inventory_matrix.csv)
-* **Multi-Market Local Currency & Baked-In VAT/GST Matrix**: [`exports/multi_market_price_vat_matrix.csv`](./exports/multi_market_price_vat_matrix.csv)
+* **Role 1 Growth & AI Shopping Agent Feed**: [`exports/role1_growth_ai_shopping_feed.json`](./exports/role1_growth_ai_shopping_feed.json)
+* **Native-Speaker Localization Review Queue**: [`exports/native_speaker_review_queue.json`](./exports/native_speaker_review_queue.json)
+* **Live Catalog & Multi-Location Stock CSV**: [`exports/live_catalog_inventory_matrix.csv`](./exports/live_catalog_inventory_matrix.csv)
+* **Multi-Market Local Currency & VAT Matrix CSV**: [`exports/multi_market_price_vat_matrix.csv`](./exports/multi_market_price_vat_matrix.csv)
 * **Instant Store Rollback Snapshot**: [`exports/store_backup_snapshot.json`](./exports/store_backup_snapshot.json)
-* **Single Source of Truth Manifest**: [`schemas/store_manifest.json`](./schemas/store_manifest.json)
-* **Operational Runbook**: [`RUNBOOK.md`](./RUNBOOK.md)
