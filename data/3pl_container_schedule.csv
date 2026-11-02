@@ -1,0 +1,19 @@
+sku,product_handle,finish_option,uk_coventry_stock,eu_rotterdam_stock,au_sydney_stock,gcc_dubai_stock,next_container_batch,eta_delivery_window,base_price_usd
+TT-DT40-OAK-INT,transformer-dining-table-4-0,Scandinavian Oak,20,15,6,4,BATCH-14-VN,UK/EU/AU: 3–5 Business Days (Local 3PL),1999
+TT-DT40-HCK-INT,transformer-dining-table-4-0,Smoked Hickory,14,10,5,3,BATCH-14-VN,UK/EU/AU: 3–5 Business Days (Local 3PL),1999
+TT-DT40-WAL-INT,transformer-dining-table-4-0,American Walnut,6,5,2,1,BATCH-14-VN,Low Stock — Dispatch in 4–6 Business Days,2149
+TT-DT40-SEQ-INT,transformer-dining-table-4-0,Brazilian Sequoia (Batch #14 Pre-Order),2,2,1,0,BATCH-14-VN,Pre-Order Batch #14: Ships Nov 18–25 2026,2149
+TT-BN40-OAK-INT,transformer-bench-4-0,Scandinavian Oak,25,20,10,5,BATCH-14-VN,UK/EU/AU/GCC: 3–5 Business Days,999
+TT-BN40-HCK-INT,transformer-bench-4-0,Smoked Hickory,16,12,6,4,BATCH-14-VN,UK/EU/AU/GCC: 3–5 Business Days,999
+TT-BN40-WAL-INT,transformer-bench-4-0,American Walnut,10,7,3,2,BATCH-14-VN,UK/EU/AU/GCC: 3–5 Business Days,1099
+TT-CT40-OAK-INT,transformer-coffee-table-4-0,Scandinavian Oak,15,12,5,3,BATCH-14-VN,UK/EU/AU/GCC: 3–5 Business Days,749
+TT-CT40-HCK-INT,transformer-coffee-table-4-0,Smoked Hickory,12,9,4,2,BATCH-14-VN,UK/EU/AU/GCC: 3–5 Business Days,749
+TT-CT40-WAL-INT,transformer-coffee-table-4-0,American Walnut,8,6,3,2,BATCH-14-VN,UK/EU/AU/GCC: 3–5 Business Days,799
+TT-RND-OAK-INT,transformer-round-table,Scandinavian Oak,5,4,2,1,BATCH-15-VN,UK/EU: 5–8 Days | AU/GCC: Batch #15 (Dec 02–09),2199
+TT-RND-WAL-INT,transformer-round-table,American Walnut,4,3,1,1,BATCH-15-VN,UK/EU: 5–8 Days | AU/GCC: Batch #15 (Dec 02–09),2299
+TT-CH2-OAK-INT,transformer-dining-chairs-set-of-2,Scandinavian Oak / Cream Bouclé,35,28,14,8,BATCH-14-VN,UK/EU/AU/GCC: 3–5 Business Days,399
+TT-CH2-HCK-INT,transformer-dining-chairs-set-of-2,Smoked Hickory / Slate Grey,26,20,12,6,BATCH-14-VN,UK/EU/AU/GCC: 3–5 Business Days,399
+TT-CH2-WAL-INT,transformer-dining-chairs-set-of-2,American Walnut / Charcoal Weave,18,12,6,4,BATCH-14-VN,UK/EU/AU/GCC: 3–5 Business Days,429
+TT-BND40-OAK-INT,the-complete-transformer-dining-bundle-4-0,Scandinavian Oak Full Suite,10,8,4,3,BATCH-14-VN,Consolidated White-Glove: 3–5 Business Days,3599
+TT-BND40-HCK-INT,the-complete-transformer-dining-bundle-4-0,Smoked Hickory Full Suite,8,6,2,2,BATCH-14-VN,Consolidated White-Glove: 3–5 Business Days,3599
+TT-BND40-WAL-INT,the-complete-transformer-dining-bundle-4-0,American Walnut Full Suite,5,4,1,1,BATCH-14-VN,Consolidated White-Glove: 3–5 Business Days,3799

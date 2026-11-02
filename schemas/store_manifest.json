@@ -1,0 +1,198 @@
+{
+  "schema_version": "2026.11.1",
+  "organization": "Transformer Table — International D2C Operations",
+  "store_domain": "dazk-dev-sandbox-store.myshopify.com",
+  "markets_covered": ["UK (GBP)", "Germany (EUR)", "France (EUR)", "Australia (AUD)", "GCC (AED)", "Rest of Europe (EUR)"],
+  "metafield_definitions": [
+    {
+      "name": "Fulfillment Mode",
+      "namespace": "ops",
+      "key": "fulfillment_mode",
+      "type": "single_line_text_field",
+      "ownerType": "PRODUCT",
+      "description": "Systemized fulfillment status (IN_STOCK_LOCAL_3PL, LOW_STOCK_PRIORITY, BACKORDER_BATCH)"
+    },
+    {
+      "name": "Estimated Delivery Window",
+      "namespace": "ops",
+      "key": "estimated_delivery_window",
+      "type": "single_line_text_field",
+      "ownerType": "PRODUCT",
+      "description": "Automated customer-facing delivery window replacing manual spreadsheets"
+    },
+    {
+      "name": "Regional Warehouse Hub",
+      "namespace": "ops",
+      "key": "warehouse_hub",
+      "type": "single_line_text_field",
+      "ownerType": "PRODUCT",
+      "description": "Assigned 3PL fulfillment hub per international market"
+    },
+    {
+      "name": "VAT & Local Tax Class",
+      "namespace": "ops",
+      "key": "vat_tax_class",
+      "type": "single_line_text_field",
+      "ownerType": "PRODUCT",
+      "description": "Tax & VAT compliance rule per market (UK 20% VAT, DE 19% MwSt, FR 20% TVA, AU 10% GST, UAE 5% VAT)"
+    },
+    {
+      "name": "Localized Title (DE - German)",
+      "namespace": "localization",
+      "key": "title_de",
+      "type": "single_line_text_field",
+      "ownerType": "PRODUCT",
+      "description": "Native-reviewed German product title for DE/AT storefront"
+    },
+    {
+      "name": "Localized Title (FR - French)",
+      "namespace": "localization",
+      "key": "title_fr",
+      "type": "single_line_text_field",
+      "ownerType": "PRODUCT",
+      "description": "Native-reviewed French product title for FR/BE storefront"
+    },
+    {
+      "name": "Localized Delivery Promise (DE / FR / UK / AU)",
+      "namespace": "localization",
+      "key": "multilingual_delivery_promise",
+      "type": "multi_line_text_field",
+      "ownerType": "PRODUCT",
+      "description": "Localized delivery & tax-included messaging per international market"
+    }
+  ],
+  "products": [
+    {
+      "handle": "transformer-dining-table-4-0",
+      "title": "Transformer Table 4.0 — Expandable Dining Table (1 to 12 Seater)",
+      "vendor": "Transformer Table International",
+      "productType": "Expandable Dining Table",
+      "tags": ["flagship", "dining-table", "expandable", "in-stock-uk-eu-au", "vat-compliant", "version-4.0"],
+      "descriptionHtml": "<h3>From Console to 12-Person Banquet in 60 Seconds</h3><p>Engineered with solid FSC-certified hardwood and steel telescopic mechanisms, the <strong>Transformer Table 4.0</strong> expands seamlessly from an 18-inch (45 cm) entryway console to a 118-inch (300 cm) banquet table seating up to 12 guests.</p><ul><li><strong>6-in-1 Modular Design:</strong> Includes 5 insert panels that lock in effortlessly.</li><li><strong>750 lbs (340 kg) Load Capacity:</strong> Reinforced ball-bearing steel tracks with hidden center leg support.</li><li><strong>International D2C Fulfillment:</strong> Dispatched from local regional hubs (UK Midlands, Rotterdam EU, Sydney AU, Jebel Ali GCC) with all local VAT/GST included—zero customs surprises.</li></ul>",
+      "metafields": {
+        "ops.fulfillment_mode": "IN_STOCK_LOCAL_3PL",
+        "ops.estimated_delivery_window": "UK/EU/AU: 3–5 Business Days | Backorder Finishes: Batch #14 (Nov 18–25, 2026)",
+        "ops.warehouse_hub": "UK-MIDLANDS-3PL | EU-ROTTERDAM-HUB | AU-SYDNEY-3PL | GCC-JEBEL-ALI",
+        "ops.vat_tax_class": "DDP_TAX_INCLUDED (UK 20% VAT · DE 19% MwSt · FR 20% TVA · AU 10% GST · GCC 5% VAT)",
+        "localization.title_de": "Transformer Table 4.0 — Ausziehbarer Esstisch aus Massivholz (1 bis 12 Personen)",
+        "localization.title_fr": "Transformer Table 4.0 — Table à Manger Extensible en Bois Massif (1 à 12 Personnes)",
+        "localization.multilingual_delivery_promise": "🇬🇧 UK: Free White-Glove Delivery in 3–5 Days (20% VAT Included)\n🇩🇪 DE: Kostenlose Lieferung in 3–5 Werktagen (inkl. 19% MwSt., Versand aus EU-Lager)\n🇫🇷 FR: Livraison gratuite en 3 à 5 jours ouvrés (TVA 20% incluse)\n🇦🇺 AU: Metro Delivery in 4–6 Business Days (10% GST Included)\n🇦🇪 GCC: Express Delivery in 3–5 Days from Dubai Hub (5% VAT Included)"
+      },
+      "variants": [
+        {"option": "Scandinavian Oak", "sku": "TT-DT40-OAK-INT", "price": "49900000", "compareAtPrice": "58900000", "inventory": 45},
+        {"option": "Smoked Hickory", "sku": "TT-DT40-HCK-INT", "price": "49900000", "compareAtPrice": "58900000", "inventory": 32},
+        {"option": "American Walnut", "sku": "TT-DT40-WAL-INT", "price": "52900000", "compareAtPrice": "61900000", "inventory": 14},
+        {"option": "Brazilian Sequoia (Batch #14 Pre-Order)", "sku": "TT-DT40-SEQ-INT", "price": "52900000", "compareAtPrice": "61900000", "inventory": 5}
+      ]
+    },
+    {
+      "handle": "transformer-bench-4-0",
+      "title": "Transformer Bench 4.0 — Expandable Hardwood Bench (1 to 6 People)",
+      "vendor": "Transformer Table International",
+      "productType": "Expandable Bench",
+      "tags": ["seating", "bench", "expandable", "in-stock-uk-eu-au", "vat-compliant", "version-4.0"],
+      "descriptionHtml": "<h3>The Only Bench That Grows With Your Guest List</h3><p>Designed as the companion to the Transformer Table 4.0, the <strong>Transformer Bench 4.0</strong> adjusts from a compact solo seat (28 in / 71 cm) to a 130-inch (330 cm) bench seating up to 6 adults comfortably—and stores its own 5 expansion panels inside the built-in compartment.</p><ul><li><strong>Self-Storing Panels:</strong> All 5 panels nest directly inside the bench frame.</li><li><strong>1,500 lbs (680 kg) Weight Capacity:</strong> Solid hardwood and triple-reinforced steel rails.</li></ul>",
+      "metafields": {
+        "ops.fulfillment_mode": "IN_STOCK_LOCAL_3PL",
+        "ops.estimated_delivery_window": "UK/EU/AU/GCC: 3–5 Business Days (Ships with Table or Standalone)",
+        "ops.warehouse_hub": "UK-MIDLANDS-3PL | EU-ROTTERDAM-HUB | AU-SYDNEY-3PL | GCC-JEBEL-ALI",
+        "ops.vat_tax_class": "DDP_TAX_INCLUDED (UK 20% VAT · DE 19% MwSt · FR 20% TVA · AU 10% GST · GCC 5% VAT)",
+        "localization.title_de": "Transformer Bench 4.0 — Ausziehbare Sitzbank mit integriertem Plattenfach (1 bis 6 Personen)",
+        "localization.title_fr": "Transformer Bench 4.0 — Banc Extensible avec Rangement Intégré (1 à 6 Personnes)",
+        "localization.multilingual_delivery_promise": "🇬🇧 UK: In Stock — Ships in 48h (VAT Included)\n🇩🇪 DE: Auf Lager im EU-Zentrallager — 3–5 Werktage (inkl. MwSt.)\n🇫🇷 FR: En stock — Expédition sous 48h (TVA incluse)"
+      },
+      "variants": [
+        {"option": "Scandinavian Oak", "sku": "TT-BN40-OAK-INT", "price": "24900000", "compareAtPrice": "29900000", "inventory": 60},
+        {"option": "Smoked Hickory", "sku": "TT-BN40-HCK-INT", "price": "24900000", "compareAtPrice": "29900000", "inventory": 38},
+        {"option": "American Walnut", "sku": "TT-BN40-WAL-INT", "price": "26900000", "compareAtPrice": "31900000", "inventory": 22}
+      ]
+    },
+    {
+      "handle": "transformer-coffee-table-4-0",
+      "title": "Transformer Coffee Table — Lift-Top & Hidden Panel Storage",
+      "vendor": "Transformer Table International",
+      "productType": "Coffee Table",
+      "tags": ["coffee-table", "storage", "living-room", "in-stock-uk-eu-au", "vat-compliant"],
+      "descriptionHtml": "<h3>Smart Living Room Centerpiece + Panel Vault</h3><p>Engineered to house all 5 expansion panels of your Transformer Dining Table while serving as an everyday lift-top work and dining surface.</p><ul><li><strong>Dual-Purpose Storage:</strong> Dedicated felt-lined slots protect your dining table panels when not in use.</li><li><strong>Soft-Close Lift Top:</strong> Elevates smoothly for laptop work or casual sofa dining.</li></ul>",
+      "metafields": {
+        "ops.fulfillment_mode": "IN_STOCK_LOCAL_3PL",
+        "ops.estimated_delivery_window": "UK/EU/AU/GCC: 3–5 Business Days",
+        "ops.warehouse_hub": "UK-MIDLANDS-3PL | EU-ROTTERDAM-HUB | AU-SYDNEY-3PL | GCC-JEBEL-ALI",
+        "ops.vat_tax_class": "DDP_TAX_INCLUDED (UK 20% VAT · DE 19% MwSt · FR 20% TVA · AU 10% GST · GCC 5% VAT)",
+        "localization.title_de": "Transformer Couchtisch — Höhenverstellbar mit integriertem Stauraum",
+        "localization.title_fr": "Table Basse Transformer — Plateau Relevable et Rangement Panneaux",
+        "localization.multilingual_delivery_promise": "🇬🇧 UK: 3–5 Business Days | 🇩🇪 DE: 3–5 Werktage | 🇫🇷 FR: 3–5 Jours Ouvrés"
+      },
+      "variants": [
+        {"option": "Scandinavian Oak", "sku": "TT-CT40-OAK-INT", "price": "18900000", "compareAtPrice": "22900000", "inventory": 35},
+        {"option": "Smoked Hickory", "sku": "TT-CT40-HCK-INT", "price": "18900000", "compareAtPrice": "22900000", "inventory": 27},
+        {"option": "American Walnut", "sku": "TT-CT40-WAL-INT", "price": "19900000", "compareAtPrice": "23900000", "inventory": 19}
+      ]
+    },
+    {
+      "handle": "transformer-round-table",
+      "title": "Transformer Round Table — 4 to 10 Seater Expandable Pedestal Table",
+      "vendor": "Transformer Table International",
+      "productType": "Expandable Dining Table",
+      "tags": ["dining-table", "round-table", "expandable", "backorder-batch", "vat-compliant"],
+      "descriptionHtml": "<h3>Classic Round Intimacy, Banquet Capacity</h3><p>Transforms from a 47-inch (120 cm) round bistro table for 4 into a grand 107-inch (272 cm) oval dining table for up to 10 guests, complete with a matching storage sideboard/coffee unit.</p>",
+      "metafields": {
+        "ops.fulfillment_mode": "LOW_STOCK_PRIORITY",
+        "ops.estimated_delivery_window": "UK/EU: 5–8 Business Days | AU/GCC: Batch #15 (Dec 02–09, 2026)",
+        "ops.warehouse_hub": "UK-MIDLANDS-3PL | EU-ROTTERDAM-HUB",
+        "ops.vat_tax_class": "DDP_TAX_INCLUDED (UK 20% VAT · DE 19% MwSt · FR 20% TVA · AU 10% GST · GCC 5% VAT)",
+        "localization.title_de": "Runder Transformer Esstisch — Ausziehbar für 4 bis 10 Personen",
+        "localization.title_fr": "Table Ronde Transformer — Extensible de 4 à 10 Personnes",
+        "localization.multilingual_delivery_promise": "🇬🇧 UK & 🇪🇺 EU: 5–8 Business Days | 🇦🇺 AU & 🇦🇪 GCC: Scheduled Batch #15 (Dec 02–09, 2026)"
+      },
+      "variants": [
+        {"option": "Scandinavian Oak", "sku": "TT-RND-OAK-INT", "price": "54900000", "compareAtPrice": "64900000", "inventory": 12},
+        {"option": "American Walnut", "sku": "TT-RND-WAL-INT", "price": "56900000", "compareAtPrice": "66900000", "inventory": 9}
+      ]
+    },
+    {
+      "handle": "transformer-dining-chairs-set-of-2",
+      "title": "Transformer Stackable Dining Chairs (Set of 2) — Stain-Resistant Bouclé",
+      "vendor": "Transformer Table International",
+      "productType": "Dining Chairs",
+      "tags": ["seating", "chairs", "in-stock-uk-eu-au", "vat-compliant"],
+      "descriptionHtml": "<h3>Ergonomic Comfort That Stacks Away</h3><p>Crafted from solid hardwood with liquid-repellent performance fabric, these chairs stack up to 4 high for compact storage alongside your Transformer Table.</p>",
+      "metafields": {
+        "ops.fulfillment_mode": "IN_STOCK_LOCAL_3PL",
+        "ops.estimated_delivery_window": "UK/EU/AU/GCC: 3–5 Business Days",
+        "ops.warehouse_hub": "UK-MIDLANDS-3PL | EU-ROTTERDAM-HUB | AU-SYDNEY-3PL | GCC-JEBEL-ALI",
+        "ops.vat_tax_class": "DDP_TAX_INCLUDED (UK 20% VAT · DE 19% MwSt · FR 20% TVA · AU 10% GST · GCC 5% VAT)",
+        "localization.title_de": "Stapelbare Esszimmerstühle (2er-Set) — Wasserabweisender Stoff",
+        "localization.title_fr": "Chaises de Salle à Manger Empilables (Lot de 2) — Tissu Déperlant",
+        "localization.multilingual_delivery_promise": "🇬🇧 UK / 🇪🇺 EU / 🇦🇺 AU / 🇦🇪 GCC: In Stock — 3–5 Business Days"
+      },
+      "variants": [
+        {"option": "Scandinavian Oak / Cream Bouclé", "sku": "TT-CH2-OAK-INT", "price": "9900000", "compareAtPrice": "11900000", "inventory": 85},
+        {"option": "Smoked Hickory / Slate Grey", "sku": "TT-CH2-HCK-INT", "price": "9900000", "compareAtPrice": "11900000", "inventory": 64},
+        {"option": "American Walnut / Charcoal Weave", "sku": "TT-CH2-WAL-INT", "price": "10500000", "compareAtPrice": "12500000", "inventory": 40}
+      ]
+    },
+    {
+      "handle": "the-complete-transformer-dining-bundle-4-0",
+      "title": "The Complete Transformer Dining Bundle (Table 4.0 + Bench 4.0 + Coffee Table + 4 Chairs)",
+      "vendor": "Transformer Table International",
+      "productType": "Complete Dining Bundle",
+      "tags": ["bundle", "flagship", "dining-table", "seating", "coffee-table", "in-stock-uk-eu-au", "vat-compliant"],
+      "descriptionHtml": "<h3>The Ultimate Space-Saving Dining Ecosystem (Save 20%)</h3><p>Our highest-converting international bundle includes:</p><ul><li>1x <strong>Transformer Table 4.0</strong> (1 to 12 Seater)</li><li>1x <strong>Transformer Bench 4.0</strong> (1 to 6 Seater with Internal Storage)</li><li>1x <strong>Transformer Coffee Table</strong> (Panel Storage + Lift-Top)</li><li>4x <strong>Stackable Ergonomic Dining Chairs</strong></li></ul><p>Ships together in one consolidated white-glove delivery from your nearest regional warehouse (UK, EU, Australia, or GCC) with full 10-Year Structural Warranty.</p>",
+      "metafields": {
+        "ops.fulfillment_mode": "IN_STOCK_LOCAL_3PL",
+        "ops.estimated_delivery_window": "Consolidated White-Glove Delivery: 3–5 Business Days (UK/DE/FR/AU/GCC)",
+        "ops.warehouse_hub": "UK-MIDLANDS-3PL | EU-ROTTERDAM-HUB | AU-SYDNEY-3PL | GCC-JEBEL-ALI",
+        "ops.vat_tax_class": "DDP_TAX_INCLUDED (UK 20% VAT · DE 19% MwSt · FR 20% TVA · AU 10% GST · GCC 5% VAT)",
+        "localization.title_de": "Das Komplette Transformer Esszimmer-Set (Tisch 4.0 + Bank 4.0 + Couchtisch + 4 Stühle)",
+        "localization.title_fr": "Le Pack Complet Salle à Manger Transformer (Table 4.0 + Banc 4.0 + Table Basse + 4 Chaises)",
+        "localization.multilingual_delivery_promise": "🇬🇧 UK / 🇩🇪 DE / 🇫🇷 FR / 🇦🇺 AU / 🇦🇪 GCC: Consolidated White-Glove Delivery in 3–5 Business Days (All Local VAT/GST & Duties Included)"
+      },
+      "variants": [
+        {"option": "Scandinavian Oak Full Suite", "sku": "TT-BND40-OAK-INT", "price": "89900000", "compareAtPrice": "114500000", "inventory": 25},
+        {"option": "Smoked Hickory Full Suite", "sku": "TT-BND40-HCK-INT", "price": "89900000", "compareAtPrice": "114500000", "inventory": 18},
+        {"option": "American Walnut Full Suite", "sku": "TT-BND40-WAL-INT", "price": "94900000", "compareAtPrice": "119500000", "inventory": 11}
+      ]
+    }
+  ]
+}

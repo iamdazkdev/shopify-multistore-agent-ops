@@ -1,0 +1,1262 @@
+[
+  {
+    "id": "gid://shopify/Product/8492110282815",
+    "title": "Transformer Table 4.0 — Expandable Dining Table (1 to 12 Seater)",
+    "handle": "transformer-dining-table-4-0",
+    "productType": "Expandable Dining Table",
+    "totalInventory": 96,
+    "variants": {
+      "edges": [
+        {
+          "node": {
+            "id": "gid://shopify/ProductVariant/44370541281343",
+            "title": "Scandinavian Oak",
+            "sku": "TT-DT40-OAK-INT",
+            "price": "49900000",
+            "compareAtPrice": "58900000",
+            "inventoryPolicy": "DENY",
+            "inventoryQuantity": 45,
+            "inventoryItem": {
+              "id": "gid://shopify/InventoryItem/46540810551359",
+              "inventoryLevels": {
+                "edges": [
+                  {
+                    "node": {
+                      "location": {
+                        "name": "Shop location"
+                      },
+                      "quantities": [
+                        {
+                          "name": "available",
+                          "quantity": 10
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "node": {
+                      "location": {
+                        "name": "My Custom Location"
+                      },
+                      "quantities": [
+                        {
+                          "name": "available",
+                          "quantity": 35
+                        }
+                      ]
+                    }
+                  }
+                ]
+              }
+            }
+          }
+        },
+        {
+          "node": {
+            "id": "gid://shopify/ProductVariant/44370541314111",
+            "title": "Smoked Hickory",
+            "sku": "TT-DT40-HCK-INT",
+            "price": "49900000",
+            "compareAtPrice": "58900000",
+            "inventoryPolicy": "DENY",
+            "inventoryQuantity": 32,
+            "inventoryItem": {
+              "id": "gid://shopify/InventoryItem/46540810584127",
+              "inventoryLevels": {
+                "edges": [
+                  {
+                    "node": {
+                      "location": {
+                        "name": "Shop location"
+                      },
+                      "quantities": [
+                        {
+                          "name": "available",
+                          "quantity": 8
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "node": {
+                      "location": {
+                        "name": "My Custom Location"
+                      },
+                      "quantities": [
+                        {
+                          "name": "available",
+                          "quantity": 24
+                        }
+                      ]
+                    }
+                  }
+                ]
+              }
+            }
+          }
+        },
+        {
+          "node": {
+            "id": "gid://shopify/ProductVariant/44370541346879",
+            "title": "American Walnut",
+            "sku": "TT-DT40-WAL-INT",
+            "price": "52900000",
+            "compareAtPrice": "61900000",
+            "inventoryPolicy": "DENY",
+            "inventoryQuantity": 14,
+            "inventoryItem": {
+              "id": "gid://shopify/InventoryItem/46540810616895",
+              "inventoryLevels": {
+                "edges": [
+                  {
+                    "node": {
+                      "location": {
+                        "name": "Shop location"
+                      },
+                      "quantities": [
+                        {
+                          "name": "available",
+                          "quantity": 3
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "node": {
+                      "location": {
+                        "name": "My Custom Location"
+                      },
+                      "quantities": [
+                        {
+                          "name": "available",
+                          "quantity": 11
+                        }
+                      ]
+                    }
+                  }
+                ]
+              }
+            }
+          }
+        },
+        {
+          "node": {
+            "id": "gid://shopify/ProductVariant/44370541379647",
+            "title": "Brazilian Sequoia (Batch #14 Pre-Order)",
+            "sku": "TT-DT40-SEQ-INT",
+            "price": "52900000",
+            "compareAtPrice": "61900000",
+            "inventoryPolicy": "CONTINUE",
+            "inventoryQuantity": 5,
+            "inventoryItem": {
+              "id": "gid://shopify/InventoryItem/46540810649663",
+              "inventoryLevels": {
+                "edges": [
+                  {
+                    "node": {
+                      "location": {
+                        "name": "Shop location"
+                      },
+                      "quantities": [
+                        {
+                          "name": "available",
+                          "quantity": 1
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "node": {
+                      "location": {
+                        "name": "My Custom Location"
+                      },
+                      "quantities": [
+                        {
+                          "name": "available",
+                          "quantity": 4
+                        }
+                      ]
+                    }
+                  }
+                ]
+              }
+            }
+          }
+        }
+      ]
+    },
+    "metafields": {
+      "edges": [
+        {
+          "node": {
+            "namespace": "ops",
+            "key": "fulfillment_mode",
+            "value": "IN_STOCK_LOCAL_3PL"
+          }
+        },
+        {
+          "node": {
+            "namespace": "ops",
+            "key": "estimated_delivery_window",
+            "value": "UK/EU/AU: 3–5 Business Days | Backorder Finishes: Batch #14 (Nov 18–25, 2026)"
+          }
+        },
+        {
+          "node": {
+            "namespace": "ops",
+            "key": "warehouse_hub",
+            "value": "UK-MIDLANDS-3PL | EU-ROTTERDAM-HUB | AU-SYDNEY-3PL | GCC-JEBEL-ALI"
+          }
+        },
+        {
+          "node": {
+            "namespace": "ops",
+            "key": "vat_tax_class",
+            "value": "DDP_TAX_INCLUDED (UK 20% VAT · DE 19% MwSt · FR 20% TVA · AU 10% GST · GCC 5% VAT)"
+          }
+        },
+        {
+          "node": {
+            "namespace": "localization",
+            "key": "title_de",
+            "value": "Transformer Table 4.0 — Ausziehbarer Esstisch aus Massivholz (1 bis 12 Personen)"
+          }
+        },
+        {
+          "node": {
+            "namespace": "localization",
+            "key": "title_fr",
+            "value": "Transformer Table 4.0 — Table à Manger Extensible en Bois Massif (1 à 12 Personnes)"
+          }
+        },
+        {
+          "node": {
+            "namespace": "localization",
+            "key": "multilingual_delivery_promise",
+            "value": "🇬🇧 UK: Free White-Glove Delivery in 3–5 Days (20% VAT Included)\n🇩🇪 DE: Kostenlose Lieferung in 3–5 Werktagen (inkl. 19% MwSt., Versand aus EU-Lager)\n🇫🇷 FR: Livraison gratuite en 3 à 5 jours ouvrés (TVA 20% incluse)\n🇦🇺 AU: Metro Delivery in 4–6 Business Days (10% GST Included)\n🇦🇪 GCC: Express Delivery in 3–5 Days from Dubai Hub (5% VAT Included)"
+          }
+        },
+        {
+          "node": {
+            "namespace": "global",
+            "key": "title_tag",
+            "value": "Transformer Table 4.0 — Expandable Dining Table (1 to 12 Seater) | Local UK · EU · AU · GCC Delivery"
+          }
+        },
+        {
+          "node": {
+            "namespace": "global",
+            "key": "description_tag",
+            "value": "Shop Transformer Table 4.0 — Expandable Dining Table (1 to 12 Seater). Dispatched from local regional warehouses with VAT/GST included and 10-Year Structural Warranty."
+          }
+        }
+      ]
+    }
+  },
+  {
+    "id": "gid://shopify/Product/8492110315583",
+    "title": "Transformer Bench 4.0 — Expandable Hardwood Bench (1 to 6 People)",
+    "handle": "transformer-bench-4-0",
+    "productType": "Expandable Bench",
+    "totalInventory": 120,
+    "variants": {
+      "edges": [
+        {
+          "node": {
+            "id": "gid://shopify/ProductVariant/44370541412415",
+            "title": "Scandinavian Oak",
+            "sku": "TT-BN40-OAK-INT",
+            "price": "24900000",
+            "compareAtPrice": "29900000",
+            "inventoryPolicy": "DENY",
+            "inventoryQuantity": 60,
+            "inventoryItem": {
+              "id": "gid://shopify/InventoryItem/46540810682431",
+              "inventoryLevels": {
+                "edges": [
+                  {
+                    "node": {
+                      "location": {
+                        "name": "Shop location"
+                      },
+                      "quantities": [
+                        {
+                          "name": "available",
+                          "quantity": 15
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "node": {
+                      "location": {
+                        "name": "My Custom Location"
+                      },
+                      "quantities": [
+                        {
+                          "name": "available",
+                          "quantity": 45
+                        }
+                      ]
+                    }
+                  }
+                ]
+              }
+            }
+          }
+        },
+        {
+          "node": {
+            "id": "gid://shopify/ProductVariant/44370541445183",
+            "title": "Smoked Hickory",
+            "sku": "TT-BN40-HCK-INT",
+            "price": "24900000",
+            "compareAtPrice": "29900000",
+            "inventoryPolicy": "DENY",
+            "inventoryQuantity": 38,
+            "inventoryItem": {
+              "id": "gid://shopify/InventoryItem/46540810715199",
+              "inventoryLevels": {
+                "edges": [
+                  {
+                    "node": {
+                      "location": {
+                        "name": "Shop location"
+                      },
+                      "quantities": [
+                        {
+                          "name": "available",
+                          "quantity": 10
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "node": {
+                      "location": {
+                        "name": "My Custom Location"
+                      },
+                      "quantities": [
+                        {
+                          "name": "available",
+                          "quantity": 28
+                        }
+                      ]
+                    }
+                  }
+                ]
+              }
+            }
+          }
+        },
+        {
+          "node": {
+            "id": "gid://shopify/ProductVariant/44370541477951",
+            "title": "American Walnut",
+            "sku": "TT-BN40-WAL-INT",
+            "price": "26900000",
+            "compareAtPrice": "31900000",
+            "inventoryPolicy": "DENY",
+            "inventoryQuantity": 22,
+            "inventoryItem": {
+              "id": "gid://shopify/InventoryItem/46540810747967",
+              "inventoryLevels": {
+                "edges": [
+                  {
+                    "node": {
+                      "location": {
+                        "name": "Shop location"
+                      },
+                      "quantities": [
+                        {
+                          "name": "available",
+                          "quantity": 5
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "node": {
+                      "location": {
+                        "name": "My Custom Location"
+                      },
+                      "quantities": [
+                        {
+                          "name": "available",
+                          "quantity": 17
+                        }
+                      ]
+                    }
+                  }
+                ]
+              }
+            }
+          }
+        }
+      ]
+    },
+    "metafields": {
+      "edges": [
+        {
+          "node": {
+            "namespace": "ops",
+            "key": "fulfillment_mode",
+            "value": "IN_STOCK_LOCAL_3PL"
+          }
+        },
+        {
+          "node": {
+            "namespace": "ops",
+            "key": "estimated_delivery_window",
+            "value": "UK/EU/AU/GCC: 3–5 Business Days (Ships with Table or Standalone)"
+          }
+        },
+        {
+          "node": {
+            "namespace": "ops",
+            "key": "warehouse_hub",
+            "value": "UK-MIDLANDS-3PL | EU-ROTTERDAM-HUB | AU-SYDNEY-3PL | GCC-JEBEL-ALI"
+          }
+        },
+        {
+          "node": {
+            "namespace": "ops",
+            "key": "vat_tax_class",
+            "value": "DDP_TAX_INCLUDED (UK 20% VAT · DE 19% MwSt · FR 20% TVA · AU 10% GST · GCC 5% VAT)"
+          }
+        },
+        {
+          "node": {
+            "namespace": "localization",
+            "key": "title_de",
+            "value": "Transformer Bench 4.0 — Ausziehbare Sitzbank mit integriertem Plattenfach (1 bis 6 Personen)"
+          }
+        },
+        {
+          "node": {
+            "namespace": "localization",
+            "key": "title_fr",
+            "value": "Transformer Bench 4.0 — Banc Extensible avec Rangement Intégré (1 à 6 Personnes)"
+          }
+        },
+        {
+          "node": {
+            "namespace": "localization",
+            "key": "multilingual_delivery_promise",
+            "value": "🇬🇧 UK: In Stock — Ships in 48h (VAT Included)\n🇩🇪 DE: Auf Lager im EU-Zentrallager — 3–5 Werktage (inkl. MwSt.)\n🇫🇷 FR: En stock — Expédition sous 48h (TVA incluse)"
+          }
+        },
+        {
+          "node": {
+            "namespace": "global",
+            "key": "title_tag",
+            "value": "Transformer Bench 4.0 — Expandable Hardwood Bench (1 to 6 People) | Local UK · EU · AU · GCC Delivery"
+          }
+        },
+        {
+          "node": {
+            "namespace": "global",
+            "key": "description_tag",
+            "value": "Shop Transformer Bench 4.0 — Expandable Hardwood Bench (1 to 6 People). Dispatched from local regional warehouses with VAT/GST included and 10-Year Structural Warranty."
+          }
+        }
+      ]
+    }
+  },
+  {
+    "id": "gid://shopify/Product/8492110348351",
+    "title": "Transformer Coffee Table — Lift-Top & Hidden Panel Storage",
+    "handle": "transformer-coffee-table-4-0",
+    "productType": "Coffee Table",
+    "totalInventory": 81,
+    "variants": {
+      "edges": [
+        {
+          "node": {
+            "id": "gid://shopify/ProductVariant/44370541510719",
+            "title": "Scandinavian Oak",
+            "sku": "TT-CT40-OAK-INT",
+            "price": "18900000",
+            "compareAtPrice": "22900000",
+            "inventoryPolicy": "DENY",
+            "inventoryQuantity": 35,
+            "inventoryItem": {
+              "id": "gid://shopify/InventoryItem/46540810780735",
+              "inventoryLevels": {
+                "edges": [
+                  {
+                    "node": {
+                      "location": {
+                        "name": "Shop location"
+                      },
+                      "quantities": [
+                        {
+                          "name": "available",
+                          "quantity": 8
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "node": {
+                      "location": {
+                        "name": "My Custom Location"
+                      },
+                      "quantities": [
+                        {
+                          "name": "available",
+                          "quantity": 27
+                        }
+                      ]
+                    }
+                  }
+                ]
+              }
+            }
+          }
+        },
+        {
+          "node": {
+            "id": "gid://shopify/ProductVariant/44370541543487",
+            "title": "Smoked Hickory",
+            "sku": "TT-CT40-HCK-INT",
+            "price": "18900000",
+            "compareAtPrice": "22900000",
+            "inventoryPolicy": "DENY",
+            "inventoryQuantity": 27,
+            "inventoryItem": {
+              "id": "gid://shopify/InventoryItem/46540810813503",
+              "inventoryLevels": {
+                "edges": [
+                  {
+                    "node": {
+                      "location": {
+                        "name": "Shop location"
+                      },
+                      "quantities": [
+                        {
+                          "name": "available",
+                          "quantity": 6
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "node": {
+                      "location": {
+                        "name": "My Custom Location"
+                      },
+                      "quantities": [
+                        {
+                          "name": "available",
+                          "quantity": 21
+                        }
+                      ]
+                    }
+                  }
+                ]
+              }
+            }
+          }
+        },
+        {
+          "node": {
+            "id": "gid://shopify/ProductVariant/44370541576255",
+            "title": "American Walnut",
+            "sku": "TT-CT40-WAL-INT",
+            "price": "19900000",
+            "compareAtPrice": "23900000",
+            "inventoryPolicy": "DENY",
+            "inventoryQuantity": 19,
+            "inventoryItem": {
+              "id": "gid://shopify/InventoryItem/46540810846271",
+              "inventoryLevels": {
+                "edges": [
+                  {
+                    "node": {
+                      "location": {
+                        "name": "Shop location"
+                      },
+                      "quantities": [
+                        {
+                          "name": "available",
+                          "quantity": 5
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "node": {
+                      "location": {
+                        "name": "My Custom Location"
+                      },
+                      "quantities": [
+                        {
+                          "name": "available",
+                          "quantity": 14
+                        }
+                      ]
+                    }
+                  }
+                ]
+              }
+            }
+          }
+        }
+      ]
+    },
+    "metafields": {
+      "edges": [
+        {
+          "node": {
+            "namespace": "ops",
+            "key": "fulfillment_mode",
+            "value": "IN_STOCK_LOCAL_3PL"
+          }
+        },
+        {
+          "node": {
+            "namespace": "ops",
+            "key": "estimated_delivery_window",
+            "value": "UK/EU/AU/GCC: 3–5 Business Days"
+          }
+        },
+        {
+          "node": {
+            "namespace": "ops",
+            "key": "warehouse_hub",
+            "value": "UK-MIDLANDS-3PL | EU-ROTTERDAM-HUB | AU-SYDNEY-3PL | GCC-JEBEL-ALI"
+          }
+        },
+        {
+          "node": {
+            "namespace": "ops",
+            "key": "vat_tax_class",
+            "value": "DDP_TAX_INCLUDED (UK 20% VAT · DE 19% MwSt · FR 20% TVA · AU 10% GST · GCC 5% VAT)"
+          }
+        },
+        {
+          "node": {
+            "namespace": "localization",
+            "key": "title_de",
+            "value": "Transformer Couchtisch — Höhenverstellbar mit integriertem Stauraum"
+          }
+        },
+        {
+          "node": {
+            "namespace": "localization",
+            "key": "title_fr",
+            "value": "Table Basse Transformer — Plateau Relevable et Rangement Panneaux"
+          }
+        },
+        {
+          "node": {
+            "namespace": "localization",
+            "key": "multilingual_delivery_promise",
+            "value": "🇬🇧 UK: 3–5 Business Days | 🇩🇪 DE: 3–5 Werktage | 🇫🇷 FR: 3–5 Jours Ouvrés"
+          }
+        },
+        {
+          "node": {
+            "namespace": "global",
+            "key": "title_tag",
+            "value": "Transformer Coffee Table — Lift-Top & Hidden Panel Storage | Local UK · EU · AU · GCC Delivery"
+          }
+        },
+        {
+          "node": {
+            "namespace": "global",
+            "key": "description_tag",
+            "value": "Shop Transformer Coffee Table — Lift-Top & Hidden Panel Storage. Dispatched from local regional warehouses with VAT/GST included and 10-Year Structural Warranty."
+          }
+        }
+      ]
+    }
+  },
+  {
+    "id": "gid://shopify/Product/8492110381119",
+    "title": "Transformer Round Table — 4 to 10 Seater Expandable Pedestal Table",
+    "handle": "transformer-round-table",
+    "productType": "Expandable Dining Table",
+    "totalInventory": 21,
+    "variants": {
+      "edges": [
+        {
+          "node": {
+            "id": "gid://shopify/ProductVariant/44370541609023",
+            "title": "Scandinavian Oak",
+            "sku": "TT-RND-OAK-INT",
+            "price": "54900000",
+            "compareAtPrice": "64900000",
+            "inventoryPolicy": "DENY",
+            "inventoryQuantity": 12,
+            "inventoryItem": {
+              "id": "gid://shopify/InventoryItem/46540810879039",
+              "inventoryLevels": {
+                "edges": [
+                  {
+                    "node": {
+                      "location": {
+                        "name": "Shop location"
+                      },
+                      "quantities": [
+                        {
+                          "name": "available",
+                          "quantity": 3
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "node": {
+                      "location": {
+                        "name": "My Custom Location"
+                      },
+                      "quantities": [
+                        {
+                          "name": "available",
+                          "quantity": 9
+                        }
+                      ]
+                    }
+                  }
+                ]
+              }
+            }
+          }
+        },
+        {
+          "node": {
+            "id": "gid://shopify/ProductVariant/44370541641791",
+            "title": "American Walnut",
+            "sku": "TT-RND-WAL-INT",
+            "price": "56900000",
+            "compareAtPrice": "66900000",
+            "inventoryPolicy": "DENY",
+            "inventoryQuantity": 9,
+            "inventoryItem": {
+              "id": "gid://shopify/InventoryItem/46540810911807",
+              "inventoryLevels": {
+                "edges": [
+                  {
+                    "node": {
+                      "location": {
+                        "name": "Shop location"
+                      },
+                      "quantities": [
+                        {
+                          "name": "available",
+                          "quantity": 2
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "node": {
+                      "location": {
+                        "name": "My Custom Location"
+                      },
+                      "quantities": [
+                        {
+                          "name": "available",
+                          "quantity": 7
+                        }
+                      ]
+                    }
+                  }
+                ]
+              }
+            }
+          }
+        }
+      ]
+    },
+    "metafields": {
+      "edges": [
+        {
+          "node": {
+            "namespace": "ops",
+            "key": "fulfillment_mode",
+            "value": "LOW_STOCK_PRIORITY"
+          }
+        },
+        {
+          "node": {
+            "namespace": "ops",
+            "key": "estimated_delivery_window",
+            "value": "UK/EU: 5–8 Business Days | AU/GCC: Batch #15 (Dec 02–09, 2026)"
+          }
+        },
+        {
+          "node": {
+            "namespace": "ops",
+            "key": "warehouse_hub",
+            "value": "UK-MIDLANDS-3PL | EU-ROTTERDAM-HUB"
+          }
+        },
+        {
+          "node": {
+            "namespace": "ops",
+            "key": "vat_tax_class",
+            "value": "DDP_TAX_INCLUDED (UK 20% VAT · DE 19% MwSt · FR 20% TVA · AU 10% GST · GCC 5% VAT)"
+          }
+        },
+        {
+          "node": {
+            "namespace": "localization",
+            "key": "title_de",
+            "value": "Runder Transformer Esstisch — Ausziehbar für 4 bis 10 Personen"
+          }
+        },
+        {
+          "node": {
+            "namespace": "localization",
+            "key": "title_fr",
+            "value": "Table Ronde Transformer — Extensible de 4 à 10 Personnes"
+          }
+        },
+        {
+          "node": {
+            "namespace": "localization",
+            "key": "multilingual_delivery_promise",
+            "value": "🇬🇧 UK & 🇪🇺 EU: 5–8 Business Days | 🇦🇺 AU & 🇦🇪 GCC: Scheduled Batch #15 (Dec 02–09, 2026)"
+          }
+        },
+        {
+          "node": {
+            "namespace": "global",
+            "key": "title_tag",
+            "value": "Transformer Round Table — 4 to 10 Seater Expandable Pedestal Table | Local UK · EU · AU · GCC Delivery"
+          }
+        },
+        {
+          "node": {
+            "namespace": "global",
+            "key": "description_tag",
+            "value": "Shop Transformer Round Table — 4 to 10 Seater Expandable Pedestal Table. Dispatched from local regional warehouses with VAT/GST included and 10-Year Structural Warranty."
+          }
+        }
+      ]
+    }
+  },
+  {
+    "id": "gid://shopify/Product/8492110413887",
+    "title": "Transformer Stackable Dining Chairs (Set of 2) — Stain-Resistant Bouclé",
+    "handle": "transformer-dining-chairs-set-of-2",
+    "productType": "Dining Chairs",
+    "totalInventory": 189,
+    "variants": {
+      "edges": [
+        {
+          "node": {
+            "id": "gid://shopify/ProductVariant/44370541674559",
+            "title": "Scandinavian Oak / Cream Bouclé",
+            "sku": "TT-CH2-OAK-INT",
+            "price": "9900000",
+            "compareAtPrice": "11900000",
+            "inventoryPolicy": "DENY",
+            "inventoryQuantity": 85,
+            "inventoryItem": {
+              "id": "gid://shopify/InventoryItem/46540810944575",
+              "inventoryLevels": {
+                "edges": [
+                  {
+                    "node": {
+                      "location": {
+                        "name": "Shop location"
+                      },
+                      "quantities": [
+                        {
+                          "name": "available",
+                          "quantity": 22
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "node": {
+                      "location": {
+                        "name": "My Custom Location"
+                      },
+                      "quantities": [
+                        {
+                          "name": "available",
+                          "quantity": 63
+                        }
+                      ]
+                    }
+                  }
+                ]
+              }
+            }
+          }
+        },
+        {
+          "node": {
+            "id": "gid://shopify/ProductVariant/44370541707327",
+            "title": "Smoked Hickory / Slate Grey",
+            "sku": "TT-CH2-HCK-INT",
+            "price": "9900000",
+            "compareAtPrice": "11900000",
+            "inventoryPolicy": "DENY",
+            "inventoryQuantity": 64,
+            "inventoryItem": {
+              "id": "gid://shopify/InventoryItem/46540810977343",
+              "inventoryLevels": {
+                "edges": [
+                  {
+                    "node": {
+                      "location": {
+                        "name": "Shop location"
+                      },
+                      "quantities": [
+                        {
+                          "name": "available",
+                          "quantity": 18
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "node": {
+                      "location": {
+                        "name": "My Custom Location"
+                      },
+                      "quantities": [
+                        {
+                          "name": "available",
+                          "quantity": 46
+                        }
+                      ]
+                    }
+                  }
+                ]
+              }
+            }
+          }
+        },
+        {
+          "node": {
+            "id": "gid://shopify/ProductVariant/44370541740095",
+            "title": "American Walnut / Charcoal Weave",
+            "sku": "TT-CH2-WAL-INT",
+            "price": "10500000",
+            "compareAtPrice": "12500000",
+            "inventoryPolicy": "DENY",
+            "inventoryQuantity": 40,
+            "inventoryItem": {
+              "id": "gid://shopify/InventoryItem/46540811010111",
+              "inventoryLevels": {
+                "edges": [
+                  {
+                    "node": {
+                      "location": {
+                        "name": "Shop location"
+                      },
+                      "quantities": [
+                        {
+                          "name": "available",
+                          "quantity": 10
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "node": {
+                      "location": {
+                        "name": "My Custom Location"
+                      },
+                      "quantities": [
+                        {
+                          "name": "available",
+                          "quantity": 30
+                        }
+                      ]
+                    }
+                  }
+                ]
+              }
+            }
+          }
+        }
+      ]
+    },
+    "metafields": {
+      "edges": [
+        {
+          "node": {
+            "namespace": "ops",
+            "key": "fulfillment_mode",
+            "value": "IN_STOCK_LOCAL_3PL"
+          }
+        },
+        {
+          "node": {
+            "namespace": "ops",
+            "key": "estimated_delivery_window",
+            "value": "UK/EU/AU/GCC: 3–5 Business Days"
+          }
+        },
+        {
+          "node": {
+            "namespace": "ops",
+            "key": "warehouse_hub",
+            "value": "UK-MIDLANDS-3PL | EU-ROTTERDAM-HUB | AU-SYDNEY-3PL | GCC-JEBEL-ALI"
+          }
+        },
+        {
+          "node": {
+            "namespace": "ops",
+            "key": "vat_tax_class",
+            "value": "DDP_TAX_INCLUDED (UK 20% VAT · DE 19% MwSt · FR 20% TVA · AU 10% GST · GCC 5% VAT)"
+          }
+        },
+        {
+          "node": {
+            "namespace": "localization",
+            "key": "title_de",
+            "value": "Stapelbare Esszimmerstühle (2er-Set) — Wasserabweisender Stoff"
+          }
+        },
+        {
+          "node": {
+            "namespace": "localization",
+            "key": "title_fr",
+            "value": "Chaises de Salle à Manger Empilables (Lot de 2) — Tissu Déperlant"
+          }
+        },
+        {
+          "node": {
+            "namespace": "localization",
+            "key": "multilingual_delivery_promise",
+            "value": "🇬🇧 UK / 🇪🇺 EU / 🇦🇺 AU / 🇦🇪 GCC: In Stock — 3–5 Business Days"
+          }
+        },
+        {
+          "node": {
+            "namespace": "global",
+            "key": "title_tag",
+            "value": "Transformer Stackable Dining Chairs (Set of 2) — Stain-Resistant Bouclé | Local UK · EU · AU · GCC Delivery"
+          }
+        },
+        {
+          "node": {
+            "namespace": "global",
+            "key": "description_tag",
+            "value": "Shop Transformer Stackable Dining Chairs (Set of 2) — Stain-Resistant Bouclé. Dispatched from local regional warehouses with VAT/GST included and 10-Year Structural Warranty."
+          }
+        }
+      ]
+    }
+  },
+  {
+    "id": "gid://shopify/Product/8492110446655",
+    "title": "The Complete Transformer Dining Bundle (Table 4.0 + Bench 4.0 + Coffee Table + 4 Chairs)",
+    "handle": "the-complete-transformer-dining-bundle-4-0",
+    "productType": "Complete Dining Bundle",
+    "totalInventory": 54,
+    "variants": {
+      "edges": [
+        {
+          "node": {
+            "id": "gid://shopify/ProductVariant/44370541772863",
+            "title": "Scandinavian Oak Full Suite",
+            "sku": "TT-BND40-OAK-INT",
+            "price": "89900000",
+            "compareAtPrice": "114500000",
+            "inventoryPolicy": "DENY",
+            "inventoryQuantity": 25,
+            "inventoryItem": {
+              "id": "gid://shopify/InventoryItem/46540811042879",
+              "inventoryLevels": {
+                "edges": [
+                  {
+                    "node": {
+                      "location": {
+                        "name": "Shop location"
+                      },
+                      "quantities": [
+                        {
+                          "name": "available",
+                          "quantity": 7
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "node": {
+                      "location": {
+                        "name": "My Custom Location"
+                      },
+                      "quantities": [
+                        {
+                          "name": "available",
+                          "quantity": 18
+                        }
+                      ]
+                    }
+                  }
+                ]
+              }
+            }
+          }
+        },
+        {
+          "node": {
+            "id": "gid://shopify/ProductVariant/44370541805631",
+            "title": "Smoked Hickory Full Suite",
+            "sku": "TT-BND40-HCK-INT",
+            "price": "89900000",
+            "compareAtPrice": "114500000",
+            "inventoryPolicy": "DENY",
+            "inventoryQuantity": 18,
+            "inventoryItem": {
+              "id": "gid://shopify/InventoryItem/46540811075647",
+              "inventoryLevels": {
+                "edges": [
+                  {
+                    "node": {
+                      "location": {
+                        "name": "Shop location"
+                      },
+                      "quantities": [
+                        {
+                          "name": "available",
+                          "quantity": 4
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "node": {
+                      "location": {
+                        "name": "My Custom Location"
+                      },
+                      "quantities": [
+                        {
+                          "name": "available",
+                          "quantity": 14
+                        }
+                      ]
+                    }
+                  }
+                ]
+              }
+            }
+          }
+        },
+        {
+          "node": {
+            "id": "gid://shopify/ProductVariant/44370541838399",
+            "title": "American Walnut Full Suite",
+            "sku": "TT-BND40-WAL-INT",
+            "price": "94900000",
+            "compareAtPrice": "119500000",
+            "inventoryPolicy": "DENY",
+            "inventoryQuantity": 11,
+            "inventoryItem": {
+              "id": "gid://shopify/InventoryItem/46540811108415",
+              "inventoryLevels": {
+                "edges": [
+                  {
+                    "node": {
+                      "location": {
+                        "name": "Shop location"
+                      },
+                      "quantities": [
+                        {
+                          "name": "available",
+                          "quantity": 2
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "node": {
+                      "location": {
+                        "name": "My Custom Location"
+                      },
+                      "quantities": [
+                        {
+                          "name": "available",
+                          "quantity": 9
+                        }
+                      ]
+                    }
+                  }
+                ]
+              }
+            }
+          }
+        }
+      ]
+    },
+    "metafields": {
+      "edges": [
+        {
+          "node": {
+            "namespace": "ops",
+            "key": "fulfillment_mode",
+            "value": "IN_STOCK_LOCAL_3PL"
+          }
+        },
+        {
+          "node": {
+            "namespace": "ops",
+            "key": "estimated_delivery_window",
+            "value": "Consolidated White-Glove Delivery: 3–5 Business Days (UK/DE/FR/AU/GCC)"
+          }
+        },
+        {
+          "node": {
+            "namespace": "ops",
+            "key": "warehouse_hub",
+            "value": "UK-MIDLANDS-3PL | EU-ROTTERDAM-HUB | AU-SYDNEY-3PL | GCC-JEBEL-ALI"
+          }
+        },
+        {
+          "node": {
+            "namespace": "ops",
+            "key": "vat_tax_class",
+            "value": "DDP_TAX_INCLUDED (UK 20% VAT · DE 19% MwSt · FR 20% TVA · AU 10% GST · GCC 5% VAT)"
+          }
+        },
+        {
+          "node": {
+            "namespace": "localization",
+            "key": "title_de",
+            "value": "Das Komplette Transformer Esszimmer-Set (Tisch 4.0 + Bank 4.0 + Couchtisch + 4 Stühle)"
+          }
+        },
+        {
+          "node": {
+            "namespace": "localization",
+            "key": "title_fr",
+            "value": "Le Pack Complet Salle à Manger Transformer (Table 4.0 + Banc 4.0 + Table Basse + 4 Chaises)"
+          }
+        },
+        {
+          "node": {
+            "namespace": "localization",
+            "key": "multilingual_delivery_promise",
+            "value": "🇬🇧 UK / 🇩🇪 DE / 🇫🇷 FR / 🇦🇺 AU / 🇦🇪 GCC: Consolidated White-Glove Delivery in 3–5 Business Days (All Local VAT/GST & Duties Included)"
+          }
+        },
+        {
+          "node": {
+            "namespace": "global",
+            "key": "title_tag",
+            "value": "The Complete Transformer Dining Bundle (Table 4.0 + Bench 4.0 + Coffee Table + 4 Chairs) | Local UK · EU · AU · GCC Delivery"
+          }
+        },
+        {
+          "node": {
+            "namespace": "global",
+            "key": "description_tag",
+            "value": "Shop The Complete Transformer Dining Bundle (Table 4.0 + Bench 4.0 + Coffee Table + 4 Chairs). Dispatched from local regional warehouses with VAT/GST included and 10-Year Structural Warranty."
+          }
+        }
+      ]
+    }
+  }
+]

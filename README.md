@@ -1,63 +1,62 @@
-# Shopify Multi-Store Operations & Agentic Sync Engine
+# Shopify Multi-Store Operations & Agentic Sync Engine (`v2.0`)
 
-Agent-orchestrated Shopify operations pipeline (`validate → localize → human decision gate → GraphQL update → cross-store QA`) designed for international D2C brands running regional **Shopify Expansion Stores**.
+Agent-orchestrated Shopify operations pipeline (`validate → localize → human decision gate → GraphQL update → cross-store QA → live BI extraction`) built for international D2C modular furniture operations (**UK · Germany · France · Australia · GCC**).
 
-Replaces manual inventory & delivery-date spreadsheet edits with versioned JSON schemas, **Shopify Admin GraphQL API (`2025-01`)** batch updates, localized delivery-date `Metafields`, and automated cross-store regression checks.
+Connected to a **Live Shopify Plus Storefront (`dazk-dev-sandbox-store.myshopify.com`)** via **Shopify Admin GraphQL API (`2025-01`)** using OAuth `client_credentials` token exchange.
 
 ---
 
-## Architecture & Agentic Workflow
+## 1. Architecture & Agentic Workflow
 
 ```mermaid
 flowchart LR
-    Sheet["Warehouse & Vessel ETA CSV\n(data/warehouse-eta-sheet.csv)"] --> Validator["1. Schema & Price Guardrail\n(src/lib/validator.js)"]
-    Validator --> Localizer["2. Delivery Window & L10n Agent\n(src/lib/localizer.js)"]
+    Sheet["3PL Container & ETA CSV\n(data/3pl_container_schedule.csv)"] --> Validator["1. Schema & Price Guardrail\n(schemas/store_manifest.json)"]
+    Validator --> Localizer["2. Multi-Market VAT & L10n Agent\n(UK GBP · DE EUR · FR EUR · AU AUD · GCC AED)"]
     Localizer --> Gate{"Human Decision Gate\n(artifacts/pending-plan.json)"}
-    Gate -->|Approved| GraphQL["3. Shopify Admin GraphQL Sync\n(UK • DE • AU Stores)"]
-    GraphQL --> QA["4. Cross-Store QA Auditor\n(src/qa-audit.js)"]
-    QA --> Logs["Execution Logs & QA Report\n(logs/agent-runs.jsonl)"]
+    Gate -->|Approved| GraphQL["3. Live Shopify GraphQL Sync\n(dazk-dev-sandbox-store.myshopify.com)"]
+    GraphQL --> QA["4. Post-Deploy QA & Campaign Gate\n(src/live-store-provisioner.py)"]
+    QA --> Exports["5. Live CSV/JSON Extraction & Rollback Snapshot\n(exports/ & logs/)"]
 ```
-
-## Regional Storefront Matrix
-
-| Market | Storefront Currency | Locale | Tax Configuration | Theme Git Branch |
-| :--- | :--- | :--- | :--- | :--- |
-| **United Kingdom (`UK`)** | `GBP` (£) | `en` | 20% VAT-inclusive | `storefront/UK_Live` |
-| **Germany (`DE`)** | `EUR` (€) | `de` | 19% MwSt-inclusive | `storefront/DE_Live` |
-| **Australia (`AU`)** | `AUD` ($) | `en` | 10% GST-inclusive | `storefront/AU_Live` |
 
 ---
 
-## Quickstart (Zero External Dependencies — Node.js 20+)
+## 2. Live Configured Storefront (`dazk-dev-sandbox-store.myshopify.com`)
+
+| Dimension | Live Configuration on Shopify Plus Store |
+| :--- | :--- |
+| **Flagship Products (`6`)** | *Transformer Table 4.0 (1–12 Seater)*, *Transformer Bench 4.0 (1–6 Seater)*, *Transformer Coffee Table*, *Transformer Round Table*, *Stackable Dining Chairs (Set of 2)*, *Complete Dining Bundle (Save 20%)* |
+| **Regional Variants & Stock** | **17 Hardwood Finish SKUs** (`Scandinavian Oak`, `Smoked Hickory`, `American Walnut`, `Brazilian Sequoia Batch #14`) — **462 units** distributed across **2 Warehouse Hubs** (`Western/EU/UK 3PL` & `APAC/VN Factory Hub`) |
+| **Pinned Operational Metafields (`7`)** | `ops.fulfillment_mode`, `ops.estimated_delivery_window`, `ops.warehouse_hub`, `ops.vat_tax_class`, `localization.title_de`, `localization.title_fr`, `localization.multilingual_delivery_promise` |
+| **Country Collections (`4`)** | 🇬🇧 `UK Market (GBP · 20% VAT)` · 🇩🇪 `Germany Market (EUR · 19% MwSt)` · 🇫🇷 `France Market (EUR · 20% TVA)` · 🇦🇺 `Australia Market (AUD · 10% GST)` |
+| **Compliance & Shipping Pages (`3`)** | *International Shipping & Regional 3PL Hubs*, *Local Tax, VAT & Customs Compliance (UK HMRC · EU OSS · AU GST · GCC VAT)*, *International Storefronts & Localization Hub* |
+| **Commercial Readiness** | 4 Regional Customer Profiles (`UK`, `DE`, `FR`, `AU`) + Active Promo Code `TT-INTL-BUNDLE15` (`15% Off`) |
+
+---
+
+## 3. Quickstart Commands
 
 ```bash
-# 1. Run automated unit & QA tests
+# 1. Run automated unit & regression tests (Node.js test runner)
 npm test
 
-# 2. Run full pipeline in safe dry-run demo mode (with auto-approval)
+# 2. Run Live Store Health & Post-Deployment QA Gate against dazk-dev-sandbox-store.myshopify.com
+npm run live:qa
+
+# 3. Run Live Data Extraction (CSV + JSON Rollback Snapshot) & Paid Campaign Readiness Gate
+npm run live:ops
+
+# 4. Run Multi-Store Simulation Pipeline (Dry-Run Plan -> Approval Gate -> Cross-Store QA)
 npm run demo
-
-# 3. Run interactive pipeline (pauses at Human Approval Decision Gate)
-npm run sync
-
-# 4. Run Cross-Store QA Auditor against a baseline snapshot containing real-world regressions
-npm run qa
 ```
-
-## What the Cross-Store QA Gate Catches (`src/qa-audit.js`)
-
-1. **`LEAKED_TEST_PRODUCT` (`CRITICAL`)**: Detects active draft/staging/test SKUs accidentally published to a live regional storefront.
-2. **`TRACKING_CURRENCY_MISMATCH` (`HIGH`)**: Catches hardcoded `'USD'` conversion scripts copied from North American themes onto `GBP` / `EUR` / `AUD` storefronts.
-3. **`MISSING_DELIVERY_DATE_METAFIELD` (`HIGH`)**: Ensures every active SKU displays an accurate `custom.estimated_delivery_badge` metafield.
-4. **`UNROUNDED_RETAIL_PRICE` (`MEDIUM`)**: Flags awkward tax-converted prices (e.g. `£1,428.57`) before they reach customers.
 
 ---
 
-## Repository Structure
+## 4. Generated Proof Artifacts & Exports
 
-* `schemas/stores.config.json` — Single source of truth for regional currencies, VAT/GST rates, customs buffers, and allowed price endings.
-* `schemas/inventory-feed.schema.json` — JSON Schema contract for warehouse stock & container ETA feeds.
-* `src/pipeline.js` — Main orchestrator (`validate → plan → approve → sync → QA`).
-* `src/lib/shopify-graphql.js` — Shopify Admin GraphQL (`2025-01`) mutations (`inventorySetQuantities`, `metafieldsSet`, `translationsRegister`).
-* `src/qa-audit.js` — Automated post-deployment storefront health auditor.
-* `RUNBOOK.md` — Plain-language operational runbook, rollback playbook, and new-market onboarding checklist.
+* **Live Store QA Audit Report**: [`logs/qa_audit_report.md`](./logs/qa_audit_report.md)
+* **Paid Campaign & Cross-Store Drift Report**: [`logs/campaign_and_drift_report.md`](./logs/campaign_and_drift_report.md)
+* **Live Catalog, Multi-Location Stock & Localization Export**: [`exports/live_catalog_inventory_matrix.csv`](./exports/live_catalog_inventory_matrix.csv)
+* **Multi-Market Local Currency & Baked-In VAT/GST Matrix**: [`exports/multi_market_price_vat_matrix.csv`](./exports/multi_market_price_vat_matrix.csv)
+* **Instant Store Rollback Snapshot**: [`exports/store_backup_snapshot.json`](./exports/store_backup_snapshot.json)
+* **Single Source of Truth Manifest**: [`schemas/store_manifest.json`](./schemas/store_manifest.json)
+* **Operational Runbook**: [`RUNBOOK.md`](./RUNBOOK.md)

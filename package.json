@@ -1,7 +1,7 @@
 {
   "name": "shopify-multistore-agent-ops",
-  "version": "1.2.0",
-  "description": "Agent-orchestrated multi-store Shopify inventory, delivery-date metafield, localization, and cross-store QA pipeline.",
+  "version": "2.0.0",
+  "description": "Agent-orchestrated multi-store Shopify inventory, delivery-date metafield, localization, cross-hub sync, and live QA pipeline for Transformer Table International D2C.",
   "type": "module",
   "private": true,
   "scripts": {
@@ -10,6 +10,8 @@
     "sync": "node src/pipeline.js --input data/warehouse-eta-sheet.csv",
     "qa": "node src/qa-audit.js --snapshot data/mock-storefronts.snapshot.json",
     "qa:clean": "node src/qa-audit.js --snapshot artifacts/post-sync-storefronts.json",
+    "live:qa": "python3 src/live-store-provisioner.py",
+    "live:ops": "python3 src/live-ops-cli.py",
     "test": "node --test tests/pipeline.test.js"
   },
   "engines": {
