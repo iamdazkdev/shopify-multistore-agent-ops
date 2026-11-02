@@ -14,6 +14,8 @@
     "live:ops": "python3 src/live-ops-cli.py",
     "live:enterprise": "python3 src/enterprise-pod-suite.py",
     "live:jd-complete": "python3 src/role3-complete-jd-engine.py",
+    "demo:eta-shift": "python3 src/live-demo-trainer.py --action shift-eta",
+    "demo:reset": "python3 src/live-demo-trainer.py --action reset",
     "market:launch:sg": "python3 src/enterprise-pod-suite.py --launch-market SG",
     "demo:engineer": "node src/webhook-rpa-engine.js",
     "test": "node --test tests/pipeline.test.js"
