@@ -25,13 +25,17 @@
 {% schema %}
 {
   "name": "TT Delivery & VAT Promise",
-  "target": "section",
   "settings": [
     {
       "type": "checkbox",
       "id": "lock_eta_at_checkout",
       "label": "Lock Estimated Delivery Date on Order Line Item at Checkout",
       "default": true
+    }
+  ],
+  "presets": [
+    {
+      "name": "TT Delivery & VAT Promise"
     }
   ]
 }
