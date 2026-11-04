@@ -10,9 +10,16 @@ const GERMAN_TITLE_GLOSSARY = {
   'Modular Panel Sideboard (American Walnut)': 'Modulares Sideboard (Amerikanischer Nussbaum)',
 };
 
-function addDaysIso(isoDate, days) {
+// Customs buffer is counted in working days (Mon–Fri) because the badge promises "Werktage" /
+// "business days". Public holidays are not modelled.
+export function addBusinessDaysIso(isoDate, days) {
   const dt = new Date(`${isoDate}T00:00:00Z`);
-  dt.setUTCDate(dt.getUTCDate() + days);
+  let added = 0;
+  while (added < days) {
+    dt.setUTCDate(dt.getUTCDate() + 1);
+    const weekday = dt.getUTCDay();
+    if (weekday !== 0 && weekday !== 6) added += 1;
+  }
   return dt.toISOString().slice(0, 10);
 }
 
@@ -36,7 +43,7 @@ export async function buildLocalizedStoreUpdate(record, store) {
       deliveryBadge = `In stock | Ships within ${store.lead_time_days_in_stock} business days`;
     }
   } else if (record.backorder_allowed && record.container_eta) {
-    estimatedDeliveryIso = addDaysIso(record.container_eta, store.customs_buffer_days);
+    estimatedDeliveryIso = addBusinessDaysIso(record.container_eta, store.customs_buffer_days);
     const formattedDate = formatDateForLocale(estimatedDeliveryIso, store.locale);
     if (store.locale === 'de') {
       deliveryBadge = `Vorbestellung | Voraussichtliche Lieferung bis ${formattedDate}`;

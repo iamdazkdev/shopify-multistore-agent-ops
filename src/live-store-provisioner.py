@@ -37,7 +37,7 @@ load_dotenv()
 SHOP_DOMAIN = os.environ.get("SHOPIFY_SHOP_DOMAIN", "dazk-dev-sandbox-store.myshopify.com")
 CLIENT_ID = os.environ.get("SHOPIFY_CLIENT_ID", "")
 CLIENT_SECRET = os.environ.get("SHOPIFY_CLIENT_SECRET", "")
-API_VERSION = "2025-01"
+API_VERSION = os.environ.get("SHOPIFY_API_VERSION", "2026-07")
 
 
 def get_access_token() -> str:
@@ -60,6 +60,15 @@ def get_access_token() -> str:
         return data["access_token"]
 
 
+def _checked(payload: dict) -> dict:
+    """HTTP 200 is not success: raise on top-level GraphQL errors and on any mutation userErrors."""
+    if payload.get("errors"):
+        raise RuntimeError(f"Shopify GraphQL errors: {payload['errors']}")
+    for field, result in (payload.get("data") or {}).items():
+        if isinstance(result, dict) and result.get("userErrors"):
+            raise RuntimeError(f"{field} userErrors: {result['userErrors']}")
+    return payload
+
 def graphql(token: str, query: str, variables: dict = None) -> dict:
     url = f"https://{SHOP_DOMAIN}/admin/api/{API_VERSION}/graphql.json"
     body = {"query": query}
@@ -75,7 +84,7 @@ def graphql(token: str, query: str, variables: dict = None) -> dict:
         method="POST",
     )
     with urllib.request.urlopen(req) as resp:
-        return json.loads(resp.read().decode("utf-8"))
+        return _checked(json.loads(resp.read().decode("utf-8")))
 
 
 def step_verify_and_qa(token: str, manifest: dict) -> dict:
@@ -163,10 +172,11 @@ def step_verify_and_qa(token: str, manifest: dict) -> dict:
             if price_val <= 0 or comp_val <= price_val:
                 price_violations += 1
 
-    c3_pass = price_violations == 0 and sku_count >= 17
+    expected_skus = sum(len(mp["variants"]) for mp in manifest["products"])
+    c3_pass = price_violations == 0 and sku_count >= expected_skus
     qa_checks.append({
         "check": "Variant SKU & Price/Compare-At Guardrails",
-        "expected": "17+ SKUs with valid Price < CompareAtPrice",
+        "expected": f"{expected_skus}+ SKUs with valid Price < CompareAtPrice",
         "actual": f"{sku_count} SKUs verified, {price_violations} price violations",
         "status": "PASS" if c3_pass else "FAIL",
     })

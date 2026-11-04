@@ -1,0 +1,53 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(npm test)",
+      "Bash(npm run plan)",
+      "Bash(npm run demo)",
+      "Bash(npm run qa)",
+      "Bash(npm run qa:clean)",
+      "Bash(npm run live:qa)",
+      "Bash(npm run live:ops)",
+      "Bash(npm run live:3pl:plan)",
+      "Bash(npm run demo:engineer)",
+      "Bash(git status)",
+      "Bash(git diff:*)",
+      "Bash(git log:*)"
+    ],
+    "ask": [
+      "Bash(npm run sync:*)",
+      "Bash(npm run live:3pl:apply:*)",
+      "Bash(npm run live:enterprise:*)",
+      "Bash(npm run live:jd-complete:*)",
+      "Bash(npm run market:launch:*)",
+      "Bash(npm run demo:eta-shift:*)",
+      "Bash(npm run demo:reset:*)",
+      "Bash(python3 src/:*)",
+      "Bash(curl:*)"
+    ],
+    "deny": [
+      "Read(./.env)",
+      "Edit(./.env)",
+      "Write(./.env)"
+    ]
+  },
+  "enableAllProjectMcpServers": true,
+  "hooks": {
+    "PreToolUse": [
+      {
+        "matcher": "Bash",
+        "hooks": [
+          { "type": "command", "command": "node \"$CLAUDE_PROJECT_DIR\"/.claude/hooks/guard-live-writes.mjs" }
+        ]
+      }
+    ],
+    "PostToolUse": [
+      {
+        "matcher": "*",
+        "hooks": [
+          { "type": "command", "command": "node \"$CLAUDE_PROJECT_DIR\"/.claude/hooks/trace.mjs" }
+        ]
+      }
+    ]
+  }
+}

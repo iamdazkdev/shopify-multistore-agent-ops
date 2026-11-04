@@ -4,13 +4,15 @@ Transformer Table — Multi-Store Operations Command Center CLI (`src/live-ops-c
 Reads credentials from .env / environment variables (zero secrets in source code).
 Subcommands:
   extract       -> Pull live catalog, multi-warehouse stock, delivery dates & DE/FR translations to CSV + JSON
-  sync-3pl      -> Distribute 3PL container CSV inventory across warehouse locations
+  sync-3pl      -> Plan (default) or --apply 3PL CSV stock per warehouse location, with read-back
   campaign-gate -> Audit live store readiness for Paid Growth & CRO campaigns
 """
 
+import argparse
 import csv
 import json
 import os
+import re
 import sys
 import urllib.parse
 import urllib.request
@@ -41,7 +43,7 @@ load_dotenv()
 SHOP_DOMAIN = os.environ.get("SHOPIFY_SHOP_DOMAIN", "dazk-dev-sandbox-store.myshopify.com")
 CLIENT_ID = os.environ.get("SHOPIFY_CLIENT_ID", "")
 CLIENT_SECRET = os.environ.get("SHOPIFY_CLIENT_SECRET", "")
-API_VERSION = "2025-01"
+API_VERSION = os.environ.get("SHOPIFY_API_VERSION", "2026-07")
 
 
 def get_token() -> str:
@@ -61,6 +63,15 @@ def get_token() -> str:
         return json.loads(r.read().decode("utf-8"))["access_token"]
 
 
+def _checked(payload: dict) -> dict:
+    """HTTP 200 is not success: raise on top-level GraphQL errors and on any mutation userErrors."""
+    if payload.get("errors"):
+        raise RuntimeError(f"Shopify GraphQL errors: {payload['errors']}")
+    for field, result in (payload.get("data") or {}).items():
+        if isinstance(result, dict) and result.get("userErrors"):
+            raise RuntimeError(f"{field} userErrors: {result['userErrors']}")
+    return payload
+
 def gql(token: str, query: str, variables: dict = None) -> dict:
     body = {"query": query}
     if variables is not None:
@@ -75,7 +86,7 @@ def gql(token: str, query: str, variables: dict = None) -> dict:
         method="POST",
     )
     with urllib.request.urlopen(req) as r:
-        return json.loads(r.read().decode("utf-8"))
+        return _checked(json.loads(r.read().decode("utf-8")))
 
 
 def cmd_extract(token: str):
@@ -298,10 +309,196 @@ def cmd_campaign_gate(token: str):
     print(f"    [OK] Campaign & Drift Report generated -> {gate_report_path}")
 
 
+# ==============================================================================
+# sync-3pl: data/3pl_container_schedule.csv -> per-location "available" stock
+# Plan by default. --apply asks for a typed confirmation, writes with compare-and-swap,
+# then reads the store back and fails if anything differs from the plan.
+# ==============================================================================
+HUB_LOCATION_KEYWORDS = {
+    "uk_coventry_stock": ["coventry", "uk", "united kingdom", "midlands"],
+    "eu_rotterdam_stock": ["rotterdam", "eu", "europe", "netherlands"],
+    "au_sydney_stock": ["sydney", "au", "australia"],
+    "gcc_dubai_stock": ["dubai", "jebel ali", "gcc", "uae"],
+}
+PLAN_3PL_PATH = BASE_DIR / "artifacts" / "3pl-sync.plan.json"
+
+QUERY_SKU_LEVELS = """
+query SkuLevels($q: String!) {
+  productVariants(first: 5, query: $q) {
+    nodes {
+      sku
+      inventoryItem {
+        id
+        inventoryLevels(first: 25) {
+          nodes { location { id name } quantities(names: ["available"]) { name quantity } }
+        }
+      }
+    }
+  }
+}
+"""
+
+
+def match_hub_locations(locations: list) -> tuple:
+    """Map each CSV hub column to exactly one active Shopify location by name keywords."""
+    mapping, problems = {}, []
+    for column, keywords in HUB_LOCATION_KEYWORDS.items():
+        hits = []
+        for loc in locations:
+            if not loc.get("isActive", True):
+                continue
+            name = f" {loc['name'].lower()} "
+            if any(re.search(rf"\b{re.escape(k)}\b", name) for k in keywords):
+                hits.append(loc)
+        if len(hits) == 1:
+            mapping[column] = hits[0]
+        else:
+            problems.append(f"{column}: {'no location' if not hits else 'ambiguous: ' + ', '.join(h['name'] for h in hits)}")
+    return mapping, problems
+
+
+def sku_levels(token: str, sku: str) -> dict:
+    data = gql(token, QUERY_SKU_LEVELS, {"q": f'sku:"{sku}"'})["data"]
+    nodes = [n for n in data["productVariants"]["nodes"] if n["sku"] == sku]
+    if len(nodes) != 1:
+        raise RuntimeError(f"SKU {sku}: expected exactly 1 variant, found {len(nodes)}")
+    item = nodes[0]["inventoryItem"]
+    levels = {}
+    for lvl in item["inventoryLevels"]["nodes"]:
+        q = lvl.get("quantities") or []
+        levels[lvl["location"]["id"]] = q[0]["quantity"] if q else 0
+    return {"inventory_item_id": item["id"], "levels": levels}
+
+
+def build_3pl_plan(token: str) -> dict:
+    locations = gql(token, "{ locations(first: 50) { nodes { id name isActive } } }")["data"]["locations"]["nodes"]
+    mapping, problems = match_hub_locations(locations)
+    changes, not_stocked = [], []
+    with CSV_INPUT_PATH.open("r", encoding="utf-8") as f:
+        rows = list(csv.DictReader(f))
+    for row in rows:
+        sku = row["sku"]
+        state = sku_levels(token, sku)
+        for column, loc in mapping.items():
+            raw = (row.get(column) or "").strip()
+            if not raw.isdigit():
+                raise RuntimeError(f"SKU {sku}: {column} must be a non-negative integer, got {raw!r}")
+            target = int(raw)
+            if loc["id"] not in state["levels"]:
+                not_stocked.append(f"{sku} @ {loc['name']}")
+                continue
+            before = state["levels"][loc["id"]]
+            if before != target:
+                changes.append({
+                    "sku": sku,
+                    "hub_column": column,
+                    "location_id": loc["id"],
+                    "location_name": loc["name"],
+                    "inventory_item_id": state["inventory_item_id"],
+                    "before": before,
+                    "after": target,
+                })
+    plan = {
+        "plan_id": datetime.now(timezone.utc).strftime("%Y%m%d") + "-3pl-sync",
+        "created_at": datetime.now(timezone.utc).isoformat(),
+        "source": str(CSV_INPUT_PATH.relative_to(BASE_DIR)),
+        "hub_mapping": {c: l["name"] for c, l in mapping.items()},
+        "unmapped_hubs": problems,
+        "not_stocked_at_location": not_stocked,
+        "changes": changes,
+        "gates": {"human_approval": "PENDING"},
+    }
+    PLAN_3PL_PATH.parent.mkdir(parents=True, exist_ok=True)
+    PLAN_3PL_PATH.write_text(json.dumps(plan, indent=2, ensure_ascii=False), encoding="utf-8")
+    return plan
+
+
+def print_3pl_plan(plan: dict):
+    print(f"==> [3PL SYNC PLAN] {len(plan['changes'])} stock change(s) -> {PLAN_3PL_PATH.relative_to(BASE_DIR)}")
+    for col, name in plan["hub_mapping"].items():
+        print(f"    hub {col:<20} -> {name}")
+    for p in plan["unmapped_hubs"]:
+        print(f"    [SKIPPED HUB] {p}")
+    for n in plan["not_stocked_at_location"]:
+        print(f"    [NOT STOCKED] {n} (activate the item at that location first)")
+    for c in plan["changes"]:
+        print(f"    {c['sku']:<18} {c['location_name']:<28} {c['before']:>4} -> {c['after']:<4}")
+
+
+def apply_3pl_plan(token: str, plan: dict) -> bool:
+    changes = plan["changes"]
+    for i in range(0, len(changes), 100):
+        batch = changes[i:i + 100]
+        gql(token, """
+        mutation Sync3pl($input: InventorySetQuantitiesInput!) {
+          inventorySetQuantities(input: $input) {
+            inventoryAdjustmentGroup { reason }
+            userErrors { field message code }
+          }
+        }
+        """, {"input": {
+            "name": "available",
+            "reason": "received",
+            "referenceDocumentUri": f"logistics://tt-agent-ops/{plan['plan_id']}",
+            "quantities": [{
+                "inventoryItemId": c["inventory_item_id"],
+                "locationId": c["location_id"],
+                "quantity": c["after"],
+                "changeFromQuantity": c["before"],
+            } for c in batch],
+        }})
+    # Read back from Shopify and compare with the plan.
+    mismatches = []
+    for sku in sorted({c["sku"] for c in changes}):
+        live = sku_levels(token, sku)["levels"]
+        for c in (c for c in changes if c["sku"] == sku):
+            if live.get(c["location_id"]) != c["after"]:
+                mismatches.append(f"{sku} @ {c['location_name']}: live {live.get(c['location_id'])} != planned {c['after']}")
+    report = LOGS_DIR / "3pl-sync-report.md"
+    lines = [
+        "# 3PL Stock Sync — Read-Back Verification",
+        f"- **Plan**: `{plan['plan_id']}` · **Changes applied**: {len(changes)}",
+        f"- **Verification**: {'PASS — live store matches the plan' if not mismatches else 'FAIL'}",
+        "",
+    ] + [f"- MISMATCH: {m}" for m in mismatches]
+    report.write_text("\n".join(lines) + "\n", encoding="utf-8")
+    print(f"    [READ-BACK] {'PASS' if not mismatches else 'FAIL'} -> {report}")
+    return not mismatches
+
+
+def cmd_sync_3pl(token: str, apply: bool):
+    plan = build_3pl_plan(token)
+    print_3pl_plan(plan)
+    if not apply:
+        print("    [STOP] Plan only. Review it, then run: npm run live:3pl:apply")
+        return
+    if not plan["changes"]:
+        print("    [OK] Store already matches the 3PL schedule. Nothing to apply.")
+        return
+    try:
+        answer = input(f"[DECISION GATE] Type APPLY to push {len(plan['changes'])} stock change(s) to {SHOP_DOMAIN}: ")
+    except EOFError:
+        answer = ""
+    if answer.strip() != "APPLY":
+        print("    [CANCELLED] Nothing was written.")
+        sys.exit(1)
+    if not apply_3pl_plan(token, plan):
+        sys.exit(1)
+
+
 def main():
+    parser = argparse.ArgumentParser(description="Transformer Table multi-store operations CLI")
+    parser.add_argument("command", nargs="?", default="ops", choices=["ops", "extract", "campaign-gate", "sync-3pl"],
+                        help="ops (default) = extract + campaign-gate; sync-3pl = 3PL CSV -> inventory plan")
+    parser.add_argument("--apply", action="store_true", help="sync-3pl only: apply the plan after a typed confirmation")
+    args = parser.parse_args()
     token = get_token()
-    cmd_extract(token)
-    cmd_campaign_gate(token)
+    if args.command in ("ops", "extract"):
+        cmd_extract(token)
+    if args.command in ("ops", "campaign-gate"):
+        cmd_campaign_gate(token)
+    if args.command == "sync-3pl":
+        cmd_sync_3pl(token, apply=args.apply)
 
 
 if __name__ == "__main__":

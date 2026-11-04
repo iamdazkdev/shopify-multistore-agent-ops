@@ -8,8 +8,11 @@ Provides two deterministic commands with explicit BEFORE vs AFTER verification:
 
 import argparse
 import json
+import os
 import urllib.request
 from pathlib import Path
+
+API_VERSION = os.environ.get("SHOPIFY_API_VERSION", "2026-07")
 
 ROOT = Path(__file__).resolve().parent.parent
 ENV_PATH = ROOT / ".env"
@@ -39,23 +42,32 @@ def get_token(shop: str, client_id: str, client_secret: str) -> str:
     return json.loads(urllib.request.urlopen(req, timeout=20).read().decode())["access_token"]
 
 
+def _checked(payload: dict) -> dict:
+    """HTTP 200 is not success: raise on top-level GraphQL errors and on any mutation userErrors."""
+    if payload.get("errors"):
+        raise RuntimeError(f"Shopify GraphQL errors: {payload['errors']}")
+    for field, result in (payload.get("data") or {}).items():
+        if isinstance(result, dict) and result.get("userErrors"):
+            raise RuntimeError(f"{field} userErrors: {result['userErrors']}")
+    return payload
+
 def gql(shop: str, token: str, query: str, variables: dict | None = None) -> dict:
     body = {"query": query}
     if variables is not None:
         body["variables"] = variables
     req = urllib.request.Request(
-        f"https://{shop}/admin/api/2025-01/graphql.json",
+        f"https://{shop}/admin/api/{API_VERSION}/graphql.json",
         data=json.dumps(body).encode(),
         headers={"Content-Type": "application/json", "X-Shopify-Access-Token": token},
         method="POST",
     )
-    return json.loads(urllib.request.urlopen(req, timeout=30).read().decode())
+    return _checked(json.loads(urllib.request.urlopen(req, timeout=30).read().decode()))
 
 
 def get_table40_state(shop: str, token: str) -> dict:
     q = """
     {
-      productByHandle(handle: "transformer-dining-table-4-0") {
+      product: productByIdentifier(identifier: { handle: "transformer-dining-table-4-0" }) {
         id
         title
         totalInventory
@@ -88,42 +100,30 @@ def get_table40_state(shop: str, token: str) -> dict:
 
 def set_table40_state(shop: str, token: str, target_seq_qty: int, target_eta: str):
     state = get_table40_state(shop, token)
-    prod = state["productByHandle"]
+    prod = state["product"]
     seq_var = next(v for v in prod["variants"]["nodes"] if v["sku"] == "TT-DT40-SEQ-INT")
     inv_item_id = seq_var["inventoryItem"]["id"]
     levels = seq_var["inventoryItem"]["inventoryLevels"]["nodes"]
-    loc_id = levels[0]["location"]["id"]
 
-    # 1. Update inventory quantity on first location
+    # 1. Set "available" with compare-and-swap (changeFromQuantity = the value just read).
+    #    First location -> target qty; second location (if any) -> 0 so the total equals the target.
     inv_mut = """
     mutation inventorySetQuantities($input: InventorySetQuantitiesInput!) {
       inventorySetQuantities(input: $input) {
         inventoryAdjustmentGroup { reason }
-        userErrors { field message }
+        userErrors { field message code }
       }
     }
     """
-    gql(
-        shop,
-        token,
-        inv_mut,
-        {
-            "input": {
-                "name": "available",
-                "reason": "correction",
-                "ignoreCompareQuantity": True,
-                "quantities": [
-                    {
-                        "inventoryItemId": inv_item_id,
-                        "locationId": loc_id,
-                        "quantity": target_seq_qty,
-                    }
-                ],
-            }
-        },
-    )
-    # Zero out second location for TT-DT40-SEQ-INT if present so total equals target_seq_qty
-    if len(levels) > 1:
+
+    def available(level: dict) -> int:
+        quantities = level.get("quantities") or []
+        return quantities[0]["quantity"] if quantities else 0
+
+    for level, qty in [(levels[0], target_seq_qty)] + [(lvl, 0) for lvl in levels[1:2]]:
+        current = available(level)
+        if current == qty:
+            continue
         gql(
             shop,
             token,
@@ -132,12 +132,12 @@ def set_table40_state(shop: str, token: str, target_seq_qty: int, target_eta: st
                 "input": {
                     "name": "available",
                     "reason": "correction",
-                    "ignoreCompareQuantity": True,
                     "quantities": [
                         {
                             "inventoryItemId": inv_item_id,
-                            "locationId": levels[1]["location"]["id"],
-                            "quantity": 0,
+                            "locationId": level["location"]["id"],
+                            "quantity": qty,
+                            "changeFromQuantity": current,
                         }
                     ],
                 }
@@ -181,7 +181,7 @@ def main():
     token = get_token(shop, env["SHOPIFY_CLIENT_ID"], env["SHOPIFY_CLIENT_SECRET"])
 
     before = get_table40_state(shop, token)
-    b_prod = before["productByHandle"]
+    b_prod = before["product"]
     b_seq = next(v for v in b_prod["variants"]["nodes"] if v["sku"] == "TT-DT40-SEQ-INT")
 
     print("================================================================================")
@@ -218,7 +218,7 @@ def main():
                 )
 
     after = get_table40_state(shop, token)
-    a_prod = after["productByHandle"]
+    a_prod = after["product"]
     a_seq = next(v for v in a_prod["variants"]["nodes"] if v["sku"] == "TT-DT40-SEQ-INT")
 
     print("\n================================================================================")
@@ -235,8 +235,8 @@ def main():
         print(
             '  "Container #TT-884 just cleared customs in Rotterdam with 20 extra Brazilian Sequoia tables,\n'
             '   and Batch #15 delivery shifted to Dec 02–09. Instead of editing spreadsheets or clicking\n'
-            '   around 8 stores, one command updated live inventory from 96 to 116 units, updated the\n'
-            '   product page delivery promise, and verified zero pricing or VAT regressions."'
+            '   through the admin, one command updated live inventory from 96 to 116 units and the\n'
+            '   product page delivery promise, then read the store back to show the result."'
         )
     else:
         print('  "Store state has been cleanly reset to baseline (96 units, Batch #14, 9 Collections)."')

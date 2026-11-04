@@ -1,0 +1,84 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/iamdazkdev/shopify-multistore-agent-ops/schemas/change-plan.schema.json",
+  "title": "AgentChangePlan",
+  "description": "Contract between planning agents, the human decision gate, the apply step and QA read-back.",
+  "type": "object",
+  "required": ["plan_id", "created_at", "request", "risk", "markets", "changes", "rollback", "gates"],
+  "properties": {
+    "plan_id": { "type": "string", "pattern": "^[0-9]{8}-[a-z0-9-]+$" },
+    "created_at": { "type": "string", "format": "date-time" },
+    "request": { "type": "string", "minLength": 5 },
+    "risk": { "enum": ["LOW", "MEDIUM", "HIGH"] },
+    "markets": { "type": "array", "items": { "type": "string" }, "minItems": 1 },
+    "data_sources": { "type": "array", "items": { "type": "string" } },
+    "changes": {
+      "type": "array",
+      "minItems": 1,
+      "items": { "$ref": "#/$defs/change" }
+    },
+    "rollback": {
+      "type": "array",
+      "description": "Changes that restore every 'before' value. Same shape as changes.",
+      "items": { "$ref": "#/$defs/change" }
+    },
+    "campaign_impact": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["sku", "action"],
+        "properties": {
+          "sku": { "type": "string" },
+          "action": { "enum": ["PAUSE_PAID_TRAFFIC", "RESUME_PAID_TRAFFIC", "NO_CHANGE"] },
+          "reason": { "type": "string" }
+        }
+      }
+    },
+    "gates": {
+      "type": "object",
+      "required": ["native_review", "legal_finance_review", "human_approval"],
+      "properties": {
+        "native_review": { "enum": ["NOT_REQUIRED", "PENDING", "APPROVED"] },
+        "legal_finance_review": { "enum": ["NOT_REQUIRED", "PENDING", "APPROVED"] },
+        "human_approval": { "enum": ["PENDING", "APPROVED", "REJECTED"] },
+        "approved_by": { "type": ["string", "null"] },
+        "approved_at": { "type": ["string", "null"] }
+      }
+    },
+    "result": {
+      "type": "object",
+      "properties": {
+        "applied": { "type": "boolean" },
+        "verify": { "enum": ["NOT_RUN", "PASS", "FAIL"] },
+        "qa": { "enum": ["NOT_RUN", "PASS", "FAIL"] },
+        "mismatches": { "type": "array", "items": { "type": "string" } }
+      }
+    }
+  },
+  "$defs": {
+    "change": {
+      "type": "object",
+      "required": ["market_code", "resource", "field", "before", "after", "operation"],
+      "properties": {
+        "market_code": { "type": "string" },
+        "resource": {
+          "type": "object",
+          "required": ["type", "identifier"],
+          "properties": {
+            "type": {
+              "enum": ["PRODUCT", "VARIANT", "INVENTORY_LEVEL", "METAFIELD", "TRANSLATION", "PAGE", "COLLECTION", "MENU", "THEME_FILE", "MARKET_SETTING"]
+            },
+            "identifier": { "type": "string", "description": "handle, SKU, or GID read from the store — never a constructed GID" },
+            "location": { "type": ["string", "null"] }
+          }
+        },
+        "field": { "type": "string" },
+        "before": {},
+        "after": {},
+        "operation": { "type": "string", "description": "Admin GraphQL mutation that applies this change" },
+        "needs_native_review": { "type": "boolean", "default": false },
+        "note": { "type": "string" }
+      }
+    }
+  }
+}

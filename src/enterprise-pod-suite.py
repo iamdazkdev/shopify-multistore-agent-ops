@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """
 Transformer Table — Role 3 Enterprise Operations & Cross-Pod Suite (`src/enterprise-pod-suite.py`)
-Implements the 5 Advanced JD-Targeted Features on the Live Shopify Plus Store:
+Implements the 5 Advanced JD-Targeted Features on the live Shopify development store:
   1. New-Market Bootstrapper (`--launch-market GCC` or `--launch-market SG`) -> "Opening the next market is routine, not a project"
   2. Legal, VAT & Local-Document Milestones Engine (DE Impressum/Widerrufsrecht, FR Mentions Légales, UK HMRC, AU ACL, GCC FTA)
   3. Cross-Pod Handshake Gate: Role 3 (Ops) <-> Role 1 (Growth AI Shopping & Hreflang Feed) & Role 2 (CRO Bundle AOV Guardrail)
@@ -44,7 +44,7 @@ load_dotenv()
 SHOP_DOMAIN = os.environ.get("SHOPIFY_SHOP_DOMAIN", "dazk-dev-sandbox-store.myshopify.com")
 CLIENT_ID = os.environ.get("SHOPIFY_CLIENT_ID", "")
 CLIENT_SECRET = os.environ.get("SHOPIFY_CLIENT_SECRET", "")
-API_VERSION = "2025-01"
+API_VERSION = os.environ.get("SHOPIFY_API_VERSION", "2026-07")
 
 
 def get_token() -> str:
@@ -64,6 +64,15 @@ def get_token() -> str:
         return json.loads(r.read().decode("utf-8"))["access_token"]
 
 
+def _checked(payload: dict) -> dict:
+    """HTTP 200 is not success: raise on top-level GraphQL errors and on any mutation userErrors."""
+    if payload.get("errors"):
+        raise RuntimeError(f"Shopify GraphQL errors: {payload['errors']}")
+    for field, result in (payload.get("data") or {}).items():
+        if isinstance(result, dict) and result.get("userErrors"):
+            raise RuntimeError(f"{field} userErrors: {result['userErrors']}")
+    return payload
+
 def gql(token: str, query: str, variables: dict = None) -> dict:
     body = {"query": query}
     if variables is not None:
@@ -78,7 +87,7 @@ def gql(token: str, query: str, variables: dict = None) -> dict:
         method="POST",
     )
     with urllib.request.urlopen(req) as r:
-        return json.loads(r.read().decode("utf-8"))
+        return _checked(json.loads(r.read().decode("utf-8")))
 
 
 # ==============================================================================
@@ -87,9 +96,9 @@ def gql(token: str, query: str, variables: dict = None) -> dict:
 MARKET_TEMPLATES = {
     "GCC": {
         "handle": "market-gcc-uae-ksa",
-        "title": "🇦🇪 GCC (UAE & KSA) Market — AED · 5% UAE VAT Included · Dubai Jebel Ali 3PL",
+        "title": "🇦🇪 GCC (UAE & KSA) Market — Local VAT Included (UAE 5% · KSA 15%) · Dubai Jebel Ali 3PL",
         "image": "https://images.unsplash.com/photo-1512453979798-5ea266f8880c?auto=format&fit=crop&w=1000&q=85",
-        "descriptionHtml": "<p><strong>Regional Market Configuration: GCC (United Arab Emirates, Saudi Arabia, Qatar, Kuwait)</strong><br/>Currency: AED / SAR | Tax Rule: 5% UAE Federal VAT Included (FTA Registered) | Fulfillment: Jebel Ali Free Zone 3PL Hub (3–5 Business Days Express White-Glove) | Local Payments: Tabby, Tamara (Split in 4, Shariah-Compliant), Apple Pay.</p>",
+        "descriptionHtml": "<p><strong>Regional Market Configuration: GCC (United Arab Emirates, Saudi Arabia, Qatar, Kuwait)</strong><br/>Currency: AED / SAR | Tax Rule: local VAT included — UAE 5% (FTA), KSA 15% (ZATCA); Qatar & Kuwait levy no VAT | Fulfillment: Jebel Ali Free Zone 3PL Hub (3–5 Business Days Express White-Glove) | Local Payments: Tabby, Tamara (Split in 4, Shariah-Compliant), Apple Pay.</p>",
         "customer": {
             "firstName": "Tariq",
             "lastName": "Al-Mansoor",
@@ -254,10 +263,10 @@ def feature2_legal_vat_milestones(token: str):
         {
             "handle": "de-impressum-und-widerrufsbelehrung",
             "market": "🇩🇪 Germany & Austria (DE/AT)",
-            "regulation": "TMG §5 Impressum · BGB §355 14-Tage-Widerrufsrecht · EU-OSS 19% MwSt.",
+            "regulation": "§5 DDG Impressum · BGB §355 14-Tage-Widerrufsrecht · EU-OSS 19% MwSt.",
             "title": "🇩🇪 Impressum, AGB & 14-Tage-Widerrufsbelehrung (Deutschland & Österreich — 19% MwSt.)",
             "body": """
-            <h2>Impressum (Angaben gemäß § 5 TMG) & EU-One-Stop-Shop (OSS)</h2>
+            <h2>Impressum (Angaben gemäß § 5 DDG) & EU-One-Stop-Shop (OSS)</h2>
             <p><strong>Transformer Table International D2C GmbH (EU Fulfillment Division)</strong><br/>
             Zentrallager Europa: Maasvlakte Plaza, 3099 Rotterdam, Niederlande<br/>
             Umsatzsteuer-Identifikationsnummer (USt-IdNr. gemäß §27a UStG): DE-OSS-394810294 | Alle Preise inkl. 19% gesetzlicher MwSt. (Deutschland) bzw. 20% MwSt. (Österreich).</p>
@@ -299,7 +308,7 @@ def feature2_legal_vat_milestones(token: str):
         },
         {
             "handle": "gcc-uae-fta-vat-and-localized-invoice-policy",
-            "market": "🇦🇪 GCC / UAE & Saudi Arabia",
+            "market": "🇦🇪 UAE (GCC hub)",
             "regulation": "UAE Federal Decree-Law No. (8) on VAT (5% FTA) · Bilingual Arabic/English Tax Invoice",
             "title": "🇦🇪 GCC / UAE Federal Tax Authority (5% VAT) & Commercial Tax Invoice Policy",
             "body": """
@@ -607,7 +616,7 @@ def feature5_build_kpi_dashboard(token: str):
       <div class="bg-slate-900 border border-slate-800 rounded-xl p-4">
         <div class="text-xs text-slate-400 uppercase font-semibold">6. Agent & API Uptime</div>
         <div class="text-2xl font-bold text-sky-400 mt-1">{throttle.get('currentlyAvailable', 19980)}/20k</div>
-        <div class="text-xs text-slate-500 mt-1">{len(webhooks)} active Webhooks · 1,000 pts/s Plus bucket</div>
+        <div class="text-xs text-slate-500 mt-1">{len(webhooks)} active Webhooks · cost-based GraphQL rate limit</div>
       </div>
     </section>
 

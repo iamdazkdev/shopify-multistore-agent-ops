@@ -4,7 +4,7 @@
     "title": "Transformer Table 4.0 — Expandable Dining Table (1 to 12 Seater)",
     "handle": "transformer-dining-table-4-0",
     "productType": "Expandable Dining Table",
-    "totalInventory": 96,
+    "totalInventory": 116,
     "variants": {
       "edges": [
         {
@@ -147,7 +147,7 @@
             "price": "52900000",
             "compareAtPrice": "61900000",
             "inventoryPolicy": "CONTINUE",
-            "inventoryQuantity": 5,
+            "inventoryQuantity": 25,
             "inventoryItem": {
               "id": "gid://shopify/InventoryItem/46540810649663",
               "inventoryLevels": {
@@ -160,7 +160,7 @@
                       "quantities": [
                         {
                           "name": "available",
-                          "quantity": 1
+                          "quantity": 25
                         }
                       ]
                     }
@@ -173,7 +173,7 @@
                       "quantities": [
                         {
                           "name": "available",
-                          "quantity": 4
+                          "quantity": 0
                         }
                       ]
                     }
@@ -198,7 +198,7 @@
           "node": {
             "namespace": "ops",
             "key": "estimated_delivery_window",
-            "value": "UK/EU/AU: 3–5 Business Days | Backorder Finishes: Batch #14 (Nov 18–25, 2026)"
+            "value": "UK/EU/AU: 3–5 Business Days | Backorder Finishes: Batch #15 (Dec 02–09, 2026 — Rotterdam Container #TT-884)"
           }
         },
         {
