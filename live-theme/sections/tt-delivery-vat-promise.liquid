@@ -1,0 +1,42 @@
+{% comment %}
+  Transformer Table — Online Store 2.0 Dynamic Delivery Window, Local VAT & Regional Warehouse Banner
+  Reads directly from Agent-synced Pinned Metafields (Zero manual theme hardcoding!)
+{% endcomment %}
+<div class="tt-regional-ops-widget" style="border:1px solid #d4af37;border-radius:10px;padding:16px;background:#111827;color:#f9fafb;margin:16px 0;">
+  <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px;">
+    <span style="background:#065f46;color:#ecfdf5;padding:4px 10px;border-radius:999px;font-size:12px;font-weight:700;">
+      {{ product.metafields.ops.fulfillment_mode.value | default: 'IN_STOCK_LOCAL_3PL' }}
+    </span>
+    <span style="font-size:13px;color:#9ca3af;">
+      Warehouse Hub: <strong>{{ product.metafields.ops.warehouse_hub.value | default: 'EU-ROTTERDAM-HUB' }}</strong>
+    </span>
+  </div>
+  <p style="margin:10px 0 6px;font-size:15px;font-weight:600;color:#fbbf24;">
+    🚚 Estimated Delivery: {{ product.metafields.ops.estimated_delivery_window.value | default: '3–5 Business Days (Local 3PL Express)' }}
+  </p>
+  <p style="margin:0;font-size:12px;color:#d1d5db;">
+    🧾 Tax & Customs: {{ product.metafields.ops.vat_tax_class.value | default: 'DDP Tax Included (UK 20% VAT · DE 19% MwSt · FR 20% TVA · AU 10% GST · UAE 5% VAT)' }}
+  </p>
+  <!-- Hidden Line Item Property locks the promised delivery date onto the customer's order receipt at checkout -->
+  <input type="hidden" name="properties[Estimated Delivery]" value="{{ product.metafields.ops.estimated_delivery_window.value }}" form="{{ product_form_id }}">
+  <input type="hidden" name="properties[Regional Warehouse]" value="{{ product.metafields.ops.warehouse_hub.value }}" form="{{ product_form_id }}">
+</div>
+
+{% schema %}
+{
+  "name": "TT Delivery & VAT Promise",
+  "settings": [
+    {
+      "type": "checkbox",
+      "id": "lock_eta_at_checkout",
+      "label": "Lock Estimated Delivery Date on Order Line Item at Checkout",
+      "default": true
+    }
+  ],
+  "presets": [
+    {
+      "name": "TT Delivery & VAT Promise"
+    }
+  ]
+}
+{% endschema %}

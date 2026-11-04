@@ -1,0 +1,11 @@
+{
+  "sections": {
+    "tt_flagship_home": {
+      "type": "tt-international-flagship-storefront",
+      "settings": {}
+    }
+  },
+  "order": [
+    "tt_flagship_home"
+  ]
+}
