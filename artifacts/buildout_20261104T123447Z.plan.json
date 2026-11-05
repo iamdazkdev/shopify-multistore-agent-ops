@@ -1,0 +1,3852 @@
+{
+ "run_id": "buildout_20261104T123447Z",
+ "created_at": "2026-11-04T12:35:08+00:00",
+ "store": "dazk-dev-sandbox-store.myshopify.com",
+ "steps": [
+  {
+   "step": "cleanup",
+   "status": "READY",
+   "actions": [
+    {
+     "desc": "delete metafield definition test_data.snowboard_length (template test data)",
+     "mutation": "mutation D($i: MetafieldDefinitionIdentifierInput!) { metafieldDefinitionDelete(identifier: $i, deleteAllAssociatedMetafields: true) { deletedDefinitionId userErrors { field message } } }",
+     "variables": {
+      "i": {
+       "ownerType": "PRODUCT",
+       "namespace": "test_data",
+       "key": "snowboard_length"
+      }
+     }
+    },
+    {
+     "desc": "delete metafield definition test_data.binding_mount (template test data)",
+     "mutation": "mutation D($i: MetafieldDefinitionIdentifierInput!) { metafieldDefinitionDelete(identifier: $i, deleteAllAssociatedMetafields: true) { deletedDefinitionId userErrors { field message } } }",
+     "variables": {
+      "i": {
+       "ownerType": "PRODUCT",
+       "namespace": "test_data",
+       "key": "binding_mount"
+      }
+     }
+    },
+    {
+     "desc": "transformer-dining-table-4-0: tag vat-compliant -> tax-inclusive",
+     "mutation": "mutation T($id: ID!, $add: [String!]!, $rm: [String!]!) { tagsRemove(id: $id, tags: $rm) { userErrors { field message } } tagsAdd(id: $id, tags: $add) { userErrors { field message } } }",
+     "variables": {
+      "id": "gid://shopify/Product/8492110282815",
+      "add": [
+       "tax-inclusive"
+      ],
+      "rm": [
+       "vat-compliant"
+      ]
+     }
+    },
+    {
+     "desc": "transformer-bench-4-0: tag vat-compliant -> tax-inclusive",
+     "mutation": "mutation T($id: ID!, $add: [String!]!, $rm: [String!]!) { tagsRemove(id: $id, tags: $rm) { userErrors { field message } } tagsAdd(id: $id, tags: $add) { userErrors { field message } } }",
+     "variables": {
+      "id": "gid://shopify/Product/8492110315583",
+      "add": [
+       "tax-inclusive"
+      ],
+      "rm": [
+       "vat-compliant"
+      ]
+     }
+    },
+    {
+     "desc": "transformer-coffee-table-4-0: tag vat-compliant -> tax-inclusive",
+     "mutation": "mutation T($id: ID!, $add: [String!]!, $rm: [String!]!) { tagsRemove(id: $id, tags: $rm) { userErrors { field message } } tagsAdd(id: $id, tags: $add) { userErrors { field message } } }",
+     "variables": {
+      "id": "gid://shopify/Product/8492110348351",
+      "add": [
+       "tax-inclusive"
+      ],
+      "rm": [
+       "vat-compliant"
+      ]
+     }
+    },
+    {
+     "desc": "transformer-round-table: tag vat-compliant -> tax-inclusive",
+     "mutation": "mutation T($id: ID!, $add: [String!]!, $rm: [String!]!) { tagsRemove(id: $id, tags: $rm) { userErrors { field message } } tagsAdd(id: $id, tags: $add) { userErrors { field message } } }",
+     "variables": {
+      "id": "gid://shopify/Product/8492110381119",
+      "add": [
+       "tax-inclusive"
+      ],
+      "rm": [
+       "vat-compliant"
+      ]
+     }
+    },
+    {
+     "desc": "transformer-dining-chairs-set-of-2: tag vat-compliant -> tax-inclusive",
+     "mutation": "mutation T($id: ID!, $add: [String!]!, $rm: [String!]!) { tagsRemove(id: $id, tags: $rm) { userErrors { field message } } tagsAdd(id: $id, tags: $add) { userErrors { field message } } }",
+     "variables": {
+      "id": "gid://shopify/Product/8492110413887",
+      "add": [
+       "tax-inclusive"
+      ],
+      "rm": [
+       "vat-compliant"
+      ]
+     }
+    },
+    {
+     "desc": "the-complete-transformer-dining-bundle-4-0: tag vat-compliant -> tax-inclusive",
+     "mutation": "mutation T($id: ID!, $add: [String!]!, $rm: [String!]!) { tagsRemove(id: $id, tags: $rm) { userErrors { field message } } tagsAdd(id: $id, tags: $add) { userErrors { field message } } }",
+     "variables": {
+      "id": "gid://shopify/Product/8492110446655",
+      "add": [
+       "tax-inclusive"
+      ],
+      "rm": [
+       "vat-compliant"
+      ]
+     }
+    },
+    {
+     "desc": "unpublish page /local-store-settings-currency-tax-shipping-payments (described settings instead of configuring them)",
+     "mutation": "mutation U($id: ID!, $p: PageUpdateInput!) { pageUpdate(id: $id, page: $p) { page { id } userErrors { field message } } }",
+     "variables": {
+      "id": "gid://shopify/Page/119126294591",
+      "p": {
+       "isPublished": false
+      }
+     }
+    },
+    {
+     "desc": "unpublish page /storefront-theme-navigation-and-app-architecture (described settings instead of configuring them)",
+     "mutation": "mutation U($id: ID!, $p: PageUpdateInput!) { pageUpdate(id: $id, page: $p) { page { id } userErrors { field message } } }",
+     "variables": {
+      "id": "gid://shopify/Page/119126261823",
+      "p": {
+       "isPublished": false
+      }
+     }
+    },
+    {
+     "desc": "unpublish page /localized-storefront-directory (described settings instead of configuring them)",
+     "mutation": "mutation U($id: ID!, $p: PageUpdateInput!) { pageUpdate(id: $id, page: $p) { page { id } userErrors { field message } } }",
+     "variables": {
+      "id": "gid://shopify/Page/119123640383",
+      "p": {
+       "isPublished": false
+      }
+     }
+    },
+    {
+     "desc": "retitle page /vat-gst-and-local-tax-compliance -> 'VAT, GST & Local Tax Information' (301 to /vat-gst-and-local-tax-information)",
+     "mutation": "mutation U($id: ID!, $p: PageUpdateInput!) { pageUpdate(id: $id, page: $p) { page { id } userErrors { field message } } }",
+     "variables": {
+      "id": "gid://shopify/Page/119123607615",
+      "p": {
+       "title": "VAT, GST & Local Tax Information",
+       "handle": "vat-gst-and-local-tax-information",
+       "redirectNewHandle": true
+      }
+     }
+    },
+    {
+     "desc": "retitle page /au-acl-warranty-and-gst-compliance -> 'Australia: Consumer Guarantees, Warranty & GST' (301 to /au-consumer-guarantees-warranty-and-gst)",
+     "mutation": "mutation U($id: ID!, $p: PageUpdateInput!) { pageUpdate(id: $id, page: $p) { page { id } userErrors { field message } } }",
+     "variables": {
+      "id": "gid://shopify/Page/119125442623",
+      "p": {
+       "title": "Australia: Consumer Guarantees, Warranty & GST",
+       "handle": "au-consumer-guarantees-warranty-and-gst",
+       "redirectNewHandle": true
+      }
+     }
+    },
+    {
+     "desc": "retitle page /uk-hmrc-vat-and-consumer-rights-notice -> 'UK: VAT & Consumer Rights'",
+     "mutation": "mutation U($id: ID!, $p: PageUpdateInput!) { pageUpdate(id: $id, page: $p) { page { id } userErrors { field message } } }",
+     "variables": {
+      "id": "gid://shopify/Page/119125409855",
+      "p": {
+       "title": "UK: VAT & Consumer Rights"
+      }
+     }
+    },
+    {
+     "desc": "delete expired template discount 'Buy one, get the second 10 percent off'",
+     "mutation": "mutation D($id: ID!) { discountAutomaticDelete(id: $id) { deletedAutomaticDiscountId userErrors { field message } } }",
+     "variables": {
+      "id": "gid://shopify/DiscountAutomaticNode/1390739914815"
+     }
+    },
+    {
+     "desc": "delete expired template discount 'Buy three, get 30 percent off'",
+     "mutation": "mutation D($id: ID!) { discountAutomaticDelete(id: $id) { deletedAutomaticDiscountId userErrors { field message } } }",
+     "variables": {
+      "id": "gid://shopify/DiscountAutomaticNode/1390739947583"
+     }
+    }
+   ]
+  },
+  {
+   "step": "locations",
+   "status": "SKIPPED_SCOPE",
+   "missing_scopes": [
+    "write_locations"
+   ],
+   "actions": []
+  },
+  {
+   "step": "hub_stock",
+   "status": "UP_TO_DATE",
+   "actions": []
+  },
+  {
+   "step": "metafield_definitions",
+   "status": "READY",
+   "actions": [
+    {
+     "desc": "define product metafield specs.dimensions_closed_cm (single_line_text_field)",
+     "mutation": "mutation M($d: MetafieldDefinitionInput!) { metafieldDefinitionCreate(definition: $d) { createdDefinition { id } userErrors { field message code } } }",
+     "variables": {
+      "d": {
+       "ownerType": "PRODUCT",
+       "namespace": "specs",
+       "key": "dimensions_closed_cm",
+       "name": "Dimensions closed (cm)",
+       "type": "single_line_text_field",
+       "description": "",
+       "pin": true,
+       "access": {
+        "storefront": "PUBLIC_READ"
+       }
+      }
+     }
+    },
+    {
+     "desc": "define product metafield specs.dimensions_open_cm (single_line_text_field)",
+     "mutation": "mutation M($d: MetafieldDefinitionInput!) { metafieldDefinitionCreate(definition: $d) { createdDefinition { id } userErrors { field message code } } }",
+     "variables": {
+      "d": {
+       "ownerType": "PRODUCT",
+       "namespace": "specs",
+       "key": "dimensions_open_cm",
+       "name": "Dimensions fully extended (cm)",
+       "type": "single_line_text_field",
+       "description": "",
+       "pin": true,
+       "access": {
+        "storefront": "PUBLIC_READ"
+       }
+      }
+     }
+    },
+    {
+     "desc": "define product metafield specs.seats (single_line_text_field)",
+     "mutation": "mutation M($d: MetafieldDefinitionInput!) { metafieldDefinitionCreate(definition: $d) { createdDefinition { id } userErrors { field message code } } }",
+     "variables": {
+      "d": {
+       "ownerType": "PRODUCT",
+       "namespace": "specs",
+       "key": "seats",
+       "name": "Seats",
+       "type": "single_line_text_field",
+       "description": "",
+       "pin": true,
+       "access": {
+        "storefront": "PUBLIC_READ"
+       }
+      }
+     }
+    },
+    {
+     "desc": "define product metafield specs.material (single_line_text_field)",
+     "mutation": "mutation M($d: MetafieldDefinitionInput!) { metafieldDefinitionCreate(definition: $d) { createdDefinition { id } userErrors { field message code } } }",
+     "variables": {
+      "d": {
+       "ownerType": "PRODUCT",
+       "namespace": "specs",
+       "key": "material",
+       "name": "Material",
+       "type": "single_line_text_field",
+       "description": "",
+       "pin": true,
+       "access": {
+        "storefront": "PUBLIC_READ"
+       }
+      }
+     }
+    },
+    {
+     "desc": "define product metafield specs.weight_kg (number_decimal)",
+     "mutation": "mutation M($d: MetafieldDefinitionInput!) { metafieldDefinitionCreate(definition: $d) { createdDefinition { id } userErrors { field message code } } }",
+     "variables": {
+      "d": {
+       "ownerType": "PRODUCT",
+       "namespace": "specs",
+       "key": "weight_kg",
+       "name": "Weight (kg)",
+       "type": "number_decimal",
+       "description": "",
+       "pin": true,
+       "access": {
+        "storefront": "PUBLIC_READ"
+       }
+      }
+     }
+    },
+    {
+     "desc": "define product metafield specs.assembly_minutes (number_integer)",
+     "mutation": "mutation M($d: MetafieldDefinitionInput!) { metafieldDefinitionCreate(definition: $d) { createdDefinition { id } userErrors { field message code } } }",
+     "variables": {
+      "d": {
+       "ownerType": "PRODUCT",
+       "namespace": "specs",
+       "key": "assembly_minutes",
+       "name": "Assembly time (minutes)",
+       "type": "number_integer",
+       "description": "",
+       "pin": true,
+       "access": {
+        "storefront": "PUBLIC_READ"
+       }
+      }
+     }
+    },
+    {
+     "desc": "define product metafield specs.warranty_years (number_integer)",
+     "mutation": "mutation M($d: MetafieldDefinitionInput!) { metafieldDefinitionCreate(definition: $d) { createdDefinition { id } userErrors { field message code } } }",
+     "variables": {
+      "d": {
+       "ownerType": "PRODUCT",
+       "namespace": "specs",
+       "key": "warranty_years",
+       "name": "Structural warranty (years)",
+       "type": "number_integer",
+       "description": "",
+       "pin": true,
+       "access": {
+        "storefront": "PUBLIC_READ"
+       }
+      }
+     }
+    },
+    {
+     "desc": "define productvariant metafield ops.estimated_delivery_window (single_line_text_field)",
+     "mutation": "mutation M($d: MetafieldDefinitionInput!) { metafieldDefinitionCreate(definition: $d) { createdDefinition { id } userErrors { field message code } } }",
+     "variables": {
+      "d": {
+       "ownerType": "PRODUCTVARIANT",
+       "namespace": "ops",
+       "key": "estimated_delivery_window",
+       "name": "Estimated delivery window",
+       "type": "single_line_text_field",
+       "description": "Customer-facing delivery promise for this finish. Written by gated_eta_update.py.",
+       "pin": true,
+       "access": {
+        "storefront": "PUBLIC_READ"
+       }
+      }
+     }
+    },
+    {
+     "desc": "define productvariant metafield ops.fulfillment_mode (single_line_text_field)",
+     "mutation": "mutation M($d: MetafieldDefinitionInput!) { metafieldDefinitionCreate(definition: $d) { createdDefinition { id } userErrors { field message code } } }",
+     "variables": {
+      "d": {
+       "ownerType": "PRODUCTVARIANT",
+       "namespace": "ops",
+       "key": "fulfillment_mode",
+       "name": "Fulfillment mode",
+       "type": "single_line_text_field",
+       "description": "IN_STOCK_LOCAL_3PL (>=15) · LOW_STOCK_PRIORITY (1-14) · BACKORDER_BATCH (0 + pre-order) · OUT_OF_STOCK",
+       "pin": true,
+       "access": {
+        "storefront": "PUBLIC_READ"
+       }
+      }
+     }
+    }
+   ]
+  },
+  {
+   "step": "hero_products",
+   "status": "READY",
+   "actions": [
+    {
+     "desc": "transformer-dining-table-4-0: add tags ['dining']",
+     "mutation": "mutation T($id: ID!, $t: [String!]!) { tagsAdd(id: $id, tags: $t) { userErrors { field message } } }",
+     "variables": {
+      "id": "gid://shopify/Product/8492110282815",
+      "t": [
+       "dining"
+      ]
+     }
+    },
+    {
+     "desc": "transformer-dining-table-4-0: 15 metafield(s) — specs + per-variant delivery window/mode",
+     "mutation": "mutation S($m: [MetafieldsSetInput!]!) { metafieldsSet(metafields: $m) { metafields { id } userErrors { field message code } } }",
+     "variables": {
+      "m": [
+       {
+        "ownerId": "gid://shopify/Product/8492110282815",
+        "namespace": "specs",
+        "key": "dimensions_closed_cm",
+        "type": "single_line_text_field",
+        "value": "46 × 92 × 76"
+       },
+       {
+        "ownerId": "gid://shopify/Product/8492110282815",
+        "namespace": "specs",
+        "key": "dimensions_open_cm",
+        "type": "single_line_text_field",
+        "value": "305 × 92 × 76"
+       },
+       {
+        "ownerId": "gid://shopify/Product/8492110282815",
+        "namespace": "specs",
+        "key": "seats",
+        "type": "single_line_text_field",
+        "value": "1–12"
+       },
+       {
+        "ownerId": "gid://shopify/Product/8492110282815",
+        "namespace": "specs",
+        "key": "material",
+        "type": "single_line_text_field",
+        "value": "Solid hardwood, steel telescopic tracks"
+       },
+       {
+        "ownerId": "gid://shopify/Product/8492110282815",
+        "namespace": "specs",
+        "key": "weight_kg",
+        "type": "number_decimal",
+        "value": "68"
+       },
+       {
+        "ownerId": "gid://shopify/Product/8492110282815",
+        "namespace": "specs",
+        "key": "assembly_minutes",
+        "type": "number_integer",
+        "value": "20"
+       },
+       {
+        "ownerId": "gid://shopify/Product/8492110282815",
+        "namespace": "specs",
+        "key": "warranty_years",
+        "type": "number_integer",
+        "value": "10"
+       },
+       {
+        "ownerId": "gid://shopify/ProductVariant/44370541281343",
+        "namespace": "ops",
+        "key": "estimated_delivery_window",
+        "type": "single_line_text_field",
+        "value": "UK/EU/AU: 3–5 Business Days | Backorder Finishes: Batch #15 (Dec 02–09, 2026 — Rotterdam Container #TT-884)"
+       },
+       {
+        "ownerId": "gid://shopify/ProductVariant/44370541281343",
+        "namespace": "ops",
+        "key": "fulfillment_mode",
+        "type": "single_line_text_field",
+        "value": "IN_STOCK_LOCAL_3PL"
+       },
+       {
+        "ownerId": "gid://shopify/ProductVariant/44370541314111",
+        "namespace": "ops",
+        "key": "estimated_delivery_window",
+        "type": "single_line_text_field",
+        "value": "UK/EU/AU: 3–5 Business Days | Backorder Finishes: Batch #15 (Dec 02–09, 2026 — Rotterdam Container #TT-884)"
+       },
+       {
+        "ownerId": "gid://shopify/ProductVariant/44370541314111",
+        "namespace": "ops",
+        "key": "fulfillment_mode",
+        "type": "single_line_text_field",
+        "value": "IN_STOCK_LOCAL_3PL"
+       },
+       {
+        "ownerId": "gid://shopify/ProductVariant/44370541346879",
+        "namespace": "ops",
+        "key": "estimated_delivery_window",
+        "type": "single_line_text_field",
+        "value": "UK/EU/AU: 3–5 Business Days | Backorder Finishes: Batch #15 (Dec 02–09, 2026 — Rotterdam Container #TT-884)"
+       },
+       {
+        "ownerId": "gid://shopify/ProductVariant/44370541346879",
+        "namespace": "ops",
+        "key": "fulfillment_mode",
+        "type": "single_line_text_field",
+        "value": "LOW_STOCK_PRIORITY"
+       },
+       {
+        "ownerId": "gid://shopify/ProductVariant/44370541379647",
+        "namespace": "ops",
+        "key": "estimated_delivery_window",
+        "type": "single_line_text_field",
+        "value": "UK/EU/AU: 3–5 Business Days | Backorder Finishes: Batch #15 (Dec 02–09, 2026 — Rotterdam Container #TT-884)"
+       },
+       {
+        "ownerId": "gid://shopify/ProductVariant/44370541379647",
+        "namespace": "ops",
+        "key": "fulfillment_mode",
+        "type": "single_line_text_field",
+        "value": "IN_STOCK_LOCAL_3PL"
+       }
+      ]
+     }
+    },
+    {
+     "desc": "transformer-bench-4-0: add tags ['dining']",
+     "mutation": "mutation T($id: ID!, $t: [String!]!) { tagsAdd(id: $id, tags: $t) { userErrors { field message } } }",
+     "variables": {
+      "id": "gid://shopify/Product/8492110315583",
+      "t": [
+       "dining"
+      ]
+     }
+    },
+    {
+     "desc": "transformer-bench-4-0: 13 metafield(s) — specs + per-variant delivery window/mode",
+     "mutation": "mutation S($m: [MetafieldsSetInput!]!) { metafieldsSet(metafields: $m) { metafields { id } userErrors { field message code } } }",
+     "variables": {
+      "m": [
+       {
+        "ownerId": "gid://shopify/Product/8492110315583",
+        "namespace": "specs",
+        "key": "dimensions_closed_cm",
+        "type": "single_line_text_field",
+        "value": "46 × 38 × 46"
+       },
+       {
+        "ownerId": "gid://shopify/Product/8492110315583",
+        "namespace": "specs",
+        "key": "dimensions_open_cm",
+        "type": "single_line_text_field",
+        "value": "260 × 38 × 46"
+       },
+       {
+        "ownerId": "gid://shopify/Product/8492110315583",
+        "namespace": "specs",
+        "key": "seats",
+        "type": "single_line_text_field",
+        "value": "1–6"
+       },
+       {
+        "ownerId": "gid://shopify/Product/8492110315583",
+        "namespace": "specs",
+        "key": "material",
+        "type": "single_line_text_field",
+        "value": "Solid hardwood"
+       },
+       {
+        "ownerId": "gid://shopify/Product/8492110315583",
+        "namespace": "specs",
+        "key": "weight_kg",
+        "type": "number_decimal",
+        "value": "29"
+       },
+       {
+        "ownerId": "gid://shopify/Product/8492110315583",
+        "namespace": "specs",
+        "key": "assembly_minutes",
+        "type": "number_integer",
+        "value": "10"
+       },
+       {
+        "ownerId": "gid://shopify/Product/8492110315583",
+        "namespace": "specs",
+        "key": "warranty_years",
+        "type": "number_integer",
+        "value": "10"
+       },
+       {
+        "ownerId": "gid://shopify/ProductVariant/44370541412415",
+        "namespace": "ops",
+        "key": "estimated_delivery_window",
+        "type": "single_line_text_field",
+        "value": "UK/EU/AU/GCC: 3–5 Business Days (Ships with Table or Standalone)"
+       },
+       {
+        "ownerId": "gid://shopify/ProductVariant/44370541412415",
+        "namespace": "ops",
+        "key": "fulfillment_mode",
+        "type": "single_line_text_field",
+        "value": "IN_STOCK_LOCAL_3PL"
+       },
+       {
+        "ownerId": "gid://shopify/ProductVariant/44370541445183",
+        "namespace": "ops",
+        "key": "estimated_delivery_window",
+        "type": "single_line_text_field",
+        "value": "UK/EU/AU/GCC: 3–5 Business Days (Ships with Table or Standalone)"
+       },
+       {
+        "ownerId": "gid://shopify/ProductVariant/44370541445183",
+        "namespace": "ops",
+        "key": "fulfillment_mode",
+        "type": "single_line_text_field",
+        "value": "IN_STOCK_LOCAL_3PL"
+       },
+       {
+        "ownerId": "gid://shopify/ProductVariant/44370541477951",
+        "namespace": "ops",
+        "key": "estimated_delivery_window",
+        "type": "single_line_text_field",
+        "value": "UK/EU/AU/GCC: 3–5 Business Days (Ships with Table or Standalone)"
+       },
+       {
+        "ownerId": "gid://shopify/ProductVariant/44370541477951",
+        "namespace": "ops",
+        "key": "fulfillment_mode",
+        "type": "single_line_text_field",
+        "value": "IN_STOCK_LOCAL_3PL"
+       }
+      ]
+     }
+    },
+    {
+     "desc": "transformer-coffee-table-4-0: add tags ['living']",
+     "mutation": "mutation T($id: ID!, $t: [String!]!) { tagsAdd(id: $id, tags: $t) { userErrors { field message } } }",
+     "variables": {
+      "id": "gid://shopify/Product/8492110348351",
+      "t": [
+       "living"
+      ]
+     }
+    },
+    {
+     "desc": "transformer-coffee-table-4-0: 13 metafield(s) — specs + per-variant delivery window/mode",
+     "mutation": "mutation S($m: [MetafieldsSetInput!]!) { metafieldsSet(metafields: $m) { metafields { id } userErrors { field message code } } }",
+     "variables": {
+      "m": [
+       {
+        "ownerId": "gid://shopify/Product/8492110348351",
+        "namespace": "specs",
+        "key": "dimensions_closed_cm",
+        "type": "single_line_text_field",
+        "value": "110 × 60 × 45"
+       },
+       {
+        "ownerId": "gid://shopify/Product/8492110348351",
+        "namespace": "specs",
+        "key": "dimensions_open_cm",
+        "type": "single_line_text_field",
+        "value": "110 × 60 × 62 (lift-top)"
+       },
+       {
+        "ownerId": "gid://shopify/Product/8492110348351",
+        "namespace": "specs",
+        "key": "seats",
+        "type": "single_line_text_field",
+        "value": "n/a"
+       },
+       {
+        "ownerId": "gid://shopify/Product/8492110348351",
+        "namespace": "specs",
+        "key": "material",
+        "type": "single_line_text_field",
+        "value": "Solid hardwood, gas-lift hinge"
+       },
+       {
+        "ownerId": "gid://shopify/Product/8492110348351",
+        "namespace": "specs",
+        "key": "weight_kg",
+        "type": "number_decimal",
+        "value": "34"
+       },
+       {
+        "ownerId": "gid://shopify/Product/8492110348351",
+        "namespace": "specs",
+        "key": "assembly_minutes",
+        "type": "number_integer",
+        "value": "15"
+       },
+       {
+        "ownerId": "gid://shopify/Product/8492110348351",
+        "namespace": "specs",
+        "key": "warranty_years",
+        "type": "number_integer",
+        "value": "10"
+       },
+       {
+        "ownerId": "gid://shopify/ProductVariant/44370541510719",
+        "namespace": "ops",
+        "key": "estimated_delivery_window",
+        "type": "single_line_text_field",
+        "value": "UK/EU/AU/GCC: 3–5 Business Days"
+       },
+       {
+        "ownerId": "gid://shopify/ProductVariant/44370541510719",
+        "namespace": "ops",
+        "key": "fulfillment_mode",
+        "type": "single_line_text_field",
+        "value": "IN_STOCK_LOCAL_3PL"
+       },
+       {
+        "ownerId": "gid://shopify/ProductVariant/44370541543487",
+        "namespace": "ops",
+        "key": "estimated_delivery_window",
+        "type": "single_line_text_field",
+        "value": "UK/EU/AU/GCC: 3–5 Business Days"
+       },
+       {
+        "ownerId": "gid://shopify/ProductVariant/44370541543487",
+        "namespace": "ops",
+        "key": "fulfillment_mode",
+        "type": "single_line_text_field",
+        "value": "IN_STOCK_LOCAL_3PL"
+       },
+       {
+        "ownerId": "gid://shopify/ProductVariant/44370541576255",
+        "namespace": "ops",
+        "key": "estimated_delivery_window",
+        "type": "single_line_text_field",
+        "value": "UK/EU/AU/GCC: 3–5 Business Days"
+       },
+       {
+        "ownerId": "gid://shopify/ProductVariant/44370541576255",
+        "namespace": "ops",
+        "key": "fulfillment_mode",
+        "type": "single_line_text_field",
+        "value": "IN_STOCK_LOCAL_3PL"
+       }
+      ]
+     }
+    },
+    {
+     "desc": "transformer-round-table: add tags ['dining']",
+     "mutation": "mutation T($id: ID!, $t: [String!]!) { tagsAdd(id: $id, tags: $t) { userErrors { field message } } }",
+     "variables": {
+      "id": "gid://shopify/Product/8492110381119",
+      "t": [
+       "dining"
+      ]
+     }
+    },
+    {
+     "desc": "transformer-round-table: 11 metafield(s) — specs + per-variant delivery window/mode",
+     "mutation": "mutation S($m: [MetafieldsSetInput!]!) { metafieldsSet(metafields: $m) { metafields { id } userErrors { field message code } } }",
+     "variables": {
+      "m": [
+       {
+        "ownerId": "gid://shopify/Product/8492110381119",
+        "namespace": "specs",
+        "key": "dimensions_closed_cm",
+        "type": "single_line_text_field",
+        "value": "Ø 110 × 76"
+       },
+       {
+        "ownerId": "gid://shopify/Product/8492110381119",
+        "namespace": "specs",
+        "key": "dimensions_open_cm",
+        "type": "single_line_text_field",
+        "value": "Ø 180 × 76"
+       },
+       {
+        "ownerId": "gid://shopify/Product/8492110381119",
+        "namespace": "specs",
+        "key": "seats",
+        "type": "single_line_text_field",
+        "value": "4–10"
+       },
+       {
+        "ownerId": "gid://shopify/Product/8492110381119",
+        "namespace": "specs",
+        "key": "material",
+        "type": "single_line_text_field",
+        "value": "Solid hardwood pedestal"
+       },
+       {
+        "ownerId": "gid://shopify/Product/8492110381119",
+        "namespace": "specs",
+        "key": "weight_kg",
+        "type": "number_decimal",
+        "value": "74"
+       },
+       {
+        "ownerId": "gid://shopify/Product/8492110381119",
+        "namespace": "specs",
+        "key": "assembly_minutes",
+        "type": "number_integer",
+        "value": "25"
+       },
+       {
+        "ownerId": "gid://shopify/Product/8492110381119",
+        "namespace": "specs",
+        "key": "warranty_years",
+        "type": "number_integer",
+        "value": "10"
+       },
+       {
+        "ownerId": "gid://shopify/ProductVariant/44370541609023",
+        "namespace": "ops",
+        "key": "estimated_delivery_window",
+        "type": "single_line_text_field",
+        "value": "UK/EU: 5–8 Business Days | AU/GCC: Batch #15 (Dec 02–09, 2026)"
+       },
+       {
+        "ownerId": "gid://shopify/ProductVariant/44370541609023",
+        "namespace": "ops",
+        "key": "fulfillment_mode",
+        "type": "single_line_text_field",
+        "value": "LOW_STOCK_PRIORITY"
+       },
+       {
+        "ownerId": "gid://shopify/ProductVariant/44370541641791",
+        "namespace": "ops",
+        "key": "estimated_delivery_window",
+        "type": "single_line_text_field",
+        "value": "UK/EU: 5–8 Business Days | AU/GCC: Batch #15 (Dec 02–09, 2026)"
+       },
+       {
+        "ownerId": "gid://shopify/ProductVariant/44370541641791",
+        "namespace": "ops",
+        "key": "fulfillment_mode",
+        "type": "single_line_text_field",
+        "value": "LOW_STOCK_PRIORITY"
+       }
+      ]
+     }
+    },
+    {
+     "desc": "transformer-dining-chairs-set-of-2: add tags ['dining']",
+     "mutation": "mutation T($id: ID!, $t: [String!]!) { tagsAdd(id: $id, tags: $t) { userErrors { field message } } }",
+     "variables": {
+      "id": "gid://shopify/Product/8492110413887",
+      "t": [
+       "dining"
+      ]
+     }
+    },
+    {
+     "desc": "transformer-dining-chairs-set-of-2: 13 metafield(s) — specs + per-variant delivery window/mode",
+     "mutation": "mutation S($m: [MetafieldsSetInput!]!) { metafieldsSet(metafields: $m) { metafields { id } userErrors { field message code } } }",
+     "variables": {
+      "m": [
+       {
+        "ownerId": "gid://shopify/Product/8492110413887",
+        "namespace": "specs",
+        "key": "dimensions_closed_cm",
+        "type": "single_line_text_field",
+        "value": "47 × 54 × 82 (each)"
+       },
+       {
+        "ownerId": "gid://shopify/Product/8492110413887",
+        "namespace": "specs",
+        "key": "dimensions_open_cm",
+        "type": "single_line_text_field",
+        "value": "stacks 4 high"
+       },
+       {
+        "ownerId": "gid://shopify/Product/8492110413887",
+        "namespace": "specs",
+        "key": "seats",
+        "type": "single_line_text_field",
+        "value": "2"
+       },
+       {
+        "ownerId": "gid://shopify/Product/8492110413887",
+        "namespace": "specs",
+        "key": "material",
+        "type": "single_line_text_field",
+        "value": "Solid oak frame, stain-resistant bouclé"
+       },
+       {
+        "ownerId": "gid://shopify/Product/8492110413887",
+        "namespace": "specs",
+        "key": "weight_kg",
+        "type": "number_decimal",
+        "value": "11"
+       },
+       {
+        "ownerId": "gid://shopify/Product/8492110413887",
+        "namespace": "specs",
+        "key": "assembly_minutes",
+        "type": "number_integer",
+        "value": "0"
+       },
+       {
+        "ownerId": "gid://shopify/Product/8492110413887",
+        "namespace": "specs",
+        "key": "warranty_years",
+        "type": "number_integer",
+        "value": "5"
+       },
+       {
+        "ownerId": "gid://shopify/ProductVariant/44370541674559",
+        "namespace": "ops",
+        "key": "estimated_delivery_window",
+        "type": "single_line_text_field",
+        "value": "UK/EU/AU/GCC: 3–5 Business Days"
+       },
+       {
+        "ownerId": "gid://shopify/ProductVariant/44370541674559",
+        "namespace": "ops",
+        "key": "fulfillment_mode",
+        "type": "single_line_text_field",
+        "value": "IN_STOCK_LOCAL_3PL"
+       },
+       {
+        "ownerId": "gid://shopify/ProductVariant/44370541707327",
+        "namespace": "ops",
+        "key": "estimated_delivery_window",
+        "type": "single_line_text_field",
+        "value": "UK/EU/AU/GCC: 3–5 Business Days"
+       },
+       {
+        "ownerId": "gid://shopify/ProductVariant/44370541707327",
+        "namespace": "ops",
+        "key": "fulfillment_mode",
+        "type": "single_line_text_field",
+        "value": "IN_STOCK_LOCAL_3PL"
+       },
+       {
+        "ownerId": "gid://shopify/ProductVariant/44370541740095",
+        "namespace": "ops",
+        "key": "estimated_delivery_window",
+        "type": "single_line_text_field",
+        "value": "UK/EU/AU/GCC: 3–5 Business Days"
+       },
+       {
+        "ownerId": "gid://shopify/ProductVariant/44370541740095",
+        "namespace": "ops",
+        "key": "fulfillment_mode",
+        "type": "single_line_text_field",
+        "value": "IN_STOCK_LOCAL_3PL"
+       }
+      ]
+     }
+    },
+    {
+     "desc": "the-complete-transformer-dining-bundle-4-0: add tags ['dining', 'living']",
+     "mutation": "mutation T($id: ID!, $t: [String!]!) { tagsAdd(id: $id, tags: $t) { userErrors { field message } } }",
+     "variables": {
+      "id": "gid://shopify/Product/8492110446655",
+      "t": [
+       "dining",
+       "living"
+      ]
+     }
+    },
+    {
+     "desc": "the-complete-transformer-dining-bundle-4-0: 9 metafield(s) — specs + per-variant delivery window/mode",
+     "mutation": "mutation S($m: [MetafieldsSetInput!]!) { metafieldsSet(metafields: $m) { metafields { id } userErrors { field message code } } }",
+     "variables": {
+      "m": [
+       {
+        "ownerId": "gid://shopify/Product/8492110446655",
+        "namespace": "specs",
+        "key": "seats",
+        "type": "single_line_text_field",
+        "value": "1–12"
+       },
+       {
+        "ownerId": "gid://shopify/Product/8492110446655",
+        "namespace": "specs",
+        "key": "material",
+        "type": "single_line_text_field",
+        "value": "Solid hardwood"
+       },
+       {
+        "ownerId": "gid://shopify/Product/8492110446655",
+        "namespace": "specs",
+        "key": "warranty_years",
+        "type": "number_integer",
+        "value": "10"
+       },
+       {
+        "ownerId": "gid://shopify/ProductVariant/44370541772863",
+        "namespace": "ops",
+        "key": "estimated_delivery_window",
+        "type": "single_line_text_field",
+        "value": "Consolidated White-Glove Delivery: 3–5 Business Days (UK/DE/FR/AU/GCC)"
+       },
+       {
+        "ownerId": "gid://shopify/ProductVariant/44370541772863",
+        "namespace": "ops",
+        "key": "fulfillment_mode",
+        "type": "single_line_text_field",
+        "value": "IN_STOCK_LOCAL_3PL"
+       },
+       {
+        "ownerId": "gid://shopify/ProductVariant/44370541805631",
+        "namespace": "ops",
+        "key": "estimated_delivery_window",
+        "type": "single_line_text_field",
+        "value": "Consolidated White-Glove Delivery: 3–5 Business Days (UK/DE/FR/AU/GCC)"
+       },
+       {
+        "ownerId": "gid://shopify/ProductVariant/44370541805631",
+        "namespace": "ops",
+        "key": "fulfillment_mode",
+        "type": "single_line_text_field",
+        "value": "IN_STOCK_LOCAL_3PL"
+       },
+       {
+        "ownerId": "gid://shopify/ProductVariant/44370541838399",
+        "namespace": "ops",
+        "key": "estimated_delivery_window",
+        "type": "single_line_text_field",
+        "value": "Consolidated White-Glove Delivery: 3–5 Business Days (UK/DE/FR/AU/GCC)"
+       },
+       {
+        "ownerId": "gid://shopify/ProductVariant/44370541838399",
+        "namespace": "ops",
+        "key": "fulfillment_mode",
+        "type": "single_line_text_field",
+        "value": "LOW_STOCK_PRIORITY"
+       }
+      ]
+     }
+    }
+   ]
+  },
+  {
+   "step": "products",
+   "status": "READY",
+   "actions": [
+    {
+     "desc": "create DRAFT product transformer-extension-leaf-set (3 variant(s), VND)",
+     "mutation": "mutation P($i: ProductSetInput!) { productSet(input: $i, synchronous: true) { product { id } userErrors { field message code } } }",
+     "variables": {
+      "i": {
+       "handle": "transformer-extension-leaf-set",
+       "title": "Extension Leaf Set (2 Leaves) for Transformer Table 4.0",
+       "vendor": "Transformer Table International",
+       "productType": "Spare Part",
+       "descriptionHtml": "<p>Two extra solid-wood leaves that slot into the Table 4.0 telescopic tracks to seat two more guests. Colour-matched to your finish.</p>",
+       "tags": [
+        "accessory",
+        "dining",
+        "spare-part",
+        "buildout-2026-11"
+       ],
+       "status": "DRAFT",
+       "productOptions": [
+        {
+         "name": "Finish",
+         "values": [
+          {
+           "name": "Scandinavian Oak"
+          },
+          {
+           "name": "Smoked Hickory"
+          },
+          {
+           "name": "American Walnut"
+          }
+         ]
+        }
+       ],
+       "variants": [
+        {
+         "optionValues": [
+          {
+           "optionName": "Finish",
+           "name": "Scandinavian Oak"
+          }
+         ],
+         "price": "4400000.00",
+         "taxable": true,
+         "inventoryPolicy": "DENY",
+         "inventoryItem": {
+          "sku": "TT-ACC-LEAF2-OAK",
+          "tracked": true,
+          "requiresShipping": true
+         },
+         "compareAtPrice": "5300000.00",
+         "inventoryQuantities": [
+          {
+           "locationId": "gid://shopify/Location/78814707775",
+           "name": "available",
+           "quantity": 41
+          }
+         ],
+         "metafields": [
+          {
+           "namespace": "ops",
+           "key": "fulfillment_mode",
+           "type": "single_line_text_field",
+           "value": "IN_STOCK_LOCAL_3PL"
+          },
+          {
+           "namespace": "ops",
+           "key": "estimated_delivery_window",
+           "type": "single_line_text_field",
+           "value": "UK/EU/AU/GCC: 3–5 Business Days (Local 3PL)"
+          }
+         ]
+        },
+        {
+         "optionValues": [
+          {
+           "optionName": "Finish",
+           "name": "Smoked Hickory"
+          }
+         ],
+         "price": "4400000.00",
+         "taxable": true,
+         "inventoryPolicy": "DENY",
+         "inventoryItem": {
+          "sku": "TT-ACC-LEAF2-HCK",
+          "tracked": true,
+          "requiresShipping": true
+         },
+         "compareAtPrice": "5300000.00",
+         "inventoryQuantities": [
+          {
+           "locationId": "gid://shopify/Location/78814707775",
+           "name": "available",
+           "quantity": 26
+          }
+         ],
+         "metafields": [
+          {
+           "namespace": "ops",
+           "key": "fulfillment_mode",
+           "type": "single_line_text_field",
+           "value": "IN_STOCK_LOCAL_3PL"
+          },
+          {
+           "namespace": "ops",
+           "key": "estimated_delivery_window",
+           "type": "single_line_text_field",
+           "value": "UK/EU/AU/GCC: 3–5 Business Days (Local 3PL)"
+          }
+         ]
+        },
+        {
+         "optionValues": [
+          {
+           "optionName": "Finish",
+           "name": "American Walnut"
+          }
+         ],
+         "price": "4700000.00",
+         "taxable": true,
+         "inventoryPolicy": "DENY",
+         "inventoryItem": {
+          "sku": "TT-ACC-LEAF2-WAL",
+          "tracked": true,
+          "requiresShipping": true
+         },
+         "compareAtPrice": "5600000.00",
+         "inventoryQuantities": [
+          {
+           "locationId": "gid://shopify/Location/78814707775",
+           "name": "available",
+           "quantity": 15
+          }
+         ],
+         "metafields": [
+          {
+           "namespace": "ops",
+           "key": "fulfillment_mode",
+           "type": "single_line_text_field",
+           "value": "IN_STOCK_LOCAL_3PL"
+          },
+          {
+           "namespace": "ops",
+           "key": "estimated_delivery_window",
+           "type": "single_line_text_field",
+           "value": "UK/EU/AU/GCC: 3–5 Business Days (Local 3PL)"
+          }
+         ]
+        }
+       ],
+       "metafields": []
+      }
+     },
+     "handle": "transformer-extension-leaf-set"
+    },
+    {
+     "desc": "create DRAFT product tabletop-protector-pad (3 variant(s), VND)",
+     "mutation": "mutation P($i: ProductSetInput!) { productSet(input: $i, synchronous: true) { product { id } userErrors { field message code } } }",
+     "variables": {
+      "i": {
+       "handle": "tabletop-protector-pad",
+       "title": "Tabletop Protector Pad",
+       "vendor": "Transformer Table International",
+       "productType": "Accessory",
+       "descriptionHtml": "<p>Heat- and spill-resistant felt-backed pad cut to the Table 4.0 sizes. Rolls up for storage.</p>",
+       "tags": [
+        "accessory",
+        "dining",
+        "buildout-2026-11"
+       ],
+       "status": "DRAFT",
+       "productOptions": [
+        {
+         "name": "Size",
+         "values": [
+          {
+           "name": "4 seats (92 × 110 cm)"
+          },
+          {
+           "name": "8 seats (92 × 210 cm)"
+          },
+          {
+           "name": "12 seats (92 × 305 cm)"
+          }
+         ]
+        }
+       ],
+       "variants": [
+        {
+         "optionValues": [
+          {
+           "optionName": "Size",
+           "name": "4 seats (92 × 110 cm)"
+          }
+         ],
+         "price": "1700000.00",
+         "taxable": true,
+         "inventoryPolicy": "DENY",
+         "inventoryItem": {
+          "sku": "TT-ACC-PAD-S",
+          "tracked": true,
+          "requiresShipping": true
+         },
+         "inventoryQuantities": [
+          {
+           "locationId": "gid://shopify/Location/78814707775",
+           "name": "available",
+           "quantity": 95
+          }
+         ],
+         "metafields": [
+          {
+           "namespace": "ops",
+           "key": "fulfillment_mode",
+           "type": "single_line_text_field",
+           "value": "IN_STOCK_LOCAL_3PL"
+          },
+          {
+           "namespace": "ops",
+           "key": "estimated_delivery_window",
+           "type": "single_line_text_field",
+           "value": "UK/EU/AU/GCC: 3–5 Business Days (Local 3PL)"
+          }
+         ]
+        },
+        {
+         "optionValues": [
+          {
+           "optionName": "Size",
+           "name": "8 seats (92 × 210 cm)"
+          }
+         ],
+         "price": "2300000.00",
+         "taxable": true,
+         "inventoryPolicy": "DENY",
+         "inventoryItem": {
+          "sku": "TT-ACC-PAD-M",
+          "tracked": true,
+          "requiresShipping": true
+         },
+         "inventoryQuantities": [
+          {
+           "locationId": "gid://shopify/Location/78814707775",
+           "name": "available",
+           "quantity": 81
+          }
+         ],
+         "metafields": [
+          {
+           "namespace": "ops",
+           "key": "fulfillment_mode",
+           "type": "single_line_text_field",
+           "value": "IN_STOCK_LOCAL_3PL"
+          },
+          {
+           "namespace": "ops",
+           "key": "estimated_delivery_window",
+           "type": "single_line_text_field",
+           "value": "UK/EU/AU/GCC: 3–5 Business Days (Local 3PL)"
+          }
+         ]
+        },
+        {
+         "optionValues": [
+          {
+           "optionName": "Size",
+           "name": "12 seats (92 × 305 cm)"
+          }
+         ],
+         "price": "2900000.00",
+         "taxable": true,
+         "inventoryPolicy": "DENY",
+         "inventoryItem": {
+          "sku": "TT-ACC-PAD-L",
+          "tracked": true,
+          "requiresShipping": true
+         },
+         "inventoryQuantities": [
+          {
+           "locationId": "gid://shopify/Location/78814707775",
+           "name": "available",
+           "quantity": 53
+          }
+         ],
+         "metafields": [
+          {
+           "namespace": "ops",
+           "key": "fulfillment_mode",
+           "type": "single_line_text_field",
+           "value": "IN_STOCK_LOCAL_3PL"
+          },
+          {
+           "namespace": "ops",
+           "key": "estimated_delivery_window",
+           "type": "single_line_text_field",
+           "value": "UK/EU/AU/GCC: 3–5 Business Days (Local 3PL)"
+          }
+         ]
+        }
+       ],
+       "metafields": []
+      }
+     },
+     "handle": "tabletop-protector-pad"
+    },
+    {
+     "desc": "create DRAFT product bench-seat-cushion (2 variant(s), VND)",
+     "mutation": "mutation P($i: ProductSetInput!) { productSet(input: $i, synchronous: true) { product { id } userErrors { field message code } } }",
+     "variables": {
+      "i": {
+       "handle": "bench-seat-cushion",
+       "title": "Bench 4.0 Seat Cushion",
+       "vendor": "Transformer Table International",
+       "productType": "Accessory",
+       "descriptionHtml": "<p>Tie-on bouclé cushion sized for the Bench 4.0 in its closed position. Removable, washable cover.</p>",
+       "tags": [
+        "accessory",
+        "seating",
+        "buildout-2026-11"
+       ],
+       "status": "DRAFT",
+       "productOptions": [
+        {
+         "name": "Colour",
+         "values": [
+          {
+           "name": "Cream Bouclé"
+          },
+          {
+           "name": "Charcoal Bouclé"
+          }
+         ]
+        }
+       ],
+       "variants": [
+        {
+         "optionValues": [
+          {
+           "optionName": "Colour",
+           "name": "Cream Bouclé"
+          }
+         ],
+         "price": "2600000.00",
+         "taxable": true,
+         "inventoryPolicy": "DENY",
+         "inventoryItem": {
+          "sku": "TT-ACC-CUSH-CRM",
+          "tracked": true,
+          "requiresShipping": true
+         },
+         "inventoryQuantities": [
+          {
+           "locationId": "gid://shopify/Location/78814707775",
+           "name": "available",
+           "quantity": 61
+          }
+         ],
+         "metafields": [
+          {
+           "namespace": "ops",
+           "key": "fulfillment_mode",
+           "type": "single_line_text_field",
+           "value": "IN_STOCK_LOCAL_3PL"
+          },
+          {
+           "namespace": "ops",
+           "key": "estimated_delivery_window",
+           "type": "single_line_text_field",
+           "value": "UK/EU/AU/GCC: 3–5 Business Days (Local 3PL)"
+          }
+         ]
+        },
+        {
+         "optionValues": [
+          {
+           "optionName": "Colour",
+           "name": "Charcoal Bouclé"
+          }
+         ],
+         "price": "2600000.00",
+         "taxable": true,
+         "inventoryPolicy": "DENY",
+         "inventoryItem": {
+          "sku": "TT-ACC-CUSH-CHR",
+          "tracked": true,
+          "requiresShipping": true
+         },
+         "inventoryQuantities": [
+          {
+           "locationId": "gid://shopify/Location/78814707775",
+           "name": "available",
+           "quantity": 27
+          }
+         ],
+         "metafields": [
+          {
+           "namespace": "ops",
+           "key": "fulfillment_mode",
+           "type": "single_line_text_field",
+           "value": "IN_STOCK_LOCAL_3PL"
+          },
+          {
+           "namespace": "ops",
+           "key": "estimated_delivery_window",
+           "type": "single_line_text_field",
+           "value": "UK/EU/AU/GCC: 3–5 Business Days (Local 3PL)"
+          }
+         ]
+        }
+       ],
+       "metafields": []
+      }
+     },
+     "handle": "bench-seat-cushion"
+    },
+    {
+     "desc": "create DRAFT product hardwood-care-kit (1 variant(s), VND)",
+     "mutation": "mutation P($i: ProductSetInput!) { productSet(input: $i, synchronous: true) { product { id } userErrors { field message code } } }",
+     "variables": {
+      "i": {
+       "handle": "hardwood-care-kit",
+       "title": "Hardwood Care Kit",
+       "vendor": "Transformer Table International",
+       "productType": "Accessory",
+       "descriptionHtml": "<p>Plant-based oil, two microfibre cloths and a scratch-repair crayon for every finish. Enough for two years of care.</p>",
+       "tags": [
+        "accessory",
+        "care",
+        "buildout-2026-11"
+       ],
+       "status": "DRAFT",
+       "productOptions": [
+        {
+         "name": "Title",
+         "values": [
+          {
+           "name": "Default Title"
+          }
+         ]
+        }
+       ],
+       "variants": [
+        {
+         "optionValues": [
+          {
+           "optionName": "Title",
+           "name": "Default Title"
+          }
+         ],
+         "price": "900000.00",
+         "taxable": true,
+         "inventoryPolicy": "DENY",
+         "inventoryItem": {
+          "sku": "TT-ACC-CARE",
+          "tracked": true,
+          "requiresShipping": true
+         },
+         "inventoryQuantities": [
+          {
+           "locationId": "gid://shopify/Location/78814707775",
+           "name": "available",
+           "quantity": 277
+          }
+         ],
+         "metafields": [
+          {
+           "namespace": "ops",
+           "key": "fulfillment_mode",
+           "type": "single_line_text_field",
+           "value": "IN_STOCK_LOCAL_3PL"
+          },
+          {
+           "namespace": "ops",
+           "key": "estimated_delivery_window",
+           "type": "single_line_text_field",
+           "value": "UK/EU/AU/GCC: 3–5 Business Days (Local 3PL)"
+          }
+         ]
+        }
+       ],
+       "metafields": []
+      }
+     },
+     "handle": "hardwood-care-kit"
+    },
+    {
+     "desc": "create DRAFT product replacement-leg-set-table-4-0 (3 variant(s), VND)",
+     "mutation": "mutation P($i: ProductSetInput!) { productSet(input: $i, synchronous: true) { product { id } userErrors { field message code } } }",
+     "variables": {
+      "i": {
+       "handle": "replacement-leg-set-table-4-0",
+       "title": "Replacement Leg Set for Table 4.0",
+       "vendor": "Transformer Table International",
+       "productType": "Spare Part",
+       "descriptionHtml": "<p>Four solid-wood legs with fixings. For repairs or a finish change.</p>",
+       "tags": [
+        "accessory",
+        "spare-part",
+        "dining",
+        "buildout-2026-11"
+       ],
+       "status": "DRAFT",
+       "productOptions": [
+        {
+         "name": "Finish",
+         "values": [
+          {
+           "name": "Scandinavian Oak"
+          },
+          {
+           "name": "Smoked Hickory"
+          },
+          {
+           "name": "American Walnut"
+          }
+         ]
+        }
+       ],
+       "variants": [
+        {
+         "optionValues": [
+          {
+           "optionName": "Finish",
+           "name": "Scandinavian Oak"
+          }
+         ],
+         "price": "3500000.00",
+         "taxable": true,
+         "inventoryPolicy": "DENY",
+         "inventoryItem": {
+          "sku": "TT-ACC-LEGS-OAK",
+          "tracked": true,
+          "requiresShipping": true
+         },
+         "inventoryQuantities": [
+          {
+           "locationId": "gid://shopify/Location/78814707775",
+           "name": "available",
+           "quantity": 17
+          }
+         ],
+         "metafields": [
+          {
+           "namespace": "ops",
+           "key": "fulfillment_mode",
+           "type": "single_line_text_field",
+           "value": "IN_STOCK_LOCAL_3PL"
+          },
+          {
+           "namespace": "ops",
+           "key": "estimated_delivery_window",
+           "type": "single_line_text_field",
+           "value": "UK/EU/AU/GCC: 3–5 Business Days (Local 3PL)"
+          }
+         ]
+        },
+        {
+         "optionValues": [
+          {
+           "optionName": "Finish",
+           "name": "Smoked Hickory"
+          }
+         ],
+         "price": "3500000.00",
+         "taxable": true,
+         "inventoryPolicy": "DENY",
+         "inventoryItem": {
+          "sku": "TT-ACC-LEGS-HCK",
+          "tracked": true,
+          "requiresShipping": true
+         },
+         "inventoryQuantities": [
+          {
+           "locationId": "gid://shopify/Location/78814707775",
+           "name": "available",
+           "quantity": 10
+          }
+         ],
+         "metafields": [
+          {
+           "namespace": "ops",
+           "key": "fulfillment_mode",
+           "type": "single_line_text_field",
+           "value": "LOW_STOCK_PRIORITY"
+          },
+          {
+           "namespace": "ops",
+           "key": "estimated_delivery_window",
+           "type": "single_line_text_field",
+           "value": "UK/EU: 5–8 Business Days · AU/GCC: 7–10 Business Days"
+          }
+         ]
+        },
+        {
+         "optionValues": [
+          {
+           "optionName": "Finish",
+           "name": "American Walnut"
+          }
+         ],
+         "price": "3800000.00",
+         "taxable": true,
+         "inventoryPolicy": "DENY",
+         "inventoryItem": {
+          "sku": "TT-ACC-LEGS-WAL",
+          "tracked": true,
+          "requiresShipping": true
+         },
+         "inventoryQuantities": [
+          {
+           "locationId": "gid://shopify/Location/78814707775",
+           "name": "available",
+           "quantity": 5
+          }
+         ],
+         "metafields": [
+          {
+           "namespace": "ops",
+           "key": "fulfillment_mode",
+           "type": "single_line_text_field",
+           "value": "LOW_STOCK_PRIORITY"
+          },
+          {
+           "namespace": "ops",
+           "key": "estimated_delivery_window",
+           "type": "single_line_text_field",
+           "value": "UK/EU: 5–8 Business Days · AU/GCC: 7–10 Business Days"
+          }
+         ]
+        }
+       ],
+       "metafields": []
+      }
+     },
+     "handle": "replacement-leg-set-table-4-0"
+    },
+    {
+     "desc": "create DRAFT product track-maintenance-tool-kit (1 variant(s), VND)",
+     "mutation": "mutation P($i: ProductSetInput!) { productSet(input: $i, synchronous: true) { product { id } userErrors { field message code } } }",
+     "variables": {
+      "i": {
+       "handle": "track-maintenance-tool-kit",
+       "title": "Track Maintenance & Tool Kit",
+       "vendor": "Transformer Table International",
+       "productType": "Spare Part",
+       "descriptionHtml": "<p>Dry lubricant for the telescopic tracks, hex keys and spare bolts.</p>",
+       "tags": [
+        "accessory",
+        "spare-part",
+        "care",
+        "buildout-2026-11"
+       ],
+       "status": "DRAFT",
+       "productOptions": [
+        {
+         "name": "Title",
+         "values": [
+          {
+           "name": "Default Title"
+          }
+         ]
+        }
+       ],
+       "variants": [
+        {
+         "optionValues": [
+          {
+           "optionName": "Title",
+           "name": "Default Title"
+          }
+         ],
+         "price": "600000.00",
+         "taxable": true,
+         "inventoryPolicy": "DENY",
+         "inventoryItem": {
+          "sku": "TT-ACC-TOOL",
+          "tracked": true,
+          "requiresShipping": true
+         },
+         "inventoryQuantities": [
+          {
+           "locationId": "gid://shopify/Location/78814707775",
+           "name": "available",
+           "quantity": 205
+          }
+         ],
+         "metafields": [
+          {
+           "namespace": "ops",
+           "key": "fulfillment_mode",
+           "type": "single_line_text_field",
+           "value": "IN_STOCK_LOCAL_3PL"
+          },
+          {
+           "namespace": "ops",
+           "key": "estimated_delivery_window",
+           "type": "single_line_text_field",
+           "value": "UK/EU/AU/GCC: 3–5 Business Days (Local 3PL)"
+          }
+         ]
+        }
+       ],
+       "metafields": []
+      }
+     },
+     "handle": "track-maintenance-tool-kit"
+    },
+    {
+     "desc": "create DRAFT product dining-chair-slipcovers-set-of-2 (3 variant(s), VND)",
+     "mutation": "mutation P($i: ProductSetInput!) { productSet(input: $i, synchronous: true) { product { id } userErrors { field message code } } }",
+     "variables": {
+      "i": {
+       "handle": "dining-chair-slipcovers-set-of-2",
+       "title": "Dining Chair Slipcovers (Set of 2)",
+       "vendor": "Transformer Table International",
+       "productType": "Accessory",
+       "descriptionHtml": "<p>Fitted, machine-washable covers for the Stackable Dining Chairs.</p>",
+       "tags": [
+        "accessory",
+        "seating",
+        "buildout-2026-11"
+       ],
+       "status": "DRAFT",
+       "productOptions": [
+        {
+         "name": "Colour",
+         "values": [
+          {
+           "name": "Cream"
+          },
+          {
+           "name": "Charcoal"
+          },
+          {
+           "name": "Sage"
+          }
+         ]
+        }
+       ],
+       "variants": [
+        {
+         "optionValues": [
+          {
+           "optionName": "Colour",
+           "name": "Cream"
+          }
+         ],
+         "price": "2000000.00",
+         "taxable": true,
+         "inventoryPolicy": "DENY",
+         "inventoryItem": {
+          "sku": "TT-ACC-SLIP-CRM",
+          "tracked": true,
+          "requiresShipping": true
+         },
+         "inventoryQuantities": [
+          {
+           "locationId": "gid://shopify/Location/78814707775",
+           "name": "available",
+           "quantity": 70
+          }
+         ],
+         "metafields": [
+          {
+           "namespace": "ops",
+           "key": "fulfillment_mode",
+           "type": "single_line_text_field",
+           "value": "IN_STOCK_LOCAL_3PL"
+          },
+          {
+           "namespace": "ops",
+           "key": "estimated_delivery_window",
+           "type": "single_line_text_field",
+           "value": "UK/EU/AU/GCC: 3–5 Business Days (Local 3PL)"
+          }
+         ]
+        },
+        {
+         "optionValues": [
+          {
+           "optionName": "Colour",
+           "name": "Charcoal"
+          }
+         ],
+         "price": "2000000.00",
+         "taxable": true,
+         "inventoryPolicy": "DENY",
+         "inventoryItem": {
+          "sku": "TT-ACC-SLIP-CHR",
+          "tracked": true,
+          "requiresShipping": true
+         },
+         "inventoryQuantities": [
+          {
+           "locationId": "gid://shopify/Location/78814707775",
+           "name": "available",
+           "quantity": 52
+          }
+         ],
+         "metafields": [
+          {
+           "namespace": "ops",
+           "key": "fulfillment_mode",
+           "type": "single_line_text_field",
+           "value": "IN_STOCK_LOCAL_3PL"
+          },
+          {
+           "namespace": "ops",
+           "key": "estimated_delivery_window",
+           "type": "single_line_text_field",
+           "value": "UK/EU/AU/GCC: 3–5 Business Days (Local 3PL)"
+          }
+         ]
+        },
+        {
+         "optionValues": [
+          {
+           "optionName": "Colour",
+           "name": "Sage"
+          }
+         ],
+         "price": "2000000.00",
+         "taxable": true,
+         "inventoryPolicy": "DENY",
+         "inventoryItem": {
+          "sku": "TT-ACC-SLIP-SGE",
+          "tracked": true,
+          "requiresShipping": true
+         },
+         "inventoryQuantities": [
+          {
+           "locationId": "gid://shopify/Location/78814707775",
+           "name": "available",
+           "quantity": 20
+          }
+         ],
+         "metafields": [
+          {
+           "namespace": "ops",
+           "key": "fulfillment_mode",
+           "type": "single_line_text_field",
+           "value": "IN_STOCK_LOCAL_3PL"
+          },
+          {
+           "namespace": "ops",
+           "key": "estimated_delivery_window",
+           "type": "single_line_text_field",
+           "value": "UK/EU/AU/GCC: 3–5 Business Days (Local 3PL)"
+          }
+         ]
+        }
+       ],
+       "metafields": []
+      }
+     },
+     "handle": "dining-chair-slipcovers-set-of-2"
+    },
+    {
+     "desc": "create DRAFT product felt-floor-protectors-16 (1 variant(s), VND)",
+     "mutation": "mutation P($i: ProductSetInput!) { productSet(input: $i, synchronous: true) { product { id } userErrors { field message code } } }",
+     "variables": {
+      "i": {
+       "handle": "felt-floor-protectors-16",
+       "title": "Felt Floor Protectors (Set of 16)",
+       "vendor": "Transformer Table International",
+       "productType": "Accessory",
+       "descriptionHtml": "<p>Self-adhesive felt pads for table, bench and chair legs.</p>",
+       "tags": [
+        "accessory",
+        "care",
+        "buildout-2026-11"
+       ],
+       "status": "DRAFT",
+       "productOptions": [
+        {
+         "name": "Title",
+         "values": [
+          {
+           "name": "Default Title"
+          }
+         ]
+        }
+       ],
+       "variants": [
+        {
+         "optionValues": [
+          {
+           "optionName": "Title",
+           "name": "Default Title"
+          }
+         ],
+         "price": "400000.00",
+         "taxable": true,
+         "inventoryPolicy": "DENY",
+         "inventoryItem": {
+          "sku": "TT-ACC-FELT",
+          "tracked": true,
+          "requiresShipping": true
+         },
+         "inventoryQuantities": [
+          {
+           "locationId": "gid://shopify/Location/78814707775",
+           "name": "available",
+           "quantity": 480
+          }
+         ],
+         "metafields": [
+          {
+           "namespace": "ops",
+           "key": "fulfillment_mode",
+           "type": "single_line_text_field",
+           "value": "IN_STOCK_LOCAL_3PL"
+          },
+          {
+           "namespace": "ops",
+           "key": "estimated_delivery_window",
+           "type": "single_line_text_field",
+           "value": "UK/EU/AU/GCC: 3–5 Business Days (Local 3PL)"
+          }
+         ]
+        }
+       ],
+       "metafields": []
+      }
+     },
+     "handle": "felt-floor-protectors-16"
+    },
+    {
+     "desc": "create DRAFT product linen-table-runner (2 variant(s), VND)",
+     "mutation": "mutation P($i: ProductSetInput!) { productSet(input: $i, synchronous: true) { product { id } userErrors { field message code } } }",
+     "variables": {
+      "i": {
+       "handle": "linen-table-runner",
+       "title": "Linen Table Runner",
+       "vendor": "Transformer Table International",
+       "productType": "Accessory",
+       "descriptionHtml": "<p>Stonewashed linen runner, 300 cm, sized for the extended Table 4.0.</p>",
+       "tags": [
+        "accessory",
+        "dining",
+        "buildout-2026-11"
+       ],
+       "status": "DRAFT",
+       "productOptions": [
+        {
+         "name": "Colour",
+         "values": [
+          {
+           "name": "Natural"
+          },
+          {
+           "name": "Charcoal"
+          }
+         ]
+        }
+       ],
+       "variants": [
+        {
+         "optionValues": [
+          {
+           "optionName": "Colour",
+           "name": "Natural"
+          }
+         ],
+         "price": "1000000.00",
+         "taxable": true,
+         "inventoryPolicy": "DENY",
+         "inventoryItem": {
+          "sku": "TT-ACC-RUN-NAT",
+          "tracked": true,
+          "requiresShipping": true
+         },
+         "inventoryQuantities": [
+          {
+           "locationId": "gid://shopify/Location/78814707775",
+           "name": "available",
+           "quantity": 104
+          }
+         ],
+         "metafields": [
+          {
+           "namespace": "ops",
+           "key": "fulfillment_mode",
+           "type": "single_line_text_field",
+           "value": "IN_STOCK_LOCAL_3PL"
+          },
+          {
+           "namespace": "ops",
+           "key": "estimated_delivery_window",
+           "type": "single_line_text_field",
+           "value": "UK/EU/AU/GCC: 3–5 Business Days (Local 3PL)"
+          }
+         ]
+        },
+        {
+         "optionValues": [
+          {
+           "optionName": "Colour",
+           "name": "Charcoal"
+          }
+         ],
+         "price": "1000000.00",
+         "taxable": true,
+         "inventoryPolicy": "DENY",
+         "inventoryItem": {
+          "sku": "TT-ACC-RUN-CHR",
+          "tracked": true,
+          "requiresShipping": true
+         },
+         "inventoryQuantities": [
+          {
+           "locationId": "gid://shopify/Location/78814707775",
+           "name": "available",
+           "quantity": 65
+          }
+         ],
+         "metafields": [
+          {
+           "namespace": "ops",
+           "key": "fulfillment_mode",
+           "type": "single_line_text_field",
+           "value": "IN_STOCK_LOCAL_3PL"
+          },
+          {
+           "namespace": "ops",
+           "key": "estimated_delivery_window",
+           "type": "single_line_text_field",
+           "value": "UK/EU/AU/GCC: 3–5 Business Days (Local 3PL)"
+          }
+         ]
+        }
+       ],
+       "metafields": []
+      }
+     },
+     "handle": "linen-table-runner"
+    },
+    {
+     "desc": "create DRAFT product coffee-table-glass-insert (1 variant(s), VND)",
+     "mutation": "mutation P($i: ProductSetInput!) { productSet(input: $i, synchronous: true) { product { id } userErrors { field message code } } }",
+     "variables": {
+      "i": {
+       "handle": "coffee-table-glass-insert",
+       "title": "Coffee Table Tempered Glass Insert",
+       "vendor": "Transformer Table International",
+       "productType": "Spare Part",
+       "descriptionHtml": "<p>Tempered glass panel for the Coffee Table lift-top display tray.</p>",
+       "tags": [
+        "accessory",
+        "living",
+        "spare-part",
+        "buildout-2026-11"
+       ],
+       "status": "DRAFT",
+       "productOptions": [
+        {
+         "name": "Title",
+         "values": [
+          {
+           "name": "Default Title"
+          }
+         ]
+        }
+       ],
+       "variants": [
+        {
+         "optionValues": [
+          {
+           "optionName": "Title",
+           "name": "Default Title"
+          }
+         ],
+         "price": "2300000.00",
+         "taxable": true,
+         "inventoryPolicy": "DENY",
+         "inventoryItem": {
+          "sku": "TT-ACC-GLASS",
+          "tracked": true,
+          "requiresShipping": true
+         },
+         "inventoryQuantities": [
+          {
+           "locationId": "gid://shopify/Location/78814707775",
+           "name": "available",
+           "quantity": 30
+          }
+         ],
+         "metafields": [
+          {
+           "namespace": "ops",
+           "key": "fulfillment_mode",
+           "type": "single_line_text_field",
+           "value": "IN_STOCK_LOCAL_3PL"
+          },
+          {
+           "namespace": "ops",
+           "key": "estimated_delivery_window",
+           "type": "single_line_text_field",
+           "value": "UK/EU/AU/GCC: 3–5 Business Days (Local 3PL)"
+          }
+         ]
+        }
+       ],
+       "metafields": []
+      }
+     },
+     "handle": "coffee-table-glass-insert"
+    },
+    {
+     "desc": "create DRAFT product transformer-console-to-desk (2 variant(s), VND)",
+     "mutation": "mutation P($i: ProductSetInput!) { productSet(input: $i, synchronous: true) { product { id } userErrors { field message code } } }",
+     "variables": {
+      "i": {
+       "handle": "transformer-console-to-desk",
+       "title": "Transformer Console-to-Desk",
+       "vendor": "Transformer Table International",
+       "productType": "Desk",
+       "descriptionHtml": "<p>A 40 cm hallway console that pulls out to a 120 cm work desk. Cable tray and drawer built in.</p>",
+       "tags": [
+        "workspace",
+        "living",
+        "expandable",
+        "buildout-2026-11"
+       ],
+       "status": "DRAFT",
+       "productOptions": [
+        {
+         "name": "Finish",
+         "values": [
+          {
+           "name": "Scandinavian Oak"
+          },
+          {
+           "name": "American Walnut"
+          }
+         ]
+        }
+       ],
+       "variants": [
+        {
+         "optionValues": [
+          {
+           "optionName": "Finish",
+           "name": "Scandinavian Oak"
+          }
+         ],
+         "price": "26300000.00",
+         "taxable": true,
+         "inventoryPolicy": "DENY",
+         "inventoryItem": {
+          "sku": "TT-DSK-CON-OAK",
+          "tracked": true,
+          "requiresShipping": true
+         },
+         "compareAtPrice": "30800000.00",
+         "inventoryQuantities": [
+          {
+           "locationId": "gid://shopify/Location/78814707775",
+           "name": "available",
+           "quantity": 35
+          }
+         ],
+         "metafields": [
+          {
+           "namespace": "ops",
+           "key": "fulfillment_mode",
+           "type": "single_line_text_field",
+           "value": "IN_STOCK_LOCAL_3PL"
+          },
+          {
+           "namespace": "ops",
+           "key": "estimated_delivery_window",
+           "type": "single_line_text_field",
+           "value": "UK/EU/AU/GCC: 3–5 Business Days (Local 3PL)"
+          }
+         ]
+        },
+        {
+         "optionValues": [
+          {
+           "optionName": "Finish",
+           "name": "American Walnut"
+          }
+         ],
+         "price": "27800000.00",
+         "taxable": true,
+         "inventoryPolicy": "DENY",
+         "inventoryItem": {
+          "sku": "TT-DSK-CON-WAL",
+          "tracked": true,
+          "requiresShipping": true
+         },
+         "compareAtPrice": "32200000.00",
+         "inventoryQuantities": [
+          {
+           "locationId": "gid://shopify/Location/78814707775",
+           "name": "available",
+           "quantity": 12
+          }
+         ],
+         "metafields": [
+          {
+           "namespace": "ops",
+           "key": "fulfillment_mode",
+           "type": "single_line_text_field",
+           "value": "LOW_STOCK_PRIORITY"
+          },
+          {
+           "namespace": "ops",
+           "key": "estimated_delivery_window",
+           "type": "single_line_text_field",
+           "value": "UK/EU: 5–8 Business Days · AU/GCC: 7–10 Business Days"
+          }
+         ]
+        }
+       ],
+       "metafields": [
+        {
+         "namespace": "specs",
+         "key": "dimensions_closed_cm",
+         "type": "single_line_text_field",
+         "value": "40 × 120 × 76"
+        },
+        {
+         "namespace": "specs",
+         "key": "dimensions_open_cm",
+         "type": "single_line_text_field",
+         "value": "120 × 70 × 76"
+        },
+        {
+         "namespace": "specs",
+         "key": "material",
+         "type": "single_line_text_field",
+         "value": "Solid hardwood"
+        },
+        {
+         "namespace": "specs",
+         "key": "weight_kg",
+         "type": "number_decimal",
+         "value": "31"
+        },
+        {
+         "namespace": "specs",
+         "key": "assembly_minutes",
+         "type": "number_integer",
+         "value": "20"
+        },
+        {
+         "namespace": "specs",
+         "key": "warranty_years",
+         "type": "number_integer",
+         "value": "10"
+        }
+       ]
+      }
+     },
+     "handle": "transformer-console-to-desk"
+    },
+    {
+     "desc": "create DRAFT product transformer-nesting-side-tables (2 variant(s), VND)",
+     "mutation": "mutation P($i: ProductSetInput!) { productSet(input: $i, synchronous: true) { product { id } userErrors { field message code } } }",
+     "variables": {
+      "i": {
+       "handle": "transformer-nesting-side-tables",
+       "title": "Transformer Nesting Side Tables (Set of 2)",
+       "vendor": "Transformer Table International",
+       "productType": "Side Table",
+       "descriptionHtml": "<p>Two side tables that nest into one footprint. The smaller one doubles as a stool.</p>",
+       "tags": [
+        "living",
+        "buildout-2026-11"
+       ],
+       "status": "DRAFT",
+       "productOptions": [
+        {
+         "name": "Finish",
+         "values": [
+          {
+           "name": "Scandinavian Oak"
+          },
+          {
+           "name": "American Walnut"
+          }
+         ]
+        }
+       ],
+       "variants": [
+        {
+         "optionValues": [
+          {
+           "optionName": "Finish",
+           "name": "Scandinavian Oak"
+          }
+         ],
+         "price": "8700000.00",
+         "taxable": true,
+         "inventoryPolicy": "DENY",
+         "inventoryItem": {
+          "sku": "TT-SIDE-NEST-OAK",
+          "tracked": true,
+          "requiresShipping": true
+         },
+         "compareAtPrice": "10200000.00",
+         "inventoryQuantities": [
+          {
+           "locationId": "gid://shopify/Location/78814707775",
+           "name": "available",
+           "quantity": 54
+          }
+         ],
+         "metafields": [
+          {
+           "namespace": "ops",
+           "key": "fulfillment_mode",
+           "type": "single_line_text_field",
+           "value": "IN_STOCK_LOCAL_3PL"
+          },
+          {
+           "namespace": "ops",
+           "key": "estimated_delivery_window",
+           "type": "single_line_text_field",
+           "value": "UK/EU/AU/GCC: 3–5 Business Days (Local 3PL)"
+          }
+         ]
+        },
+        {
+         "optionValues": [
+          {
+           "optionName": "Finish",
+           "name": "American Walnut"
+          }
+         ],
+         "price": "9300000.00",
+         "taxable": true,
+         "inventoryPolicy": "DENY",
+         "inventoryItem": {
+          "sku": "TT-SIDE-NEST-WAL",
+          "tracked": true,
+          "requiresShipping": true
+         },
+         "compareAtPrice": "10700000.00",
+         "inventoryQuantities": [
+          {
+           "locationId": "gid://shopify/Location/78814707775",
+           "name": "available",
+           "quantity": 22
+          }
+         ],
+         "metafields": [
+          {
+           "namespace": "ops",
+           "key": "fulfillment_mode",
+           "type": "single_line_text_field",
+           "value": "IN_STOCK_LOCAL_3PL"
+          },
+          {
+           "namespace": "ops",
+           "key": "estimated_delivery_window",
+           "type": "single_line_text_field",
+           "value": "UK/EU/AU/GCC: 3–5 Business Days (Local 3PL)"
+          }
+         ]
+        }
+       ],
+       "metafields": [
+        {
+         "namespace": "specs",
+         "key": "dimensions_closed_cm",
+         "type": "single_line_text_field",
+         "value": "50 × 40 × 55"
+        },
+        {
+         "namespace": "specs",
+         "key": "material",
+         "type": "single_line_text_field",
+         "value": "Solid hardwood"
+        },
+        {
+         "namespace": "specs",
+         "key": "weight_kg",
+         "type": "number_decimal",
+         "value": "12"
+        },
+        {
+         "namespace": "specs",
+         "key": "assembly_minutes",
+         "type": "number_integer",
+         "value": "5"
+        },
+        {
+         "namespace": "specs",
+         "key": "warranty_years",
+         "type": "number_integer",
+         "value": "10"
+        }
+       ]
+      }
+     },
+     "handle": "transformer-nesting-side-tables"
+    },
+    {
+     "desc": "create DRAFT product transformer-bar-stools-set-of-2 (2 variant(s), VND)",
+     "mutation": "mutation P($i: ProductSetInput!) { productSet(input: $i, synchronous: true) { product { id } userErrors { field message code } } }",
+     "variables": {
+      "i": {
+       "handle": "transformer-bar-stools-set-of-2",
+       "title": "Transformer Bar Stools (Set of 2)",
+       "vendor": "Transformer Table International",
+       "productType": "Seating",
+       "descriptionHtml": "<p>Counter-height stools with a footrest, stackable two high.</p>",
+       "tags": [
+        "seating",
+        "dining",
+        "buildout-2026-11"
+       ],
+       "status": "DRAFT",
+       "productOptions": [
+        {
+         "name": "Finish",
+         "values": [
+          {
+           "name": "Oak & Cream"
+          },
+          {
+           "name": "Walnut & Charcoal"
+          }
+         ]
+        }
+       ],
+       "variants": [
+        {
+         "optionValues": [
+          {
+           "optionName": "Finish",
+           "name": "Oak & Cream"
+          }
+         ],
+         "price": "10200000.00",
+         "taxable": true,
+         "inventoryPolicy": "DENY",
+         "inventoryItem": {
+          "sku": "TT-STL2-OAK",
+          "tracked": true,
+          "requiresShipping": true
+         },
+         "compareAtPrice": "11600000.00",
+         "inventoryQuantities": [
+          {
+           "locationId": "gid://shopify/Location/78814707775",
+           "name": "available",
+           "quantity": 44
+          }
+         ],
+         "metafields": [
+          {
+           "namespace": "ops",
+           "key": "fulfillment_mode",
+           "type": "single_line_text_field",
+           "value": "IN_STOCK_LOCAL_3PL"
+          },
+          {
+           "namespace": "ops",
+           "key": "estimated_delivery_window",
+           "type": "single_line_text_field",
+           "value": "UK/EU/AU/GCC: 3–5 Business Days (Local 3PL)"
+          }
+         ]
+        },
+        {
+         "optionValues": [
+          {
+           "optionName": "Finish",
+           "name": "Walnut & Charcoal"
+          }
+         ],
+         "price": "10700000.00",
+         "taxable": true,
+         "inventoryPolicy": "DENY",
+         "inventoryItem": {
+          "sku": "TT-STL2-WAL",
+          "tracked": true,
+          "requiresShipping": true
+         },
+         "compareAtPrice": "12200000.00",
+         "inventoryQuantities": [
+          {
+           "locationId": "gid://shopify/Location/78814707775",
+           "name": "available",
+           "quantity": 16
+          }
+         ],
+         "metafields": [
+          {
+           "namespace": "ops",
+           "key": "fulfillment_mode",
+           "type": "single_line_text_field",
+           "value": "IN_STOCK_LOCAL_3PL"
+          },
+          {
+           "namespace": "ops",
+           "key": "estimated_delivery_window",
+           "type": "single_line_text_field",
+           "value": "UK/EU/AU/GCC: 3–5 Business Days (Local 3PL)"
+          }
+         ]
+        }
+       ],
+       "metafields": [
+        {
+         "namespace": "specs",
+         "key": "dimensions_closed_cm",
+         "type": "single_line_text_field",
+         "value": "42 × 42 × 75 (each)"
+        },
+        {
+         "namespace": "specs",
+         "key": "seats",
+         "type": "single_line_text_field",
+         "value": "2"
+        },
+        {
+         "namespace": "specs",
+         "key": "material",
+         "type": "single_line_text_field",
+         "value": "Solid oak frame, bouclé seat"
+        },
+        {
+         "namespace": "specs",
+         "key": "weight_kg",
+         "type": "number_decimal",
+         "value": "9"
+        },
+        {
+         "namespace": "specs",
+         "key": "assembly_minutes",
+         "type": "number_integer",
+         "value": "0"
+        },
+        {
+         "namespace": "specs",
+         "key": "warranty_years",
+         "type": "number_integer",
+         "value": "5"
+        }
+       ]
+      }
+     },
+     "handle": "transformer-bar-stools-set-of-2"
+    },
+    {
+     "desc": "create DRAFT product transformer-bookshelf-divider (2 variant(s), VND)",
+     "mutation": "mutation P($i: ProductSetInput!) { productSet(input: $i, synchronous: true) { product { id } userErrors { field message code } } }",
+     "variables": {
+      "i": {
+       "handle": "transformer-bookshelf-divider",
+       "title": "Transformer Bookshelf Room Divider",
+       "vendor": "Transformer Table International",
+       "productType": "Storage",
+       "descriptionHtml": "<p>Open shelving that extends from 90 to 160 cm wide. Works as a room divider in studio flats.</p>",
+       "tags": [
+        "living",
+        "storage",
+        "buildout-2026-11"
+       ],
+       "status": "DRAFT",
+       "productOptions": [
+        {
+         "name": "Finish",
+         "values": [
+          {
+           "name": "Scandinavian Oak"
+          },
+          {
+           "name": "American Walnut"
+          }
+         ]
+        }
+       ],
+       "variants": [
+        {
+         "optionValues": [
+          {
+           "optionName": "Finish",
+           "name": "Scandinavian Oak"
+          }
+         ],
+         "price": "19000000.00",
+         "taxable": true,
+         "inventoryPolicy": "DENY",
+         "inventoryItem": {
+          "sku": "TT-SHF-DIV-OAK",
+          "tracked": true,
+          "requiresShipping": true
+         },
+         "compareAtPrice": "21900000.00",
+         "inventoryQuantities": [
+          {
+           "locationId": "gid://shopify/Location/78814707775",
+           "name": "available",
+           "quantity": 20
+          }
+         ],
+         "metafields": [
+          {
+           "namespace": "ops",
+           "key": "fulfillment_mode",
+           "type": "single_line_text_field",
+           "value": "IN_STOCK_LOCAL_3PL"
+          },
+          {
+           "namespace": "ops",
+           "key": "estimated_delivery_window",
+           "type": "single_line_text_field",
+           "value": "UK/EU/AU/GCC: 3–5 Business Days (Local 3PL)"
+          }
+         ]
+        },
+        {
+         "optionValues": [
+          {
+           "optionName": "Finish",
+           "name": "American Walnut"
+          }
+         ],
+         "price": "20500000.00",
+         "taxable": true,
+         "inventoryPolicy": "DENY",
+         "inventoryItem": {
+          "sku": "TT-SHF-DIV-WAL",
+          "tracked": true,
+          "requiresShipping": true
+         },
+         "compareAtPrice": "23400000.00",
+         "inventoryQuantities": [
+          {
+           "locationId": "gid://shopify/Location/78814707775",
+           "name": "available",
+           "quantity": 8
+          }
+         ],
+         "metafields": [
+          {
+           "namespace": "ops",
+           "key": "fulfillment_mode",
+           "type": "single_line_text_field",
+           "value": "LOW_STOCK_PRIORITY"
+          },
+          {
+           "namespace": "ops",
+           "key": "estimated_delivery_window",
+           "type": "single_line_text_field",
+           "value": "UK/EU: 5–8 Business Days · AU/GCC: 7–10 Business Days"
+          }
+         ]
+        }
+       ],
+       "metafields": [
+        {
+         "namespace": "specs",
+         "key": "dimensions_closed_cm",
+         "type": "single_line_text_field",
+         "value": "90 × 35 × 180"
+        },
+        {
+         "namespace": "specs",
+         "key": "dimensions_open_cm",
+         "type": "single_line_text_field",
+         "value": "160 × 35 × 180"
+        },
+        {
+         "namespace": "specs",
+         "key": "material",
+         "type": "single_line_text_field",
+         "value": "Solid hardwood"
+        },
+        {
+         "namespace": "specs",
+         "key": "weight_kg",
+         "type": "number_decimal",
+         "value": "44"
+        },
+        {
+         "namespace": "specs",
+         "key": "assembly_minutes",
+         "type": "number_integer",
+         "value": "35"
+        },
+        {
+         "namespace": "specs",
+         "key": "warranty_years",
+         "type": "number_integer",
+         "value": "10"
+        }
+       ]
+      }
+     },
+     "handle": "transformer-bookshelf-divider"
+    },
+    {
+     "desc": "create DRAFT product outdoor-transformer-table-teak (1 variant(s), VND)",
+     "mutation": "mutation P($i: ProductSetInput!) { productSet(input: $i, synchronous: true) { product { id } userErrors { field message code } } }",
+     "variables": {
+      "i": {
+       "handle": "outdoor-transformer-table-teak",
+       "title": "Outdoor Transformer Table — Teak",
+       "vendor": "Transformer Table International",
+       "productType": "Expandable Dining Table",
+       "descriptionHtml": "<p>Weather-rated teak version of the Table 4.0 with stainless tracks. First production batch: pre-order.</p>",
+       "tags": [
+        "dining",
+        "outdoor",
+        "expandable",
+        "pre-order",
+        "buildout-2026-11"
+       ],
+       "status": "DRAFT",
+       "productOptions": [
+        {
+         "name": "Title",
+         "values": [
+          {
+           "name": "Default Title"
+          }
+         ]
+        }
+       ],
+       "variants": [
+        {
+         "optionValues": [
+          {
+           "optionName": "Title",
+           "name": "Default Title"
+          }
+         ],
+         "price": "55800000.00",
+         "taxable": true,
+         "inventoryPolicy": "CONTINUE",
+         "inventoryItem": {
+          "sku": "TT-OUT-TEAK",
+          "tracked": true,
+          "requiresShipping": true
+         },
+         "compareAtPrice": "64600000.00",
+         "inventoryQuantities": [
+          {
+           "locationId": "gid://shopify/Location/78814707775",
+           "name": "available",
+           "quantity": 0
+          }
+         ],
+         "metafields": [
+          {
+           "namespace": "ops",
+           "key": "fulfillment_mode",
+           "type": "single_line_text_field",
+           "value": "BACKORDER_BATCH"
+          },
+          {
+           "namespace": "ops",
+           "key": "estimated_delivery_window",
+           "type": "single_line_text_field",
+           "value": "Pre-order: ships with Batch #16 (Feb 2027)"
+          }
+         ]
+        }
+       ],
+       "metafields": [
+        {
+         "namespace": "specs",
+         "key": "dimensions_closed_cm",
+         "type": "single_line_text_field",
+         "value": "46 × 92 × 76"
+        },
+        {
+         "namespace": "specs",
+         "key": "dimensions_open_cm",
+         "type": "single_line_text_field",
+         "value": "260 × 92 × 76"
+        },
+        {
+         "namespace": "specs",
+         "key": "seats",
+         "type": "single_line_text_field",
+         "value": "1–10"
+        },
+        {
+         "namespace": "specs",
+         "key": "material",
+         "type": "single_line_text_field",
+         "value": "Grade-A teak, 316 stainless steel"
+        },
+        {
+         "namespace": "specs",
+         "key": "weight_kg",
+         "type": "number_decimal",
+         "value": "72"
+        },
+        {
+         "namespace": "specs",
+         "key": "assembly_minutes",
+         "type": "number_integer",
+         "value": "20"
+        },
+        {
+         "namespace": "specs",
+         "key": "warranty_years",
+         "type": "number_integer",
+         "value": "5"
+        }
+       ]
+      }
+     },
+     "handle": "outdoor-transformer-table-teak"
+    },
+    {
+     "desc": "create DRAFT product small-space-hosting-set (2 variant(s), VND)",
+     "mutation": "mutation P($i: ProductSetInput!) { productSet(input: $i, synchronous: true) { product { id } userErrors { field message code } } }",
+     "variables": {
+      "i": {
+       "handle": "small-space-hosting-set",
+       "title": "Small-Space Hosting Set (Table 4.0 + Bench 4.0)",
+       "vendor": "Transformer Table International",
+       "productType": "Bundle",
+       "descriptionHtml": "<p>The Table 4.0 and a matching Bench 4.0, delivered together.</p>",
+       "tags": [
+        "bundle",
+        "dining",
+        "buildout-2026-11"
+       ],
+       "status": "DRAFT",
+       "productOptions": [
+        {
+         "name": "Finish",
+         "values": [
+          {
+           "name": "Scandinavian Oak"
+          },
+          {
+           "name": "American Walnut"
+          }
+         ]
+        }
+       ],
+       "variants": [
+        {
+         "optionValues": [
+          {
+           "optionName": "Finish",
+           "name": "Scandinavian Oak"
+          }
+         ],
+         "price": "70500000.00",
+         "taxable": true,
+         "inventoryPolicy": "DENY",
+         "inventoryItem": {
+          "sku": "TT-SET-HOST-OAK",
+          "tracked": true,
+          "requiresShipping": true
+         },
+         "compareAtPrice": "74800000.00",
+         "inventoryQuantities": [
+          {
+           "locationId": "gid://shopify/Location/78814707775",
+           "name": "available",
+           "quantity": 22
+          }
+         ],
+         "metafields": [
+          {
+           "namespace": "ops",
+           "key": "fulfillment_mode",
+           "type": "single_line_text_field",
+           "value": "IN_STOCK_LOCAL_3PL"
+          },
+          {
+           "namespace": "ops",
+           "key": "estimated_delivery_window",
+           "type": "single_line_text_field",
+           "value": "UK/EU/AU/GCC: 3–5 Business Days (Local 3PL)"
+          }
+         ]
+        },
+        {
+         "optionValues": [
+          {
+           "optionName": "Finish",
+           "name": "American Walnut"
+          }
+         ],
+         "price": "74900000.00",
+         "taxable": true,
+         "inventoryPolicy": "DENY",
+         "inventoryItem": {
+          "sku": "TT-SET-HOST-WAL",
+          "tracked": true,
+          "requiresShipping": true
+         },
+         "compareAtPrice": "79200000.00",
+         "inventoryQuantities": [
+          {
+           "locationId": "gid://shopify/Location/78814707775",
+           "name": "available",
+           "quantity": 8
+          }
+         ],
+         "metafields": [
+          {
+           "namespace": "ops",
+           "key": "fulfillment_mode",
+           "type": "single_line_text_field",
+           "value": "LOW_STOCK_PRIORITY"
+          },
+          {
+           "namespace": "ops",
+           "key": "estimated_delivery_window",
+           "type": "single_line_text_field",
+           "value": "UK/EU: 5–8 Business Days · AU/GCC: 7–10 Business Days"
+          }
+         ]
+        }
+       ],
+       "metafields": []
+      }
+     },
+     "handle": "small-space-hosting-set"
+    },
+    {
+     "desc": "create DRAFT product living-room-set (2 variant(s), VND)",
+     "mutation": "mutation P($i: ProductSetInput!) { productSet(input: $i, synchronous: true) { product { id } userErrors { field message code } } }",
+     "variables": {
+      "i": {
+       "handle": "living-room-set",
+       "title": "Living Room Set (Coffee Table + 2 Nesting Side Tables)",
+       "vendor": "Transformer Table International",
+       "productType": "Bundle",
+       "descriptionHtml": "<p>The lift-top Coffee Table with two nesting side tables in the same finish.</p>",
+       "tags": [
+        "bundle",
+        "living",
+        "buildout-2026-11"
+       ],
+       "status": "DRAFT",
+       "productOptions": [
+        {
+         "name": "Finish",
+         "values": [
+          {
+           "name": "Scandinavian Oak"
+          },
+          {
+           "name": "American Walnut"
+          }
+         ]
+        }
+       ],
+       "variants": [
+        {
+         "optionValues": [
+          {
+           "optionName": "Finish",
+           "name": "Scandinavian Oak"
+          }
+         ],
+         "price": "26300000.00",
+         "taxable": true,
+         "inventoryPolicy": "DENY",
+         "inventoryItem": {
+          "sku": "TT-SET-LIV-OAK",
+          "tracked": true,
+          "requiresShipping": true
+         },
+         "compareAtPrice": "27700000.00",
+         "inventoryQuantities": [
+          {
+           "locationId": "gid://shopify/Location/78814707775",
+           "name": "available",
+           "quantity": 27
+          }
+         ],
+         "metafields": [
+          {
+           "namespace": "ops",
+           "key": "fulfillment_mode",
+           "type": "single_line_text_field",
+           "value": "IN_STOCK_LOCAL_3PL"
+          },
+          {
+           "namespace": "ops",
+           "key": "estimated_delivery_window",
+           "type": "single_line_text_field",
+           "value": "UK/EU/AU/GCC: 3–5 Business Days (Local 3PL)"
+          }
+         ]
+        },
+        {
+         "optionValues": [
+          {
+           "optionName": "Finish",
+           "name": "American Walnut"
+          }
+         ],
+         "price": "27800000.00",
+         "taxable": true,
+         "inventoryPolicy": "DENY",
+         "inventoryItem": {
+          "sku": "TT-SET-LIV-WAL",
+          "tracked": true,
+          "requiresShipping": true
+         },
+         "compareAtPrice": "29100000.00",
+         "inventoryQuantities": [
+          {
+           "locationId": "gid://shopify/Location/78814707775",
+           "name": "available",
+           "quantity": 10
+          }
+         ],
+         "metafields": [
+          {
+           "namespace": "ops",
+           "key": "fulfillment_mode",
+           "type": "single_line_text_field",
+           "value": "LOW_STOCK_PRIORITY"
+          },
+          {
+           "namespace": "ops",
+           "key": "estimated_delivery_window",
+           "type": "single_line_text_field",
+           "value": "UK/EU: 5–8 Business Days · AU/GCC: 7–10 Business Days"
+          }
+         ]
+        }
+       ],
+       "metafields": []
+      }
+     },
+     "handle": "living-room-set"
+    },
+    {
+     "desc": "create DRAFT product table-and-four-chairs-set (2 variant(s), VND)",
+     "mutation": "mutation P($i: ProductSetInput!) { productSet(input: $i, synchronous: true) { product { id } userErrors { field message code } } }",
+     "variables": {
+      "i": {
+       "handle": "table-and-four-chairs-set",
+       "title": "Table 4.0 + 4 Stackable Chairs Set",
+       "vendor": "Transformer Table International",
+       "productType": "Bundle",
+       "descriptionHtml": "<p>Table 4.0 with two sets of Stackable Dining Chairs.</p>",
+       "tags": [
+        "bundle",
+        "dining",
+        "seating",
+        "buildout-2026-11"
+       ],
+       "status": "DRAFT",
+       "productOptions": [
+        {
+         "name": "Finish",
+         "values": [
+          {
+           "name": "Scandinavian Oak"
+          },
+          {
+           "name": "American Walnut"
+          }
+         ]
+        }
+       ],
+       "variants": [
+        {
+         "optionValues": [
+          {
+           "optionName": "Finish",
+           "name": "Scandinavian Oak"
+          }
+         ],
+         "price": "67600000.00",
+         "taxable": true,
+         "inventoryPolicy": "DENY",
+         "inventoryItem": {
+          "sku": "TT-SET-T4C-OAK",
+          "tracked": true,
+          "requiresShipping": true
+         },
+         "compareAtPrice": "69600000.00",
+         "inventoryQuantities": [
+          {
+           "locationId": "gid://shopify/Location/78814707775",
+           "name": "available",
+           "quantity": 20
+          }
+         ],
+         "metafields": [
+          {
+           "namespace": "ops",
+           "key": "fulfillment_mode",
+           "type": "single_line_text_field",
+           "value": "IN_STOCK_LOCAL_3PL"
+          },
+          {
+           "namespace": "ops",
+           "key": "estimated_delivery_window",
+           "type": "single_line_text_field",
+           "value": "UK/EU/AU/GCC: 3–5 Business Days (Local 3PL)"
+          }
+         ]
+        },
+        {
+         "optionValues": [
+          {
+           "optionName": "Finish",
+           "name": "American Walnut"
+          }
+         ],
+         "price": "72300000.00",
+         "taxable": true,
+         "inventoryPolicy": "DENY",
+         "inventoryItem": {
+          "sku": "TT-SET-T4C-WAL",
+          "tracked": true,
+          "requiresShipping": true
+         },
+         "compareAtPrice": "73700000.00",
+         "inventoryQuantities": [
+          {
+           "locationId": "gid://shopify/Location/78814707775",
+           "name": "available",
+           "quantity": 6
+          }
+         ],
+         "metafields": [
+          {
+           "namespace": "ops",
+           "key": "fulfillment_mode",
+           "type": "single_line_text_field",
+           "value": "LOW_STOCK_PRIORITY"
+          },
+          {
+           "namespace": "ops",
+           "key": "estimated_delivery_window",
+           "type": "single_line_text_field",
+           "value": "UK/EU: 5–8 Business Days · AU/GCC: 7–10 Business Days"
+          }
+         ]
+        }
+       ],
+       "metafields": []
+      }
+     },
+     "handle": "table-and-four-chairs-set"
+    },
+    {
+     "desc": "create DRAFT product wood-finish-sample-kit (1 variant(s), VND)",
+     "mutation": "mutation P($i: ProductSetInput!) { productSet(input: $i, synchronous: true) { product { id } userErrors { field message code } } }",
+     "variables": {
+      "i": {
+       "handle": "wood-finish-sample-kit",
+       "title": "Wood Finish Sample Kit (4 Swatches)",
+       "vendor": "Transformer Table International",
+       "productType": "Sample",
+       "descriptionHtml": "<p>Palm-sized swatches of Scandinavian Oak, Smoked Hickory, American Walnut and Brazilian Sequoia. Postage included.</p>",
+       "tags": [
+        "accessory",
+        "sample",
+        "buildout-2026-11"
+       ],
+       "status": "DRAFT",
+       "productOptions": [
+        {
+         "name": "Title",
+         "values": [
+          {
+           "name": "Default Title"
+          }
+         ]
+        }
+       ],
+       "variants": [
+        {
+         "optionValues": [
+          {
+           "optionName": "Title",
+           "name": "Default Title"
+          }
+         ],
+         "price": "300000.00",
+         "taxable": true,
+         "inventoryPolicy": "DENY",
+         "inventoryItem": {
+          "sku": "TT-SMP-KIT",
+          "tracked": true,
+          "requiresShipping": true
+         },
+         "inventoryQuantities": [
+          {
+           "locationId": "gid://shopify/Location/78814707775",
+           "name": "available",
+           "quantity": 730
+          }
+         ],
+         "metafields": [
+          {
+           "namespace": "ops",
+           "key": "fulfillment_mode",
+           "type": "single_line_text_field",
+           "value": "IN_STOCK_LOCAL_3PL"
+          },
+          {
+           "namespace": "ops",
+           "key": "estimated_delivery_window",
+           "type": "single_line_text_field",
+           "value": "UK/EU/AU/GCC: 3–5 Business Days (Local 3PL)"
+          }
+         ]
+        }
+       ],
+       "metafields": []
+      }
+     },
+     "handle": "wood-finish-sample-kit"
+    },
+    {
+     "desc": "create DRAFT product white-glove-delivery-and-assembly (1 variant(s), VND)",
+     "mutation": "mutation P($i: ProductSetInput!) { productSet(input: $i, synchronous: true) { product { id } userErrors { field message code } } }",
+     "variables": {
+      "i": {
+       "handle": "white-glove-delivery-and-assembly",
+       "title": "White-Glove Delivery & Assembly",
+       "vendor": "Transformer Table International",
+       "productType": "Service",
+       "descriptionHtml": "<p>Two-person delivery to the room of your choice, assembly and packaging removal.</p>",
+       "tags": [
+        "service",
+        "buildout-2026-11"
+       ],
+       "status": "DRAFT",
+       "productOptions": [
+        {
+         "name": "Title",
+         "values": [
+          {
+           "name": "Default Title"
+          }
+         ]
+        }
+       ],
+       "variants": [
+        {
+         "optionValues": [
+          {
+           "optionName": "Title",
+           "name": "Default Title"
+          }
+         ],
+         "price": "2900000.00",
+         "taxable": true,
+         "inventoryPolicy": "DENY",
+         "inventoryItem": {
+          "sku": "TT-SVC-WG",
+          "tracked": false,
+          "requiresShipping": false
+         }
+        }
+       ],
+       "metafields": []
+      }
+     },
+     "handle": "white-glove-delivery-and-assembly"
+    },
+    {
+     "desc": "create DRAFT product extended-warranty-5-years (1 variant(s), VND)",
+     "mutation": "mutation P($i: ProductSetInput!) { productSet(input: $i, synchronous: true) { product { id } userErrors { field message code } } }",
+     "variables": {
+      "i": {
+       "handle": "extended-warranty-5-years",
+       "title": "Extended Warranty (+5 Years)",
+       "vendor": "Transformer Table International",
+       "productType": "Service",
+       "descriptionHtml": "<p>Adds five years of cover on mechanisms and upholstery on top of the standard warranty.</p>",
+       "tags": [
+        "service",
+        "buildout-2026-11"
+       ],
+       "status": "DRAFT",
+       "productOptions": [
+        {
+         "name": "Title",
+         "values": [
+          {
+           "name": "Default Title"
+          }
+         ]
+        }
+       ],
+       "variants": [
+        {
+         "optionValues": [
+          {
+           "optionName": "Title",
+           "name": "Default Title"
+          }
+         ],
+         "price": "4400000.00",
+         "taxable": true,
+         "inventoryPolicy": "DENY",
+         "inventoryItem": {
+          "sku": "TT-SVC-WAR5",
+          "tracked": false,
+          "requiresShipping": false
+         }
+        }
+       ],
+       "metafields": []
+      }
+     },
+     "handle": "extended-warranty-5-years"
+    }
+   ]
+  },
+  {
+   "step": "activate",
+   "status": "UP_TO_DATE",
+   "actions": []
+  },
+  {
+   "step": "collections",
+   "status": "READY",
+   "actions": [
+    {
+     "desc": "create automated collection /dining (tags: dining, dining-table)",
+     "mutation": "mutation C($c: CollectionCreateInput!) { collectionCreate(collection: $c) { collection { id } userErrors { field message } } }",
+     "variables": {
+      "c": {
+       "title": "Dining",
+       "handle": "dining",
+       "sources": [
+        {
+         "source": {
+          "title": "Dining",
+          "targetType": "PRODUCTS",
+          "inclusion": {
+           "matchType": "ANY",
+           "conditions": [
+            {
+             "productTag": {
+              "relation": "TAGGED_WITH",
+              "values": [
+               "dining",
+               "dining-table"
+              ],
+              "matchType": "ANY"
+             }
+            }
+           ]
+          }
+         }
+        }
+       ]
+      }
+     }
+    },
+    {
+     "desc": "create automated collection /seating (tags: seating, chairs, bench)",
+     "mutation": "mutation C($c: CollectionCreateInput!) { collectionCreate(collection: $c) { collection { id } userErrors { field message } } }",
+     "variables": {
+      "c": {
+       "title": "Seating",
+       "handle": "seating",
+       "sources": [
+        {
+         "source": {
+          "title": "Seating",
+          "targetType": "PRODUCTS",
+          "inclusion": {
+           "matchType": "ANY",
+           "conditions": [
+            {
+             "productTag": {
+              "relation": "TAGGED_WITH",
+              "values": [
+               "seating",
+               "chairs",
+               "bench"
+              ],
+              "matchType": "ANY"
+             }
+            }
+           ]
+          }
+         }
+        }
+       ]
+      }
+     }
+    },
+    {
+     "desc": "create automated collection /living-room (tags: living, living-room, coffee-table)",
+     "mutation": "mutation C($c: CollectionCreateInput!) { collectionCreate(collection: $c) { collection { id } userErrors { field message } } }",
+     "variables": {
+      "c": {
+       "title": "Living Room",
+       "handle": "living-room",
+       "sources": [
+        {
+         "source": {
+          "title": "Living Room",
+          "targetType": "PRODUCTS",
+          "inclusion": {
+           "matchType": "ANY",
+           "conditions": [
+            {
+             "productTag": {
+              "relation": "TAGGED_WITH",
+              "values": [
+               "living",
+               "living-room",
+               "coffee-table"
+              ],
+              "matchType": "ANY"
+             }
+            }
+           ]
+          }
+         }
+        }
+       ]
+      }
+     }
+    },
+    {
+     "desc": "create automated collection /workspace-storage (tags: workspace, storage)",
+     "mutation": "mutation C($c: CollectionCreateInput!) { collectionCreate(collection: $c) { collection { id } userErrors { field message } } }",
+     "variables": {
+      "c": {
+       "title": "Workspace & Storage",
+       "handle": "workspace-storage",
+       "sources": [
+        {
+         "source": {
+          "title": "Workspace & Storage",
+          "targetType": "PRODUCTS",
+          "inclusion": {
+           "matchType": "ANY",
+           "conditions": [
+            {
+             "productTag": {
+              "relation": "TAGGED_WITH",
+              "values": [
+               "workspace",
+               "storage"
+              ],
+              "matchType": "ANY"
+             }
+            }
+           ]
+          }
+         }
+        }
+       ]
+      }
+     }
+    },
+    {
+     "desc": "create automated collection /accessories-spare-parts (tags: accessory, spare-part)",
+     "mutation": "mutation C($c: CollectionCreateInput!) { collectionCreate(collection: $c) { collection { id } userErrors { field message } } }",
+     "variables": {
+      "c": {
+       "title": "Accessories & Spare Parts",
+       "handle": "accessories-spare-parts",
+       "sources": [
+        {
+         "source": {
+          "title": "Accessories & Spare Parts",
+          "targetType": "PRODUCTS",
+          "inclusion": {
+           "matchType": "ANY",
+           "conditions": [
+            {
+             "productTag": {
+              "relation": "TAGGED_WITH",
+              "values": [
+               "accessory",
+               "spare-part"
+              ],
+              "matchType": "ANY"
+             }
+            }
+           ]
+          }
+         }
+        }
+       ]
+      }
+     }
+    },
+    {
+     "desc": "create automated collection /bundles-sets (tags: bundle)",
+     "mutation": "mutation C($c: CollectionCreateInput!) { collectionCreate(collection: $c) { collection { id } userErrors { field message } } }",
+     "variables": {
+      "c": {
+       "title": "Bundles & Sets",
+       "handle": "bundles-sets",
+       "sources": [
+        {
+         "source": {
+          "title": "Bundles & Sets",
+          "targetType": "PRODUCTS",
+          "inclusion": {
+           "matchType": "ANY",
+           "conditions": [
+            {
+             "productTag": {
+              "relation": "TAGGED_WITH",
+              "values": [
+               "bundle"
+              ],
+              "matchType": "ANY"
+             }
+            }
+           ]
+          }
+         }
+        }
+       ]
+      }
+     }
+    },
+    {
+     "desc": "create automated collection /pre-order (tags: pre-order, backorder-batch)",
+     "mutation": "mutation C($c: CollectionCreateInput!) { collectionCreate(collection: $c) { collection { id } userErrors { field message } } }",
+     "variables": {
+      "c": {
+       "title": "Pre-order",
+       "handle": "pre-order",
+       "sources": [
+        {
+         "source": {
+          "title": "Pre-order",
+          "targetType": "PRODUCTS",
+          "inclusion": {
+           "matchType": "ANY",
+           "conditions": [
+            {
+             "productTag": {
+              "relation": "TAGGED_WITH",
+              "values": [
+               "pre-order",
+               "backorder-batch"
+              ],
+              "matchType": "ANY"
+             }
+            }
+           ]
+          }
+         }
+        }
+       ]
+      }
+     }
+    },
+    {
+     "desc": "create automated collection /services (tags: service)",
+     "mutation": "mutation C($c: CollectionCreateInput!) { collectionCreate(collection: $c) { collection { id } userErrors { field message } } }",
+     "variables": {
+      "c": {
+       "title": "Delivery & Warranty Services",
+       "handle": "services",
+       "sources": [
+        {
+         "source": {
+          "title": "Delivery & Warranty Services",
+          "targetType": "PRODUCTS",
+          "inclusion": {
+           "matchType": "ANY",
+           "conditions": [
+            {
+             "productTag": {
+              "relation": "TAGGED_WITH",
+              "values": [
+               "service"
+              ],
+              "matchType": "ANY"
+             }
+            }
+           ]
+          }
+         }
+        }
+       ]
+      }
+     }
+    }
+   ]
+  },
+  {
+   "step": "pages",
+   "status": "READY",
+   "actions": [
+    {
+     "desc": "create page /about",
+     "mutation": "mutation C($p: PageCreateInput!) { pageCreate(page: $p) { page { id } userErrors { field message } } }",
+     "variables": {
+      "p": {
+       "handle": "about",
+       "title": "About",
+       "body": "<p>One table that seats one person on a weekday and twelve at a family dinner. Every piece in this collection extends, stacks or folds so a small home can host like a big one.</p><p><em>This is an interview sandbox store built to demonstrate multi-market Shopify operations. It is not an official Transformer Table store.</em></p>",
+       "isPublished": true
+      }
+     }
+    },
+    {
+     "desc": "create page /how-it-transforms",
+     "mutation": "mutation C($p: PageCreateInput!) { pageCreate(page: $p) { page { id } userErrors { field message } } }",
+     "variables": {
+      "p": {
+       "handle": "how-it-transforms",
+       "title": "How It Transforms",
+       "body": "<p>Telescopic steel tracks run under the tabletop. Pull the ends apart, drop in the stored leaves, and the table grows in 30 cm steps. No tools, no loose parts.</p><ol><li>Pull both ends outward until the track clicks.</li><li>Lift a leaf from the storage slot and set it on the pins.</li><li>Push the ends together to lock.</li></ol>",
+       "isPublished": true
+      }
+     }
+    },
+    {
+     "desc": "create page /delivery-and-returns",
+     "mutation": "mutation C($p: PageCreateInput!) { pageCreate(page: $p) { page { id } userErrors { field message } } }",
+     "variables": {
+      "p": {
+       "handle": "delivery-and-returns",
+       "title": "Delivery & Returns",
+       "body": "<p>Delivery dates shown on each product come from our 3PL stock per country and update when a container moves. The date you see at checkout is saved on your order.</p><ul><li>In stock locally: 3–5 business days.</li><li>Low stock: 5–8 business days.</li><li>Pre-order: the batch window shown on the product.</li></ul><p>Returns: 30 days in the UK and Australia; the statutory 14-day withdrawal right applies in the EU. Draft text, pending legal review per market.</p>",
+       "isPublished": true
+      }
+     }
+    },
+    {
+     "desc": "create page /warranty",
+     "mutation": "mutation C($p: PageCreateInput!) { pageCreate(page: $p) { page { id } userErrors { field message } } }",
+     "variables": {
+      "p": {
+       "handle": "warranty",
+       "title": "Warranty",
+       "body": "<p>10 years on frames and tracks for tables, benches and storage; 5 years on chairs, stools and outdoor pieces. Consumer law in your country applies in addition to this warranty. Draft text, pending legal review.</p>",
+       "isPublished": true
+      }
+     }
+    },
+    {
+     "desc": "create page /care-guide",
+     "mutation": "mutation C($p: PageCreateInput!) { pageCreate(page: $p) { page { id } userErrors { field message } } }",
+     "variables": {
+      "p": {
+       "handle": "care-guide",
+       "title": "Care Guide",
+       "body": "<p>Wipe with a damp cloth, dry straight away, and re-oil twice a year with the Hardwood Care Kit. Keep the tracks free of crumbs and use the dry lubricant once a year.</p>",
+       "isPublished": true
+      }
+     }
+    },
+    {
+     "desc": "create page /faq",
+     "mutation": "mutation C($p: PageCreateInput!) { pageCreate(page: $p) { page { id } userErrors { field message } } }",
+     "variables": {
+      "p": {
+       "handle": "faq",
+       "title": "FAQ",
+       "body": "<h3>How long does delivery take?</h3><p>The window on the product page is calculated from the stock in your country's warehouse.</p><h3>Are prices shown with tax?</h3><p>Yes in the UK, EU, Australia and the GCC: the price you see includes local VAT or GST.</p><h3>Can I order a finish that is out of stock?</h3><p>Some finishes are open for pre-order. The batch window is shown before you pay and saved on your order.</p>",
+       "isPublished": true
+      }
+     }
+    }
+   ]
+  },
+  {
+   "step": "articles",
+   "status": "READY",
+   "actions": [
+    {
+     "desc": "publish article 'How to choose an expandable dining table for a small flat'",
+     "mutation": "mutation A($a: ArticleCreateInput!) { articleCreate(article: $a) { article { id } userErrors { field message } } }",
+     "variables": {
+      "a": {
+       "blogId": "gid://shopify/Blog/91580629055",
+       "title": "How to choose an expandable dining table for a small flat",
+       "body": "<p>Measure the room at its everyday size, not the dinner-party size. A table that is 46 cm deep when closed leaves a walkway in most hallways; one that opens to 3 m needs a clear run along one wall.</p><p>Check the mechanism: telescopic tracks keep the leaves aligned; loose leaves need storage space.</p>",
+       "tags": [
+        "buying-guide",
+        "dining"
+       ],
+       "isPublished": true,
+       "author": {
+        "name": "Sandbox editorial"
+       }
+      }
+     }
+    },
+    {
+     "desc": "publish article 'Hosting twelve in 40 square metres: a planning checklist'",
+     "mutation": "mutation A($a: ArticleCreateInput!) { articleCreate(article: $a) { article { id } userErrors { field message } } }",
+     "variables": {
+      "a": {
+       "blogId": "gid://shopify/Blog/91580629055",
+       "title": "Hosting twelve in 40 square metres: a planning checklist",
+       "body": "<p>Plan seating first: a bench seats more people per metre than chairs. Stackable chairs live in a corner until needed.</p><p>Extend the table the day before and check the floor protectors are on every leg.</p>",
+       "tags": [
+        "hosting"
+       ],
+       "isPublished": true,
+       "author": {
+        "name": "Sandbox editorial"
+       }
+      }
+     }
+    },
+    {
+     "desc": "publish article 'Caring for oiled hardwood through the seasons'",
+     "mutation": "mutation A($a: ArticleCreateInput!) { articleCreate(article: $a) { article { id } userErrors { field message } } }",
+     "variables": {
+      "a": {
+       "blogId": "gid://shopify/Blog/91580629055",
+       "title": "Caring for oiled hardwood through the seasons",
+       "body": "<p>Central heating dries wood in winter. Re-oil in autumn and spring, keep the table away from radiators, and wipe spills straight away.</p>",
+       "tags": [
+        "care"
+       ],
+       "isPublished": true,
+       "author": {
+        "name": "Sandbox editorial"
+       }
+      }
+     }
+    },
+    {
+     "desc": "publish article 'Oak, hickory, walnut or sequoia: choosing a finish'",
+     "mutation": "mutation A($a: ArticleCreateInput!) { articleCreate(article: $a) { article { id } userErrors { field message } } }",
+     "variables": {
+      "a": {
+       "blogId": "gid://shopify/Blog/91580629055",
+       "title": "Oak, hickory, walnut or sequoia: choosing a finish",
+       "body": "<p>Oak is light and hides scratches. Hickory has a strong grain. Walnut is darker and shows dust. Sequoia is a limited batch with a warm red tone. Order the sample kit to see them in your light.</p>",
+       "tags": [
+        "buying-guide"
+       ],
+       "isPublished": true,
+       "author": {
+        "name": "Sandbox editorial"
+       }
+      }
+     }
+    },
+    {
+     "desc": "publish article 'What 'pre-order' means for your delivery date'",
+     "mutation": "mutation A($a: ArticleCreateInput!) { articleCreate(article: $a) { article { id } userErrors { field message } } }",
+     "variables": {
+      "a": {
+       "blogId": "gid://shopify/Blog/91580629055",
+       "title": "What 'pre-order' means for your delivery date",
+       "body": "<p>When a finish is between containers, you can still order it. The window shown is the batch arrival plus local delivery. If a container moves, we update the window on the product and tell customers whose dates changed.</p>",
+       "tags": [
+        "delivery"
+       ],
+       "isPublished": true,
+       "author": {
+        "name": "Sandbox editorial"
+       }
+      }
+     }
+    },
+    {
+     "desc": "publish article 'Work-from-home without a home office'",
+     "mutation": "mutation A($a: ArticleCreateInput!) { articleCreate(article: $a) { article { id } userErrors { field message } } }",
+     "variables": {
+      "a": {
+       "blogId": "gid://shopify/Blog/91580629055",
+       "title": "Work-from-home without a home office",
+       "body": "<p>A console that becomes a desk keeps work out of sight in the evening. Leave 70 cm of depth for a laptop and a notebook.</p>",
+       "tags": [
+        "workspace"
+       ],
+       "isPublished": true,
+       "author": {
+        "name": "Sandbox editorial"
+       }
+      }
+     }
+    }
+   ]
+  },
+  {
+   "step": "metaobject_definitions",
+   "status": "SKIPPED_SCOPE",
+   "missing_scopes": [
+    "write_metaobject_definitions"
+   ],
+   "actions": []
+  },
+  {
+   "step": "metaobjects",
+   "status": "SKIPPED_SCOPE",
+   "missing_scopes": [
+    "write_metaobjects"
+   ],
+   "actions": []
+  },
+  {
+   "step": "markets",
+   "status": "SKIPPED_SCOPE",
+   "missing_scopes": [
+    "write_markets"
+   ],
+   "actions": []
+  },
+  {
+   "step": "locales",
+   "status": "SKIPPED_SCOPE",
+   "missing_scopes": [
+    "write_locales"
+   ],
+   "actions": []
+  },
+  {
+   "step": "publish",
+   "status": "SKIPPED_SCOPE",
+   "missing_scopes": [
+    "read_publications",
+    "write_publications"
+   ],
+   "actions": []
+  },
+  {
+   "step": "retire_market_collections",
+   "status": "SKIPPED_SCOPE",
+   "missing_scopes": [
+    "read_markets"
+   ],
+   "actions": []
+  },
+  {
+   "step": "test_orders",
+   "status": "UP_TO_DATE",
+   "actions": []
+  }
+ ],
+ "gates": {
+  "human_approval": "PENDING"
+ }
+}

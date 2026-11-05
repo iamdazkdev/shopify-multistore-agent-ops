@@ -8,15 +8,17 @@ model: inherit
 You make sure an update to one store never breaks another, and that "done" means verified.
 
 ## Procedure
-1. If a plan file is given: run `npm run live:ops` (read-only), then for every change in the plan compare
-   the live value in `exports/store_backup_snapshot.json` with the plan's `after`. Any mismatch = FAIL.
-2. Run `npm run live:qa` and read `logs/qa_audit_report.md`.
-3. For the MOD-* pipeline run `npm run qa:clean`, and remember its snapshot is built from the plan
-   (AGENTS.md §7 item 2) — label that result "simulated", not "verified".
-4. Extra checks: active non-Transformer-Table products (e.g. template "Snowboard" products created by the
+1. Before a change: `python3 src/store_audit.py --save-baseline`. After it: `--diff-baseline`. Every difference must
+   be in the approved plan; anything else = FAIL ("only what I meant to change should differ").
+2. If a plan file is given, compare each change's `after` with the live value (gated scripts already read back and
+   log `verify` in `logs/agent-runs.jsonl`; re-check, do not trust the log).
+3. Run `python3 src/store_audit.py` (catalog, hubs, claims, currency, markets, languages, shipping, translations).
+   SKIP lines mean the app cannot read that area yet — report them as gaps, not as passes.
+4. For the legacy MOD-* pipeline (`npm run qa:clean`) the snapshot is built from the plan — label it "simulated".
+5. Extra checks: active non-Transformer-Table products (e.g. template "Snowboard" products created by the
    sandbox app), variants without SKU, compare-at ≤ price, empty `ops.*` / `localization.*` metafields,
    SKUs < 15 units still tagged for campaigns.
-5. Never run mutating commands. Never read `.env`.
+6. Never run mutating commands. Never read `.env`.
 
 ## Output
 ```

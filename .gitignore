@@ -5,3 +5,7 @@ logs/runs/
 exports/audit-*.json
 .claude/settings.local.json
 .pre-agent-kit-backup/
+
+# Personal interview material: never in the public repo
+*Playbook*.pdf
+__pycache__/

@@ -1,0 +1,255 @@
+{
+  "schema_version": "2026.11.4",
+  "purpose": "Desired state for the interview sandbox store. src/store_build.py plans the diff between this file and the live store, then applies it behind a human gate. Content is sandbox demo content, not official Transformer Table data.",
+  "price_currency": "GBP",
+  "fx_from_gbp": { "GBP": 1, "EUR": 1.15, "USD": 1.3, "AUD": 2.0, "VND": 29440 },
+  "price_rounding": { "VND": 100000, "default": 5 },
+  "vendor": "Transformer Table International",
+
+  "locations": [
+    { "name": "UK Midlands 3PL", "address": { "address1": "Unit 4, Siskin Parkway", "city": "Coventry", "zip": "CV3 4PE", "countryCode": "GB" }, "hub_column": "uk_coventry_stock" },
+    { "name": "EU Rotterdam Hub", "address": { "address1": "Waalhaven Z.z. 19", "city": "Rotterdam", "zip": "3089 JH", "countryCode": "NL" }, "hub_column": "eu_rotterdam_stock" },
+    { "name": "AU Sydney 3PL", "address": { "address1": "12 Bourke Rd", "city": "Alexandria", "zip": "2015", "provinceCode": "NSW", "countryCode": "AU" }, "hub_column": "au_sydney_stock" },
+    { "name": "GCC Jebel Ali Hub", "address": { "address1": "Jebel Ali Free Zone South", "city": "Dubai", "countryCode": "AE" }, "hub_column": "gcc_dubai_stock" }
+  ],
+
+  "cleanup": {
+    "delete_metafield_definitions": [
+      { "ownerType": "PRODUCT", "namespace": "test_data", "key": "snowboard_length" },
+      { "ownerType": "PRODUCT", "namespace": "test_data", "key": "binding_mount" }
+    ],
+    "replace_product_tags": [ { "from": "vat-compliant", "to": "tax-inclusive" } ],
+    "unpublish_pages": [
+      "local-store-settings-currency-tax-shipping-payments",
+      "storefront-theme-navigation-and-app-architecture",
+      "localized-storefront-directory"
+    ],
+    "retitle_pages": [
+      { "handle": "vat-gst-and-local-tax-compliance", "title": "VAT, GST & Local Tax Information", "new_handle": "vat-gst-and-local-tax-information" },
+      { "handle": "au-acl-warranty-and-gst-compliance", "title": "Australia: Consumer Guarantees, Warranty & GST", "new_handle": "au-consumer-guarantees-warranty-and-gst" },
+      { "handle": "uk-hmrc-vat-and-consumer-rights-notice", "title": "UK: VAT & Consumer Rights" }
+    ],
+    "delete_automatic_discounts_titled": [ "Buy three, get 30 percent off", "Buy one, get the second 10 percent off" ]
+  },
+
+  "metafield_definitions": [
+    { "ownerType": "PRODUCTVARIANT", "namespace": "ops", "key": "estimated_delivery_window", "name": "Estimated delivery window", "type": "single_line_text_field", "description": "Customer-facing delivery promise for this finish. Written by gated_eta_update.py." },
+    { "ownerType": "PRODUCTVARIANT", "namespace": "ops", "key": "fulfillment_mode", "name": "Fulfillment mode", "type": "single_line_text_field", "description": "IN_STOCK_LOCAL_3PL (>=15) · LOW_STOCK_PRIORITY (1-14) · BACKORDER_BATCH (0 + pre-order) · OUT_OF_STOCK" },
+    { "ownerType": "PRODUCT", "namespace": "specs", "key": "dimensions_closed_cm", "name": "Dimensions closed (cm)", "type": "single_line_text_field" },
+    { "ownerType": "PRODUCT", "namespace": "specs", "key": "dimensions_open_cm", "name": "Dimensions fully extended (cm)", "type": "single_line_text_field" },
+    { "ownerType": "PRODUCT", "namespace": "specs", "key": "seats", "name": "Seats", "type": "single_line_text_field" },
+    { "ownerType": "PRODUCT", "namespace": "specs", "key": "material", "name": "Material", "type": "single_line_text_field" },
+    { "ownerType": "PRODUCT", "namespace": "specs", "key": "weight_kg", "name": "Weight (kg)", "type": "number_decimal" },
+    { "ownerType": "PRODUCT", "namespace": "specs", "key": "assembly_minutes", "name": "Assembly time (minutes)", "type": "number_integer" },
+    { "ownerType": "PRODUCT", "namespace": "specs", "key": "warranty_years", "name": "Structural warranty (years)", "type": "number_integer" }
+  ],
+
+  "hero_products": {
+    "transformer-dining-table-4-0": { "tags_add": ["dining"], "specs": { "dimensions_closed_cm": "46 × 92 × 76", "dimensions_open_cm": "305 × 92 × 76", "seats": "1–12", "material": "Solid hardwood, steel telescopic tracks", "weight_kg": "68", "assembly_minutes": "20", "warranty_years": "10" },
+      "prices_gbp": { "TT-DT40-OAK-INT": [1695, 1995], "TT-DT40-HCK-INT": [1695, 1995], "TT-DT40-WAL-INT": [1795, 2095], "TT-DT40-SEQ-INT": [1795, 2095] } },
+    "transformer-bench-4-0": { "tags_add": ["dining"], "specs": { "dimensions_closed_cm": "46 × 38 × 46", "dimensions_open_cm": "260 × 38 × 46", "seats": "1–6", "material": "Solid hardwood", "weight_kg": "29", "assembly_minutes": "10", "warranty_years": "10" },
+      "prices_gbp": { "TT-BN40-OAK-INT": [845, 995], "TT-BN40-HCK-INT": [845, 995], "TT-BN40-WAL-INT": [895, 1095] } },
+    "transformer-coffee-table-4-0": { "tags_add": ["living"], "specs": { "dimensions_closed_cm": "110 × 60 × 45", "dimensions_open_cm": "110 × 60 × 62 (lift-top)", "seats": "n/a", "material": "Solid hardwood, gas-lift hinge", "weight_kg": "34", "assembly_minutes": "15", "warranty_years": "10" },
+      "prices_gbp": { "TT-CT40-OAK-INT": [645, 775], "TT-CT40-HCK-INT": [645, 775], "TT-CT40-WAL-INT": [675, 795] } },
+    "transformer-round-table": { "tags_add": ["dining"], "specs": { "dimensions_closed_cm": "Ø 110 × 76", "dimensions_open_cm": "Ø 180 × 76", "seats": "4–10", "material": "Solid hardwood pedestal", "weight_kg": "74", "assembly_minutes": "25", "warranty_years": "10" },
+      "prices_gbp": { "TT-RND-OAK-INT": [1865, 2195], "TT-RND-WAL-INT": [1935, 2245] } },
+    "transformer-dining-chairs-set-of-2": { "tags_add": ["dining"], "specs": { "dimensions_closed_cm": "47 × 54 × 82 (each)", "dimensions_open_cm": "stacks 4 high", "seats": "2", "material": "Solid oak frame, stain-resistant bouclé", "weight_kg": "11", "assembly_minutes": "0", "warranty_years": "5" },
+      "prices_gbp": { "TT-CH2-OAK-INT": [335, 395], "TT-CH2-HCK-INT": [335, 395], "TT-CH2-WAL-INT": [355, 425] } },
+    "the-complete-transformer-dining-bundle-4-0": { "tags_add": ["dining", "living"], "specs": { "seats": "1–12", "material": "Solid hardwood", "warranty_years": "10" },
+      "prices_gbp": { "TT-BND40-OAK-INT": [2995, 3895], "TT-BND40-HCK-INT": [2995, 3895], "TT-BND40-WAL-INT": [3195, 4095] } }
+  },
+
+  "products": [
+    { "handle": "transformer-extension-leaf-set", "title": "Extension Leaf Set (2 Leaves) for Transformer Table 4.0", "productType": "Spare Part", "tags": ["accessory", "dining", "spare-part"],
+      "description": "Two extra solid-wood leaves that slot into the Table 4.0 telescopic tracks to seat two more guests. Colour-matched to your finish.",
+      "option": "Finish", "variants": [
+        { "value": "Scandinavian Oak", "sku": "TT-ACC-LEAF2-OAK", "price": 149, "compare": 179, "stock": [18, 14, 6, 3] },
+        { "value": "Smoked Hickory", "sku": "TT-ACC-LEAF2-HCK", "price": 149, "compare": 179, "stock": [11, 9, 4, 2] },
+        { "value": "American Walnut", "sku": "TT-ACC-LEAF2-WAL", "price": 159, "compare": 189, "stock": [7, 5, 2, 1] } ] },
+    { "handle": "tabletop-protector-pad", "title": "Tabletop Protector Pad", "productType": "Accessory", "tags": ["accessory", "dining"],
+      "description": "Heat- and spill-resistant felt-backed pad cut to the Table 4.0 sizes. Rolls up for storage.",
+      "option": "Size", "variants": [
+        { "value": "4 seats (92 × 110 cm)", "sku": "TT-ACC-PAD-S", "price": 59, "stock": [40, 32, 15, 8] },
+        { "value": "8 seats (92 × 210 cm)", "sku": "TT-ACC-PAD-M", "price": 79, "stock": [35, 28, 12, 6] },
+        { "value": "12 seats (92 × 305 cm)", "sku": "TT-ACC-PAD-L", "price": 99, "stock": [22, 18, 9, 4] } ] },
+    { "handle": "bench-seat-cushion", "title": "Bench 4.0 Seat Cushion", "productType": "Accessory", "tags": ["accessory", "seating"],
+      "description": "Tie-on bouclé cushion sized for the Bench 4.0 in its closed position. Removable, washable cover.",
+      "option": "Colour", "variants": [
+        { "value": "Cream Bouclé", "sku": "TT-ACC-CUSH-CRM", "price": 89, "stock": [26, 20, 10, 5] },
+        { "value": "Charcoal Bouclé", "sku": "TT-ACC-CUSH-CHR", "price": 89, "stock": [12, 9, 4, 2] } ] },
+    { "handle": "hardwood-care-kit", "title": "Hardwood Care Kit", "productType": "Accessory", "tags": ["accessory", "care"],
+      "description": "Plant-based oil, two microfibre cloths and a scratch-repair crayon for every finish. Enough for two years of care.",
+      "variants": [ { "sku": "TT-ACC-CARE", "price": 29, "stock": [120, 95, 40, 22] } ] },
+    { "handle": "replacement-leg-set-table-4-0", "title": "Replacement Leg Set for Table 4.0", "productType": "Spare Part", "tags": ["accessory", "spare-part", "dining"],
+      "description": "Four solid-wood legs with fixings. For repairs or a finish change.",
+      "option": "Finish", "variants": [
+        { "value": "Scandinavian Oak", "sku": "TT-ACC-LEGS-OAK", "price": 119, "stock": [8, 6, 2, 1] },
+        { "value": "Smoked Hickory", "sku": "TT-ACC-LEGS-HCK", "price": 119, "stock": [5, 4, 1, 0] },
+        { "value": "American Walnut", "sku": "TT-ACC-LEGS-WAL", "price": 129, "stock": [3, 2, 0, 0] } ] },
+    { "handle": "track-maintenance-tool-kit", "title": "Track Maintenance & Tool Kit", "productType": "Spare Part", "tags": ["accessory", "spare-part", "care"],
+      "description": "Dry lubricant for the telescopic tracks, hex keys and spare bolts.",
+      "variants": [ { "sku": "TT-ACC-TOOL", "price": 19, "stock": [90, 70, 30, 15] } ] },
+    { "handle": "dining-chair-slipcovers-set-of-2", "title": "Dining Chair Slipcovers (Set of 2)", "productType": "Accessory", "tags": ["accessory", "seating"],
+      "description": "Fitted, machine-washable covers for the Stackable Dining Chairs.",
+      "option": "Colour", "variants": [
+        { "value": "Cream", "sku": "TT-ACC-SLIP-CRM", "price": 69, "stock": [30, 24, 10, 6] },
+        { "value": "Charcoal", "sku": "TT-ACC-SLIP-CHR", "price": 69, "stock": [22, 18, 8, 4] },
+        { "value": "Sage", "sku": "TT-ACC-SLIP-SGE", "price": 69, "stock": [9, 7, 3, 1] } ] },
+    { "handle": "felt-floor-protectors-16", "title": "Felt Floor Protectors (Set of 16)", "productType": "Accessory", "tags": ["accessory", "care"],
+      "description": "Self-adhesive felt pads for table, bench and chair legs.",
+      "variants": [ { "sku": "TT-ACC-FELT", "price": 12, "stock": [200, 160, 80, 40] } ] },
+    { "handle": "linen-table-runner", "title": "Linen Table Runner", "productType": "Accessory", "tags": ["accessory", "dining"],
+      "description": "Stonewashed linen runner, 300 cm, sized for the extended Table 4.0.",
+      "option": "Colour", "variants": [
+        { "value": "Natural", "sku": "TT-ACC-RUN-NAT", "price": 35, "stock": [45, 36, 15, 8] },
+        { "value": "Charcoal", "sku": "TT-ACC-RUN-CHR", "price": 35, "stock": [28, 22, 10, 5] } ] },
+    { "handle": "coffee-table-glass-insert", "title": "Coffee Table Tempered Glass Insert", "productType": "Spare Part", "tags": ["accessory", "living", "spare-part"],
+      "description": "Tempered glass panel for the Coffee Table lift-top display tray.",
+      "variants": [ { "sku": "TT-ACC-GLASS", "price": 79, "stock": [14, 10, 4, 2] } ] },
+    { "handle": "transformer-console-to-desk", "title": "Transformer Console-to-Desk", "productType": "Desk", "tags": ["workspace", "living", "expandable"],
+      "description": "A 40 cm hallway console that pulls out to a 120 cm work desk. Cable tray and drawer built in.",
+      "specs": { "dimensions_closed_cm": "40 × 120 × 76", "dimensions_open_cm": "120 × 70 × 76", "material": "Solid hardwood", "weight_kg": "31", "assembly_minutes": "20", "warranty_years": "10" },
+      "option": "Finish", "variants": [
+        { "value": "Scandinavian Oak", "sku": "TT-DSK-CON-OAK", "price": 895, "compare": 1045, "stock": [16, 12, 5, 2] },
+        { "value": "American Walnut", "sku": "TT-DSK-CON-WAL", "price": 945, "compare": 1095, "stock": [6, 4, 2, 0] } ] },
+    { "handle": "transformer-nesting-side-tables", "title": "Transformer Nesting Side Tables (Set of 2)", "productType": "Side Table", "tags": ["living"],
+      "description": "Two side tables that nest into one footprint. The smaller one doubles as a stool.",
+      "specs": { "dimensions_closed_cm": "50 × 40 × 55", "material": "Solid hardwood", "weight_kg": "12", "assembly_minutes": "5", "warranty_years": "10" },
+      "option": "Finish", "variants": [
+        { "value": "Scandinavian Oak", "sku": "TT-SIDE-NEST-OAK", "price": 295, "compare": 345, "stock": [24, 18, 8, 4] },
+        { "value": "American Walnut", "sku": "TT-SIDE-NEST-WAL", "price": 315, "compare": 365, "stock": [10, 8, 3, 1] } ] },
+    { "handle": "transformer-bar-stools-set-of-2", "title": "Transformer Bar Stools (Set of 2)", "productType": "Seating", "tags": ["seating", "dining"],
+      "description": "Counter-height stools with a footrest, stackable two high.",
+      "specs": { "dimensions_closed_cm": "42 × 42 × 75 (each)", "seats": "2", "material": "Solid oak frame, bouclé seat", "weight_kg": "9", "assembly_minutes": "0", "warranty_years": "5" },
+      "option": "Finish", "variants": [
+        { "value": "Oak & Cream", "sku": "TT-STL2-OAK", "price": 345, "compare": 395, "stock": [20, 15, 6, 3] },
+        { "value": "Walnut & Charcoal", "sku": "TT-STL2-WAL", "price": 365, "compare": 415, "stock": [8, 6, 2, 0] } ] },
+    { "handle": "transformer-bookshelf-divider", "title": "Transformer Bookshelf Room Divider", "productType": "Storage", "tags": ["living", "storage"],
+      "description": "Open shelving that extends from 90 to 160 cm wide. Works as a room divider in studio flats.",
+      "specs": { "dimensions_closed_cm": "90 × 35 × 180", "dimensions_open_cm": "160 × 35 × 180", "material": "Solid hardwood", "weight_kg": "44", "assembly_minutes": "35", "warranty_years": "10" },
+      "option": "Finish", "variants": [
+        { "value": "Scandinavian Oak", "sku": "TT-SHF-DIV-OAK", "price": 645, "compare": 745, "stock": [9, 7, 3, 1] },
+        { "value": "American Walnut", "sku": "TT-SHF-DIV-WAL", "price": 695, "compare": 795, "stock": [4, 3, 1, 0] } ] },
+    { "handle": "outdoor-transformer-table-teak", "title": "Outdoor Transformer Table — Teak", "productType": "Expandable Dining Table", "tags": ["dining", "outdoor", "expandable", "pre-order"],
+      "description": "Weather-rated teak version of the Table 4.0 with stainless tracks. First production batch: pre-order.",
+      "specs": { "dimensions_closed_cm": "46 × 92 × 76", "dimensions_open_cm": "260 × 92 × 76", "seats": "1–10", "material": "Grade-A teak, 316 stainless steel", "weight_kg": "72", "assembly_minutes": "20", "warranty_years": "5" },
+      "variants": [ { "sku": "TT-OUT-TEAK", "price": 1895, "compare": 2195, "stock": [0, 0, 0, 0], "preorder": true, "eta": "Pre-order: ships with Batch #16 (Feb 2027)" } ] },
+    { "handle": "small-space-hosting-set", "title": "Small-Space Hosting Set (Table 4.0 + Bench 4.0)", "productType": "Bundle", "tags": ["bundle", "dining"],
+      "description": "The Table 4.0 and a matching Bench 4.0, delivered together.",
+      "option": "Finish", "variants": [
+        { "value": "Scandinavian Oak", "sku": "TT-SET-HOST-OAK", "price": 2395, "compare": 2540, "stock": [10, 8, 3, 1] },
+        { "value": "American Walnut", "sku": "TT-SET-HOST-WAL", "price": 2545, "compare": 2690, "stock": [4, 3, 1, 0] } ] },
+    { "handle": "living-room-set", "title": "Living Room Set (Coffee Table + 2 Nesting Side Tables)", "productType": "Bundle", "tags": ["bundle", "living"],
+      "description": "The lift-top Coffee Table with two nesting side tables in the same finish.",
+      "option": "Finish", "variants": [
+        { "value": "Scandinavian Oak", "sku": "TT-SET-LIV-OAK", "price": 895, "compare": 940, "stock": [12, 9, 4, 2] },
+        { "value": "American Walnut", "sku": "TT-SET-LIV-WAL", "price": 945, "compare": 990, "stock": [5, 4, 1, 0] } ] },
+    { "handle": "table-and-four-chairs-set", "title": "Table 4.0 + 4 Stackable Chairs Set", "productType": "Bundle", "tags": ["bundle", "dining", "seating"],
+      "description": "Table 4.0 with two sets of Stackable Dining Chairs.",
+      "option": "Finish", "variants": [
+        { "value": "Scandinavian Oak", "sku": "TT-SET-T4C-OAK", "price": 2295, "compare": 2365, "stock": [9, 7, 3, 1] },
+        { "value": "American Walnut", "sku": "TT-SET-T4C-WAL", "price": 2455, "compare": 2505, "stock": [3, 2, 1, 0] } ] },
+    { "handle": "wood-finish-sample-kit", "title": "Wood Finish Sample Kit (4 Swatches)", "productType": "Sample", "tags": ["accessory", "sample"],
+      "description": "Palm-sized swatches of Scandinavian Oak, Smoked Hickory, American Walnut and Brazilian Sequoia. Postage included.",
+      "variants": [ { "sku": "TT-SMP-KIT", "price": 9, "stock": [300, 250, 120, 60] } ] },
+    { "handle": "white-glove-delivery-and-assembly", "title": "White-Glove Delivery & Assembly", "productType": "Service", "tags": ["service"],
+      "description": "Two-person delivery to the room of your choice, assembly and packaging removal.",
+      "variants": [ { "sku": "TT-SVC-WG", "price": 99, "tracked": false, "requiresShipping": false } ] },
+    { "handle": "extended-warranty-5-years", "title": "Extended Warranty (+5 Years)", "productType": "Service", "tags": ["service"],
+      "description": "Adds five years of cover on mechanisms and upholstery on top of the standard warranty.",
+      "variants": [ { "sku": "TT-SVC-WAR5", "price": 149, "tracked": false, "requiresShipping": false } ] }
+  ],
+
+  "collections": [
+    { "handle": "dining", "title": "Dining", "tags_any": ["dining", "dining-table"] },
+    { "handle": "seating", "title": "Seating", "tags_any": ["seating", "chairs", "bench"] },
+    { "handle": "living-room", "title": "Living Room", "tags_any": ["living", "living-room", "coffee-table"] },
+    { "handle": "workspace-storage", "title": "Workspace & Storage", "tags_any": ["workspace", "storage"] },
+    { "handle": "accessories-spare-parts", "title": "Accessories & Spare Parts", "tags_any": ["accessory", "spare-part"] },
+    { "handle": "bundles-sets", "title": "Bundles & Sets", "tags_any": ["bundle"] },
+    { "handle": "pre-order", "title": "Pre-order", "tags_any": ["pre-order", "backorder-batch"] },
+    { "handle": "services", "title": "Delivery & Warranty Services", "tags_any": ["service"] }
+  ],
+
+  "pages": [
+    { "handle": "about", "title": "About", "body": "<p>One table that seats one person on a weekday and twelve at a family dinner. Every piece in this collection extends, stacks or folds so a small home can host like a big one.</p><p><em>This is an interview sandbox store built to demonstrate multi-market Shopify operations. It is not an official Transformer Table store.</em></p>" },
+    { "handle": "how-it-transforms", "title": "How It Transforms", "body": "<p>Telescopic steel tracks run under the tabletop. Pull the ends apart, drop in the stored leaves, and the table grows in 30 cm steps. No tools, no loose parts.</p><ol><li>Pull both ends outward until the track clicks.</li><li>Lift a leaf from the storage slot and set it on the pins.</li><li>Push the ends together to lock.</li></ol>" },
+    { "handle": "delivery-and-returns", "title": "Delivery & Returns", "body": "<p>Delivery dates shown on each product come from our 3PL stock per country and update when a container moves. The date you see at checkout is saved on your order.</p><ul><li>In stock locally: 3–5 business days.</li><li>Low stock: 5–8 business days.</li><li>Pre-order: the batch window shown on the product.</li></ul><p>Returns: 30 days in the UK and Australia; the statutory 14-day withdrawal right applies in the EU. Draft text, pending legal review per market.</p>" },
+    { "handle": "warranty", "title": "Warranty", "body": "<p>10 years on frames and tracks for tables, benches and storage; 5 years on chairs, stools and outdoor pieces. Consumer law in your country applies in addition to this warranty. Draft text, pending legal review.</p>" },
+    { "handle": "care-guide", "title": "Care Guide", "body": "<p>Wipe with a damp cloth, dry straight away, and re-oil twice a year with the Hardwood Care Kit. Keep the tracks free of crumbs and use the dry lubricant once a year.</p>" },
+    { "handle": "faq", "title": "FAQ", "body": "<h3>How long does delivery take?</h3><p>The window on the product page is calculated from the stock in your country's warehouse.</p><h3>Are prices shown with tax?</h3><p>Yes in the UK, EU, Australia and the GCC: the price you see includes local VAT or GST.</p><h3>Can I order a finish that is out of stock?</h3><p>Some finishes are open for pre-order. The batch window is shown before you pay and saved on your order.</p>" }
+  ],
+
+  "articles": [
+    { "title": "How to choose an expandable dining table for a small flat", "tags": ["buying-guide", "dining"], "body": "<p>Measure the room at its everyday size, not the dinner-party size. A table that is 46 cm deep when closed leaves a walkway in most hallways; one that opens to 3 m needs a clear run along one wall.</p><p>Check the mechanism: telescopic tracks keep the leaves aligned; loose leaves need storage space.</p>" },
+    { "title": "Hosting twelve in 40 square metres: a planning checklist", "tags": ["hosting"], "body": "<p>Plan seating first: a bench seats more people per metre than chairs. Stackable chairs live in a corner until needed.</p><p>Extend the table the day before and check the floor protectors are on every leg.</p>" },
+    { "title": "Caring for oiled hardwood through the seasons", "tags": ["care"], "body": "<p>Central heating dries wood in winter. Re-oil in autumn and spring, keep the table away from radiators, and wipe spills straight away.</p>" },
+    { "title": "Oak, hickory, walnut or sequoia: choosing a finish", "tags": ["buying-guide"], "body": "<p>Oak is light and hides scratches. Hickory has a strong grain. Walnut is darker and shows dust. Sequoia is a limited batch with a warm red tone. Order the sample kit to see them in your light.</p>" },
+    { "title": "What 'pre-order' means for your delivery date", "tags": ["delivery"], "body": "<p>When a finish is between containers, you can still order it. The window shown is the batch arrival plus local delivery. If a container moves, we update the window on the product and tell customers whose dates changed.</p>" },
+    { "title": "Work-from-home without a home office", "tags": ["workspace"], "body": "<p>A console that becomes a desk keeps work out of sight in the evening. Leave 70 cm of depth for a laptop and a notebook.</p>" }
+  ],
+
+  "metaobject_definitions": [
+    { "type": "wood_finish", "name": "Wood finish", "displayNameKey": "name", "fields": [
+      { "key": "name", "name": "Name", "type": "single_line_text_field", "required": true },
+      { "key": "swatch", "name": "Swatch colour", "type": "color" },
+      { "key": "care_notes", "name": "Care notes", "type": "multi_line_text_field" } ] },
+    { "type": "market_profile", "name": "Market profile", "displayNameKey": "market", "fields": [
+      { "key": "market", "name": "Market", "type": "single_line_text_field", "required": true },
+      { "key": "currency", "name": "Currency", "type": "single_line_text_field" },
+      { "key": "tax_note", "name": "Tax shown at checkout", "type": "single_line_text_field" },
+      { "key": "hub", "name": "Fulfilment hub", "type": "single_line_text_field" },
+      { "key": "delivery_promise", "name": "Standard delivery promise", "type": "single_line_text_field" },
+      { "key": "legal_pages", "name": "Legal pages required", "type": "multi_line_text_field" } ] },
+    { "type": "faq_item", "name": "FAQ item", "displayNameKey": "question", "fields": [
+      { "key": "question", "name": "Question", "type": "single_line_text_field", "required": true },
+      { "key": "answer", "name": "Answer", "type": "multi_line_text_field" },
+      { "key": "topic", "name": "Topic", "type": "single_line_text_field" } ] }
+  ],
+  "metaobjects": [
+    { "type": "wood_finish", "handle": "scandinavian-oak", "fields": { "name": "Scandinavian Oak", "swatch": "#d8b98c", "care_notes": "Light tone, hides fine scratches. Re-oil twice a year." } },
+    { "type": "wood_finish", "handle": "smoked-hickory", "fields": { "name": "Smoked Hickory", "swatch": "#8a6a4f", "care_notes": "Strong grain. Wipe spills quickly; the smoked tone can lighten in direct sun." } },
+    { "type": "wood_finish", "handle": "american-walnut", "fields": { "name": "American Walnut", "swatch": "#5b3a29", "care_notes": "Dark tone shows dust. Microfibre cloth weekly." } },
+    { "type": "wood_finish", "handle": "brazilian-sequoia", "fields": { "name": "Brazilian Sequoia", "swatch": "#9c4f35", "care_notes": "Limited batch. Same care as oak." } },
+    { "type": "market_profile", "handle": "uk", "fields": { "market": "United Kingdom", "currency": "GBP", "tax_note": "Prices include 20% VAT", "hub": "UK Midlands 3PL", "delivery_promise": "3–5 business days", "legal_pages": "Returns & consumer rights\nPrivacy\nTerms" } },
+    { "type": "market_profile", "handle": "de", "fields": { "market": "Germany", "currency": "EUR", "tax_note": "Preise inkl. 19 % MwSt.", "hub": "EU Rotterdam Hub", "delivery_promise": "3–5 Werktage", "legal_pages": "Impressum (§ 5 DDG)\nWiderrufsbelehrung (14 Tage)\nDatenschutz\nAGB" } },
+    { "type": "market_profile", "handle": "fr", "fields": { "market": "France", "currency": "EUR", "tax_note": "TVA 20 % incluse", "hub": "EU Rotterdam Hub", "delivery_promise": "3 à 5 jours ouvrés", "legal_pages": "Mentions légales\nDroit de rétractation (14 jours)\nCGV" } },
+    { "type": "market_profile", "handle": "eu", "fields": { "market": "Rest of Europe", "currency": "EUR / local", "tax_note": "Prices include local VAT", "hub": "EU Rotterdam Hub", "delivery_promise": "4–7 business days", "legal_pages": "Withdrawal right (14 days)\nPrivacy\nTerms" } },
+    { "type": "market_profile", "handle": "au", "fields": { "market": "Australia", "currency": "AUD", "tax_note": "Prices include 10% GST", "hub": "AU Sydney 3PL", "delivery_promise": "4–6 business days (metro)", "legal_pages": "Consumer guarantees (ACL)\nPrivacy\nTerms" } },
+    { "type": "market_profile", "handle": "gcc", "fields": { "market": "GCC (UAE, Saudi Arabia)", "currency": "AED / SAR", "tax_note": "UAE 5% VAT · KSA 15% VAT, included", "hub": "GCC Jebel Ali Hub", "delivery_promise": "3–5 business days", "legal_pages": "Tax invoice details\nReturns\nPrivacy" } },
+    { "type": "faq_item", "handle": "delivery-time", "fields": { "question": "How long does delivery take?", "answer": "The window on each product is calculated from stock in your country's warehouse and saved on your order.", "topic": "delivery" } },
+    { "type": "faq_item", "handle": "tax-included", "fields": { "question": "Do prices include tax?", "answer": "Yes in the UK, EU, Australia and the GCC.", "topic": "pricing" } },
+    { "type": "faq_item", "handle": "pre-order", "fields": { "question": "Can I order a finish that is out of stock?", "answer": "Some finishes are open for pre-order; the batch window is shown before you pay.", "topic": "delivery" } },
+    { "type": "faq_item", "handle": "assembly", "fields": { "question": "Is assembly difficult?", "answer": "Tables take about 20 minutes with the included tools. White-glove assembly is available.", "topic": "product" } }
+  ],
+
+  "markets": [
+    { "handle": "uk", "name": "United Kingdom", "countries": ["GB"], "currency": "GBP" },
+    { "handle": "germany", "name": "Germany", "countries": ["DE", "AT"], "currency": "EUR" },
+    { "handle": "france", "name": "France", "countries": ["FR", "BE"], "currency": "EUR" },
+    { "handle": "rest-of-europe", "name": "Rest of Europe", "countries": ["NL", "IE", "ES", "IT", "PT", "SE", "DK", "FI"], "currency": "EUR", "localCurrencies": true },
+    { "handle": "australia", "name": "Australia", "countries": ["AU", "NZ"], "currency": "AUD" },
+    { "handle": "gcc", "name": "GCC", "countries": ["AE", "SA"], "currency": "AED", "localCurrencies": true }
+  ],
+  "locales": ["de", "fr", "ar"],
+
+  "test_orders": {
+    "tag": "sandbox-test-order",
+    "count": 24,
+    "requires_base_currency_in": ["GBP", "EUR", "USD", "AUD"],
+    "customers": [
+      { "first": "Oliver", "last": "Hughes", "country": "GB", "city": "Manchester", "zip": "M1 1AE" },
+      { "first": "Amelia", "last": "Clarke", "country": "GB", "city": "Bristol", "zip": "BS1 4DJ" },
+      { "first": "Lukas", "last": "Becker", "country": "DE", "city": "Hamburg", "zip": "20095" },
+      { "first": "Sophie", "last": "Wagner", "country": "DE", "city": "München", "zip": "80331" },
+      { "first": "Camille", "last": "Laurent", "country": "FR", "city": "Lyon", "zip": "69002" },
+      { "first": "Hugo", "last": "Bernard", "country": "FR", "city": "Paris", "zip": "75011" },
+      { "first": "Sanne", "last": "de Vries", "country": "NL", "city": "Utrecht", "zip": "3511 AA" },
+      { "first": "Liam", "last": "Murphy", "country": "IE", "city": "Dublin", "zip": "D02 X285" },
+      { "first": "Chloe", "last": "Nguyen", "country": "AU", "city": "Melbourne", "zip": "3000", "province": "VIC" },
+      { "first": "Jack", "last": "Taylor", "country": "AU", "city": "Brisbane", "zip": "4000", "province": "QLD" },
+      { "first": "Omar", "last": "Haddad", "country": "AE", "city": "Dubai" },
+      { "first": "Noura", "last": "Al Saud", "country": "SA", "city": "Riyadh", "zip": "12211" }
+    ]
+  }
+}

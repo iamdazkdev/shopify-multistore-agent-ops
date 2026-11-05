@@ -16,5 +16,7 @@ Scenario: a container or production batch moved. Input: $ARGUMENTS
 6. `ops-reporter`: a brief Rodrigo could forward to Customer Support and Growth, e.g.
    "Walnut buyers in DE now see 2–9 Dec; UK ads paused on Walnut until the container lands."
 
-Note: `npm run demo:eta-shift` only moves TT-DT40-SEQ-INT. It now stops on any Shopify error, but
-you must still run the verify step after it.
+Tool for steps 2 and 5: `python3 src/gated_eta_update.py --sku <SKU> --qty <N> --eta "<window>" [--location <hub>] --dry-run`
+(plan) — the human drops `--dry-run` to apply; it asks for `yes`, writes with compare-and-swap, reads back,
+auto-rolls back on mismatch and logs a `run_id` (`--rollback <run_id>` to undo).
+`npm run demo:eta-shift` is the older fixed demo for TT-DT40-SEQ-INT only.

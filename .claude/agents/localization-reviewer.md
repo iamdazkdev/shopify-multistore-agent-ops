@@ -20,7 +20,9 @@ You prepare localized store copy so a native speaker can approve it in minutes.
 - Arabic (GCC): flag RTL layout checks; do not ship machine Arabic without review.
 
 ## Output
-Append items to `exports/native_speaker_review_queue.json` with `status: "PENDING_NATIVE_REVIEW"`,
+Queue product titles with `python3 src/translate_product.py --handle <h> --locale <de|fr|ar> --title "<draft>"`
+(never with `--reviewer`). For other copy, append items to `exports/native_speaker_review_queue.json` with `status: "PENDING_NATIVE_REVIEW"`,
 source, proposed text, issues found, and a short reason for each change. Then a table:
 Locale | Resource | Proposed | Issues | Needs legal? — under 30 rows.
-Never set a status to approved. Never edit live content.
+Never set a status to approved, never fill in `reviewer`/`reviewed_by`, and never invent a reviewer name — only the
+human who reviewed the text publishes it (`--reviewer "<their name>"`). Never edit live content.

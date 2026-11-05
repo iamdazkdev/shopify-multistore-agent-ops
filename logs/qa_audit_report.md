@@ -1,6 +1,6 @@
 # Transformer Table — Agentic Store Operations QA Report
 - **Timestamp**: `2026-11-04 09:23:57 UTC`
-- **Target Store**: `dazk-dev-sandbox-store.myshopify.com` (`Shopify Plus App Development`)
+- **Target Store**: `dazk-dev-sandbox-store.myshopify.com` (`Shopify Plus App Development` — partner development store, not a production Plus store)
 - **Overall QA Gate Status**: **PASS (100% HEALTHY)**
 - **Total Tracked Inventory Across Regional SKUs**: `581 units`
 

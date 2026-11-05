@@ -16,6 +16,8 @@ for Rodrigo, legal and finance.
 3. Statutory pages per market: DE Impressum (§ 5 DDG) + Widerrufsbelehrung (14 days), FR mentions
    légales (LCEN) + rétractation, UK consumer-rights/returns, AU ACL guarantees, UAE tax-invoice rules.
    Check references in `schemas/navigation_and_theme_manifest.json`, `src/*.py` page bodies and live pages.
+   Also flag any page title, handle or product tag that claims compliance ("compliant", "compliance") —
+   `python3 src/store_audit.py` lists them.
 4. Registrations: list what must exist before selling (VAT/OSS/IOSS, UK VAT number, AU GST, UAE TRN)
    as milestones with owner = legal/finance and status = UNKNOWN unless the human told you otherwise.
 

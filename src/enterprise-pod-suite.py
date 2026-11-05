@@ -470,15 +470,15 @@ def feature4_native_speaker_review_gate():
             "source_en": p["title"],
             "de_DE": {
                 "translated_title": mfs.get("localization.title_de"),
-                "glossary_conformance": "PASS",
-                "reviewer": "Elena Weber (Native DE Copy Reviewer)",
-                "gate_status": "NATIVE_SPEAKER_APPROVED",
+                "glossary_conformance": "NOT_CHECKED",
+                "reviewer": None,  # only a human reviewer can fill this in (AGENTS.md rule 8)
+                "gate_status": "PENDING_NATIVE_REVIEW",
             },
             "fr_FR": {
                 "translated_title": mfs.get("localization.title_fr"),
-                "glossary_conformance": "PASS",
-                "reviewer": "Marc Moreau (Native FR Copy Reviewer)",
-                "gate_status": "NATIVE_SPEAKER_APPROVED",
+                "glossary_conformance": "NOT_CHECKED",
+                "reviewer": None,
+                "gate_status": "PENDING_NATIVE_REVIEW",
             },
             "delivery_notice_multilingual": mfs.get("localization.multilingual_delivery_promise"),
         })

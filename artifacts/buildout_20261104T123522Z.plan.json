@@ -1,0 +1,27 @@
+{
+ "run_id": "buildout_20261104T123522Z",
+ "created_at": "2026-11-04T12:35:27+00:00",
+ "store": "dazk-dev-sandbox-store.myshopify.com",
+ "steps": [
+  {
+   "step": "hub_stock",
+   "status": "WAITING",
+   "reason": "hub locations do not exist yet (step: locations)",
+   "actions": []
+  },
+  {
+   "step": "activate",
+   "status": "UP_TO_DATE",
+   "actions": []
+  },
+  {
+   "step": "test_orders",
+   "status": "WAITING",
+   "reason": "store currency is VND; switch it in Settings → Store details first (manual)",
+   "actions": []
+  }
+ ],
+ "gates": {
+  "human_approval": "PENDING"
+ }
+}

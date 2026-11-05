@@ -23,6 +23,12 @@ const LIVE_WRITES = [
   /shopify\s+theme\s+(push|publish|delete)\b/,
   /shopify\s+app\s+deploy\b/,
   /myshopify\.com\/admin\/api\/\S*graphql\.json[\s\S]*mutation/i,
+  // Gated scripts: planning modes are allowed, writing modes need the human.
+  /gated_eta_update\.py\b(?![\s\S]*--dry-run)/,
+  /translate_product\.py\b[\s\S]*--reviewer\b/,
+  /store_build\.py\b[\s\S]*--apply\b/,
+  // Ad-hoc writes: an interpreter or HTTP client invoked with a GraphQL mutation inline or in a heredoc.
+  /\b(python3?|node|deno|bun|curl|wget)\b[\s\S]*\bmutation\s*[\w(]*\s*[({]/i,
 ];
 
 if (READS_ENV.test(cmd)) {

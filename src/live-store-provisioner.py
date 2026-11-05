@@ -214,7 +214,7 @@ def step_verify_and_qa(token: str, manifest: dict) -> dict:
     report_md = [
         "# Transformer Table — Agentic Store Operations QA Report",
         f"- **Timestamp**: `{now_iso}`",
-        f"- **Target Store**: `{SHOP_DOMAIN}` (`{data.get('shop', {}).get('plan', {}).get('displayName')}`)",
+        f"- **Target Store**: `{SHOP_DOMAIN}` (`{data.get('shop', {}).get('plan', {}).get('displayName')}` — partner development store)",
         f"- **Overall QA Gate Status**: **{'PASS (100% HEALTHY)' if all_passed else 'FAIL'}**",
         f"- **Total Tracked Inventory Across Regional SKUs**: `{total_units} units`",
         "",

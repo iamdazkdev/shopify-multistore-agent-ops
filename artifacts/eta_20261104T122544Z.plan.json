@@ -1,0 +1,33 @@
+{
+  "sku": "TT-DT40-SEQ-INT",
+  "product": "Transformer Table 4.0 — Expandable Dining Table (1 to 12 Seater)",
+  "variant": "Brazilian Sequoia (Batch #14 Pre-Order)",
+  "location": "Shop location",
+  "total_available_after": 25,
+  "risk": "LOW",
+  "campaign_note": null,
+  "changes": [
+    {
+      "kind": "metafield",
+      "field": "variant ops.estimated_delivery_window",
+      "owner_id": "gid://shopify/ProductVariant/44370541379647",
+      "key": "estimated_delivery_window",
+      "compare_digest": null,
+      "before": null,
+      "after": "UK/EU/AU: 3–5 Business Days | Batch #15 (Dec 02–09, 2026)"
+    },
+    {
+      "kind": "metafield",
+      "field": "variant ops.fulfillment_mode",
+      "owner_id": "gid://shopify/ProductVariant/44370541379647",
+      "key": "fulfillment_mode",
+      "compare_digest": null,
+      "before": null,
+      "after": "IN_STOCK_LOCAL_3PL"
+    }
+  ],
+  "run_id": "eta_20261104T122544Z",
+  "gates": {
+    "human_approval": "PENDING"
+  }
+}
