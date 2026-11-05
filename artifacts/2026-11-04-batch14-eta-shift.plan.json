@@ -1,0 +1,283 @@
+{
+  "plan_id": "20261104-batch14-eta-shift",
+  "created_at": "2026-11-04T16:40:00+07:00",
+  "request": "BATCH-14-VN moved to Dec 02–09, 2026, no extra units. Scope: product transformer-dining-table-4-0 only (Brazilian Sequoia TT-DT40-SEQ-INT is the only variant on backorder wording). Remove batch/container numbers from customer-facing text; restore TT-DT40-SEQ-INT stock to repo baseline 5.",
+  "risk": "MEDIUM",
+  "markets": [
+    "UK",
+    "DE",
+    "FR",
+    "AU",
+    "GCC"
+  ],
+  "simulation_note": "Markets are simulated with metafields on ONE dev store (dazk-dev-sandbox-store.myshopify.com). Delivery text is product-level, not per market; inventory has no per-market hub locations.",
+  "data_sources": [
+    "exports/store_backup_snapshot.json (live read, 2026-11-04 16:23 +07; lines 145-176 SEQ levels, 201 ETA text)",
+    "data/3pl_container_schedule.csv (rows 2-5, TT-DT40-*)",
+    "schemas/store_manifest.json:74,79,85",
+    "artifacts/2026-11-04-batch14-eta-shift.localization.json",
+    "src/live-demo-trainer.py:200-201 (origin of live 25 units and Batch #15/#TT-884 text)"
+  ],
+  "human_decisions_input": {
+    "recorded_at": "2026-11-04",
+    "status": "INPUT_TO_PLAN — these are scoping decisions, NOT approval of this plan",
+    "decisions": [
+      "Scope ONLY product transformer-dining-table-4-0. Bench, coffee table, chairs and bundle (also BATCH-14-VN, in stock, no batch wording) do not change.",
+      "Customer-facing text carries NO batch or container number.",
+      "TT-DT40-SEQ-INT stock baseline is 5 (repo truth); live 25 came from demo script src/live-demo-trainer.py:200-201 with no logistics source."
+    ]
+  },
+  "decisions_by_planner": {
+    "ops.fulfillment_mode": {
+      "before": "IN_STOCK_LOCAL_3PL",
+      "after": "IN_STOCK_LOCAL_3PL",
+      "change": false,
+      "justification": "Product-level metafield. After the plan the product still has OAK 45 and HCK 32 (>= 15, live per-location sums 10+35, 8+24), so IN_STOCK_LOCAL_3PL remains true for the product as sold. Sequoia alone would be LOW_STOCK_PRIORITY (5 units, 1–14) and Walnut LOW_STOCK_PRIORITY (14), but there is no variant-level fulfillment_mode field; the Sequoia exception is carried by the delivery-window text and inventoryPolicy CONTINUE. BACKORDER_BATCH does not apply (SEQ is not 0). Changing the product to LOW_STOCK_PRIORITY would wrongly downgrade Oak/Hickory."
+    },
+    "working_days": "Dec 02 (Wed) – Dec 09 (Wed), 2026 = 6 business days; window supplied by logistics, no date shifting computed. Public holidays NOT checked against a calendar; known overlap: UAE National Day Dec 2–3 (relevant to the GCC line only).",
+    "open_question_for_ops": "TT-DT40-SEQ-INT shows 5 available units (csv hubs 2/2/1/0) yet all Sequoia copy says 'Pre-Order: Ships Dec 02–09'. Confirm whether those 5 are physical hub stock (then the first 5 buyers could ship sooner) or allocated pre-order units."
+  },
+  "inventory_by_location": {
+    "TT-DT40-SEQ-INT": {
+      "Shop location": {
+        "before": 25,
+        "after": 5
+      },
+      "My Custom Location": {
+        "before": 0,
+        "after": 0
+      },
+      "hubs_repo_only": {
+        "uk_coventry": 2,
+        "eu_rotterdam": 2,
+        "au_sydney": 1,
+        "gcc_dubai": 0
+      },
+      "hub_note": "Live store has no hub locations; per-hub stock cannot be expressed. npm run live:3pl:plan shows hub_mapping {} and all 4 hubs unmapped."
+    },
+    "unchanged_context": {
+      "TT-DT40-OAK-INT": {
+        "Shop location": 10,
+        "My Custom Location": 35
+      },
+      "TT-DT40-HCK-INT": {
+        "Shop location": 8,
+        "My Custom Location": 24
+      },
+      "TT-DT40-WAL-INT": {
+        "Shop location": 3,
+        "My Custom Location": 11
+      }
+    }
+  },
+  "changes": [
+    {
+      "item_id": "1-eta-window",
+      "market_code": "UK/EU/AU",
+      "resource": {
+        "type": "METAFIELD",
+        "identifier": "transformer-dining-table-4-0 (product) ops.estimated_delivery_window",
+        "location": null
+      },
+      "field": "ops.estimated_delivery_window",
+      "before": "UK/EU/AU: 3–5 Business Days | Backorder Finishes: Batch #15 (Dec 02–09, 2026 — Rotterdam Container #TT-884)",
+      "after": "UK/EU/AU: 3–5 Business Days | Brazilian Sequoia Pre-Order: Ships Dec 02–09, 2026",
+      "operation": "metafieldsSet(metafields:[{ownerId:<product GID resolved by handle>, namespace:\"ops\", key:\"estimated_delivery_window\", type:\"single_line_text_field\", value:<after>, compareDigest:<digest read at apply time>}]) { metafields { id value } userErrors { field message code } }",
+      "risk": "MEDIUM",
+      "apply_status": "READY_AFTER_HUMAN_APPROVAL",
+      "needs_native_review": false,
+      "note": "Product-level PDP buy-box text (rendered by tt-delivery-vat-promise.liquid and copied into the 'Estimated Delivery' line-item property on new orders). Removes customer-facing batch/container numbers (Batch #15, #TT-884). Delivery-date change = MEDIUM. Dec 02 and Dec 09, 2026 are both Wednesdays (6 business days); window is given by logistics, not computed here. OAK/HCK/WAL keep '3–5 Business Days'."
+    },
+    {
+      "item_id": "2-multilingual-promise",
+      "market_code": "UK/DE/FR/AU/GCC",
+      "resource": {
+        "type": "METAFIELD",
+        "identifier": "transformer-dining-table-4-0 (product) localization.multilingual_delivery_promise",
+        "location": null
+      },
+      "field": "localization.multilingual_delivery_promise",
+      "before": "🇬🇧 UK: Free White-Glove Delivery in 3–5 Days (20% VAT Included)\n🇩🇪 DE: Kostenlose Lieferung in 3–5 Werktagen (inkl. 19% MwSt., Versand aus EU-Lager)\n🇫🇷 FR: Livraison gratuite en 3 à 5 jours ouvrés (TVA 20% incluse)\n🇦🇺 AU: Metro Delivery in 4–6 Business Days (10% GST Included)\n🇦🇪 GCC: Express Delivery in 3–5 Days from Dubai Hub (5% VAT Included)",
+      "after": "🇬🇧 UK: Free White-Glove Delivery in 3–5 Days (20% VAT Included)\n🇬🇧 UK: Brazilian Sequoia Pre-Order — Ships Dec 02–09, 2026\n🇩🇪 DE: Kostenlose Lieferung in 3–5 Werktagen (inkl. 19% MwSt., Versand aus EU-Lager)\n🇩🇪 DE: Vorbestellung Brazilian Sequoia — Versand 02.–09.12.2026\n🇫🇷 FR: Livraison gratuite en 3 à 5 jours ouvrés (TVA 20% incluse)\n🇫🇷 FR: Précommande Brazilian Sequoia — expédition du 2 au 9 décembre 2026\n🇦🇺 AU: Metro Delivery in 4–6 Business Days (10% GST Included)\n🇦🇺 AU: Brazilian Sequoia Pre-Order — Ships Dec 02–09, 2026\n🇦🇪 GCC: Express Delivery in 3–5 Days from Dubai Hub (5% VAT Included)\n🇦🇪 GCC: Brazilian Sequoia Pre-Order — Ships Dec 02–09, 2026",
+      "operation": "metafieldsSet(metafields:[{ownerId:<product GID resolved by handle>, namespace:\"localization\", key:\"multilingual_delivery_promise\", type:\"multi_line_text_field\", value:<after>, compareDigest:<digest read at apply time>}]) { metafields { id value } userErrors { field message code } }",
+      "risk": "LOW",
+      "apply_status": "PENDING_NATIVE_REVIEW",
+      "excluded_from_apply": true,
+      "needs_native_review": true,
+      "note": "Before/after copied verbatim from artifacts/2026-11-04-batch14-eta-shift.localization.json (before is byte-identical to live snapshot). Excluded from apply until a human marks DE/FR native review done (review queue ids 2026-11-04-eta-shift-de-DE-sequoia, 2026-11-04-eta-shift-fr-FR-sequoia). FLAG: the GCC Sequoia line is questionable: the source window covers UK/EU/AU only and data/3pl_container_schedule.csv:5 has gcc_dubai_stock = 0 for TT-DT40-SEQ-INT; also UAE National Day (Dec 2–3) falls inside the window. Ops must confirm GCC dispatch on Dec 02–09 or drop that line before apply. Not rendered by any theme section today."
+    },
+    {
+      "item_id": "3-inventory-seq",
+      "market_code": "ALL (single dev-store location; markets simulated)",
+      "resource": {
+        "type": "INVENTORY_LEVEL",
+        "identifier": "TT-DT40-SEQ-INT",
+        "location": "Shop location"
+      },
+      "field": "available",
+      "before": 25,
+      "after": 5,
+      "operation": "inventorySetQuantities(input:{name:\"available\", reason:\"correction\", quantities:[{inventoryItemId:<resolved by SKU>, locationId:<resolved by name 'Shop location'>, quantity:5, changeFromQuantity:25}]}) { inventoryAdjustmentGroup { reason changes { name delta } } userErrors { field message code } }",
+      "risk": "MEDIUM",
+      "apply_status": "READY_AFTER_HUMAN_APPROVAL",
+      "needs_native_review": false,
+      "note": "Restores repo baseline 5 (schemas/store_manifest.json:85; csv:5 hubs 2/2/1/0 = 5). Live 25 came from src/live-demo-trainer.py:200-201 (demo script, no logistics source). Compare-and-swap: fails if live is no longer 25 (e.g. orders placed) — then re-read and re-plan, do not force. 'My Custom Location' stays 0 (0 -> 0, no write). Variant total 25 -> 5; product totalInventory 116 -> 96. Live has only 'Shop location' and 'My Custom Location' — no Coventry/Rotterdam/Sydney/Dubai hub locations — so the CSV per-hub split (UK 2, EU 2, AU 1, GCC 0) CANNOT be expressed on the store; this plan sets the total on one location only."
+    },
+    {
+      "item_id": "4-option-rename-OPTIONAL",
+      "market_code": "ALL",
+      "resource": {
+        "type": "VARIANT",
+        "identifier": "TT-DT40-SEQ-INT (option 'Finish' value)",
+        "location": null
+      },
+      "field": "selectedOptions.value / variant title",
+      "before": "Brazilian Sequoia (Batch #14 Pre-Order)",
+      "after": "Brazilian Sequoia (Pre-Order)",
+      "operation": "productOptionUpdate(productId:<product GID resolved by handle>, option:{id:<option GID read from product.options>}, optionValuesToUpdate:[{id:<optionValue GID whose name == before>, name:\"Brazilian Sequoia (Pre-Order)\"}]) { product { options { name optionValues { name } } } userErrors { field message code } }",
+      "risk": "LOW",
+      "apply_status": "OPTIONAL_SEPARATE_APPROVAL",
+      "optional": true,
+      "needs_native_review": false,
+      "note": "Separate, droppable item: needs its own yes. Removes the last customer-facing batch number (variant picker, cart, order lines). Existing orders keep the old line-item title. Side effects: Role 1 shopping feed (exports/role1_growth_ai_shopping_feed.json) and export CSVs carry the old title until the next npm run live:ops; any feed/ad keyed on variant title must be refreshed. Option name read at apply time (not assumed)."
+    }
+  ],
+  "rollback": [
+    {
+      "item_id": "rollback-1-eta-window",
+      "market_code": "UK/EU/AU",
+      "resource": {
+        "type": "METAFIELD",
+        "identifier": "transformer-dining-table-4-0 (product) ops.estimated_delivery_window",
+        "location": null
+      },
+      "field": "ops.estimated_delivery_window",
+      "before": "UK/EU/AU: 3–5 Business Days | Brazilian Sequoia Pre-Order: Ships Dec 02–09, 2026",
+      "after": "UK/EU/AU: 3–5 Business Days | Backorder Finishes: Batch #15 (Dec 02–09, 2026 — Rotterdam Container #TT-884)",
+      "operation": "metafieldsSet(metafields:[{ownerId:<product GID resolved by handle>, namespace:\"ops\", key:\"estimated_delivery_window\", type:\"single_line_text_field\", value:<before of item 1>, compareDigest:<digest read at apply time>}]) { metafields { id value } userErrors { field message code } }",
+      "risk": "MEDIUM",
+      "needs_native_review": false,
+      "note": "Restores the exact live before value. WARNING: this re-publishes 'Batch #15' and 'Rotterdam Container #TT-884' to customers; use only as an emergency revert."
+    },
+    {
+      "item_id": "rollback-2-multilingual-promise",
+      "market_code": "UK/DE/FR/AU/GCC",
+      "resource": {
+        "type": "METAFIELD",
+        "identifier": "transformer-dining-table-4-0 (product) localization.multilingual_delivery_promise",
+        "location": null
+      },
+      "field": "localization.multilingual_delivery_promise",
+      "before": "🇬🇧 UK: Free White-Glove Delivery in 3–5 Days (20% VAT Included)\n🇬🇧 UK: Brazilian Sequoia Pre-Order — Ships Dec 02–09, 2026\n🇩🇪 DE: Kostenlose Lieferung in 3–5 Werktagen (inkl. 19% MwSt., Versand aus EU-Lager)\n🇩🇪 DE: Vorbestellung Brazilian Sequoia — Versand 02.–09.12.2026\n🇫🇷 FR: Livraison gratuite en 3 à 5 jours ouvrés (TVA 20% incluse)\n🇫🇷 FR: Précommande Brazilian Sequoia — expédition du 2 au 9 décembre 2026\n🇦🇺 AU: Metro Delivery in 4–6 Business Days (10% GST Included)\n🇦🇺 AU: Brazilian Sequoia Pre-Order — Ships Dec 02–09, 2026\n🇦🇪 GCC: Express Delivery in 3–5 Days from Dubai Hub (5% VAT Included)\n🇦🇪 GCC: Brazilian Sequoia Pre-Order — Ships Dec 02–09, 2026",
+      "after": "🇬🇧 UK: Free White-Glove Delivery in 3–5 Days (20% VAT Included)\n🇩🇪 DE: Kostenlose Lieferung in 3–5 Werktagen (inkl. 19% MwSt., Versand aus EU-Lager)\n🇫🇷 FR: Livraison gratuite en 3 à 5 jours ouvrés (TVA 20% incluse)\n🇦🇺 AU: Metro Delivery in 4–6 Business Days (10% GST Included)\n🇦🇪 GCC: Express Delivery in 3–5 Days from Dubai Hub (5% VAT Included)",
+      "operation": "metafieldsSet(metafields:[{ownerId:<product GID resolved by handle>, namespace:\"localization\", key:\"multilingual_delivery_promise\", type:\"multi_line_text_field\", value:<before of item 2>, compareDigest:<digest read at apply time>}]) { metafields { id value } userErrors { field message code } }",
+      "risk": "LOW",
+      "needs_native_review": true,
+      "note": "Only needed if item 2 was ever applied. Restores schemas/store_manifest.json:79 / live value."
+    },
+    {
+      "item_id": "rollback-3-inventory-seq",
+      "market_code": "ALL (single dev-store location; markets simulated)",
+      "resource": {
+        "type": "INVENTORY_LEVEL",
+        "identifier": "TT-DT40-SEQ-INT",
+        "location": "Shop location"
+      },
+      "field": "available",
+      "before": 5,
+      "after": 25,
+      "operation": "inventorySetQuantities(input:{name:\"available\", reason:\"correction\", quantities:[{inventoryItemId:<resolved by SKU>, locationId:<'Shop location'>, quantity:25, changeFromQuantity:5}]})",
+      "risk": "MEDIUM",
+      "needs_native_review": false,
+      "note": "Compare-and-swap from 5. If Sequoia orders were taken after apply, live will be < 5 and CAS fails: re-read and decide with a human; do not blindly restore 25 (25 had no logistics source anyway)."
+    },
+    {
+      "item_id": "rollback-4-option-rename-OPTIONAL",
+      "market_code": "ALL",
+      "resource": {
+        "type": "VARIANT",
+        "identifier": "TT-DT40-SEQ-INT (option 'Finish' value)",
+        "location": null
+      },
+      "field": "selectedOptions.value / variant title",
+      "before": "Brazilian Sequoia (Pre-Order)",
+      "after": "Brazilian Sequoia (Batch #14 Pre-Order)",
+      "operation": "productOptionUpdate(productId:<product GID>, option:{id:<option GID>}, optionValuesToUpdate:[{id:<optionValue GID>, name:\"Brazilian Sequoia (Batch #14 Pre-Order)\"}])",
+      "risk": "LOW",
+      "needs_native_review": false,
+      "note": "Only if item 4 was applied."
+    }
+  ],
+  "campaign_impact": [
+    {
+      "sku": "TT-DT40-SEQ-INT",
+      "action": "PAUSE_PAID_TRAFFIC",
+      "reason": "Drops 25 -> 5 units after this plan (< 15). Pause paid ads (Role 1). Not a Shopify write."
+    },
+    {
+      "sku": "TT-DT40-WAL-INT",
+      "action": "PAUSE_PAID_TRAFFIC",
+      "reason": "14 units (unchanged by this plan, already < 15). Pause paid ads (Role 1). Not a Shopify write."
+    },
+    {
+      "sku": "TT-DT40-OAK-INT",
+      "action": "NO_CHANGE",
+      "reason": "45 units store-wide. Note: per repo hub split AU 6 and GCC 4 are < 15 — if Role 1 runs per-market campaigns, consider pausing AU/GCC."
+    },
+    {
+      "sku": "TT-DT40-HCK-INT",
+      "action": "NO_CHANGE",
+      "reason": "32 units store-wide. Note: per repo hub split every hub is < 15 (UK 14, EU 10, AU 5, GCC 3) — if Role 1 runs per-market campaigns, flag for review."
+    }
+  ],
+  "repo_followups_after_live_verify": [
+    {
+      "file": "schemas/store_manifest.json:74",
+      "before": "UK/EU/AU: 3–5 Business Days | Backorder Finishes: Batch #14 (Nov 18–25, 2026)",
+      "after": "UK/EU/AU: 3–5 Business Days | Brazilian Sequoia Pre-Order: Ships Dec 02–09, 2026"
+    },
+    {
+      "file": "schemas/store_manifest.json:79",
+      "before": "(as item 2 before)",
+      "after": "(item 2 after) — only once native review is done and item 2 is applied"
+    },
+    {
+      "file": "schemas/store_manifest.json:85 (and :69 title_en)",
+      "before": "Brazilian Sequoia (Batch #14 Pre-Order)",
+      "after": "Brazilian Sequoia (Pre-Order) — only if optional item 4 is applied"
+    },
+    {
+      "file": "data/3pl_container_schedule.csv:5",
+      "field": "eta_delivery_window",
+      "before": "Pre-Order Batch #14: Ships Nov 18–25 2026",
+      "after": "Brazilian Sequoia Pre-Order: Ships Dec 02–09, 2026",
+      "note": "finish_option column also carries 'Batch #14' — align with item 4 if applied. Keep next_container_batch = BATCH-14-VN (internal, not customer-facing)."
+    },
+    {
+      "file": "src/live-demo-trainer.py:200-201",
+      "note": "demo:eta-shift writes the forbidden Batch #15/#TT-884 text and 25 units; demo:reset writes the old Batch #14 Nov 18–25 text and deletes the SG collection. Neither may run against this store while this plan stands."
+    },
+    {
+      "file": "theme/sections/tt-international-flagship-storefront.liquid:713,724,727,1036",
+      "note": "Hard-coded 'Batch #15 (Dec 02–09, 2026)' in customer-facing theme copy; out of this plan's scope, needs its own theme plan."
+    }
+  ],
+  "apply_path": {
+    "existing_command": null,
+    "finding": "No existing npm script applies exactly this plan. demo:eta-shift writes Batch #15/#TT-884 + 25 units (forbidden). demo:reset writes old Batch #14 text and deletes the SG collection. sync -- --live is the JS MOD-* / custom.* model on other shop domains. live:3pl:apply needs hub->location mapping (currently empty, 0 changes) and does not write metafields.",
+    "handoff": "shopify-graphql-engineer: minimal plan-driven apply script (spec in caller report)."
+  },
+  "gates": {
+    "native_review": "PENDING",
+    "legal_finance_review": "NOT_REQUIRED",
+    "human_approval": "PENDING",
+    "approved_by": null,
+    "approved_at": null
+  },
+  "result": {
+    "applied": false,
+    "verify": "NOT_RUN",
+    "qa": "NOT_RUN",
+    "mismatches": []
+  }
+}

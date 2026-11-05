@@ -4,7 +4,7 @@ import readline from 'node:readline/promises';
 import { stdin as input, stdout as output } from 'node:process';
 import { parseAndValidateCsv, loadStoresConfig } from './lib/validator.js';
 import { buildLocalizedStoreUpdate } from './lib/localizer.js';
-import { syncStoreActionToShopify } from './lib/shopify-graphql.js';
+import { syncStoreActionToShopify, readBackStoreAction } from './lib/shopify-graphql.js';
 import { auditStorefrontsSnapshot, renderQaMarkdownReport } from './qa-audit.js';
 
 async function main() {
@@ -14,6 +14,11 @@ async function main() {
   const autoApprove = args.includes('--auto-approve');
   const planOnly = args.includes('--plan-only');
   const liveMode = args.includes('--live');
+
+  if (liveMode && autoApprove) {
+    console.error('[ABORT] --live cannot be combined with --auto-approve: live changes need a human at the decision gate.');
+    process.exit(1);
+  }
 
   const runId = `run_${new Date().toISOString().replace(/[:.]/g, '-')}`;
   const storesConfig = loadStoresConfig('schemas/stores.config.json');
@@ -68,7 +73,9 @@ async function main() {
   if (!autoApprove) {
     const rl = readline.createInterface({ input, output });
     const answer = await rl.question(
-      `[DECISION GATE] Approve pushing ${plannedActions.length} updates across UK, DE, AU stores? (y/N): `
+      `[DECISION GATE] Approve pushing ${plannedActions.length} updates across ${storesConfig.stores
+        .map((s) => s.market_code)
+        .join(', ')} stores? (y/N): `
     );
     rl.close();
     approved = /^y(es)?$/i.test(answer.trim());
@@ -88,26 +95,47 @@ async function main() {
     const res = await syncStoreActionToShopify(act, { live: liveMode });
     syncResults.push(res);
   }
-  console.log(`  ✓ Synced ${syncResults.length} variant inventory & delivery-date metafield payloads.\n`);
+  console.log(`  ✓ ${liveMode ? 'Synced' : 'Simulated'} ${syncResults.length} variant inventory & delivery-date metafield payloads.\n`);
 
-  // Build post-sync verification snapshot
-  const postSyncSnapshot = { captured_at: new Date().toISOString(), stores: {} };
+  // Build post-sync verification snapshot.
+  // LIVE: re-read every variant from Shopify so QA checks the store, not the plan.
+  // DRY-RUN: no store exists to read, so the snapshot is labelled SIMULATED.
+  const verification = liveMode ? 'LIVE_READ_BACK' : 'SIMULATED';
+  const readBackMismatches = [];
+  const postSyncSnapshot = { captured_at: new Date().toISOString(), verification, stores: {} };
   for (const store of storesConfig.stores) {
     const storeActions = plannedActions.filter((a) => a.market_code === store.market_code);
-    postSyncSnapshot.stores[store.market_code] = {
-      currency: store.currency,
-      locale: store.locale,
-      pixel_tracking_currency: store.currency,
-      products: storeActions.map((a) => ({
+    const products = [];
+    for (const a of storeActions) {
+      let inventoryQty = a.on_hand_qty;
+      let deliveryBadge = a.delivery_badge_metafield;
+      if (liveMode) {
+        const live = await readBackStoreAction(a);
+        inventoryQty = live.inventory_qty;
+        deliveryBadge = live.estimated_delivery_metafield;
+        if (inventoryQty !== a.on_hand_qty) {
+          readBackMismatches.push(`[${a.market_code}] ${a.sku} inventory ${inventoryQty} != planned ${a.on_hand_qty}`);
+        }
+        if (deliveryBadge !== a.delivery_badge_metafield) {
+          readBackMismatches.push(`[${a.market_code}] ${a.sku} delivery badge differs from plan`);
+        }
+      }
+      products.push({
         handle: a.product_handle,
         title: a.localized_title,
         sku: a.sku,
         status: 'ACTIVE',
         tags: ['modular', 'AgentSynced'],
         price: a.price_local,
-        inventory_qty: a.on_hand_qty,
-        estimated_delivery_metafield: a.delivery_badge_metafield,
-      })),
+        inventory_qty: inventoryQty,
+        estimated_delivery_metafield: deliveryBadge,
+      });
+    }
+    postSyncSnapshot.stores[store.market_code] = {
+      currency: store.currency,
+      locale: store.locale,
+      pixel_tracking_currency: store.currency,
+      products,
     };
   }
   fs.writeFileSync('artifacts/post-sync-storefronts.json', JSON.stringify(postSyncSnapshot, null, 2));
@@ -115,6 +143,10 @@ async function main() {
   // STAGE 4: Automated Cross-Store QA Verification
   console.log(`[4/4] Running post-deployment Cross-Store QA Gate...`);
   const qaResult = auditStorefrontsSnapshot(postSyncSnapshot);
+  for (const message of readBackMismatches) {
+    qaResult.findings.push({ severity: 'CRITICAL', market: message.slice(1, 3), code: 'READ_BACK_MISMATCH', message });
+  }
+  qaResult.passed = qaResult.findings.length === 0;
   fs.mkdirSync('logs', { recursive: true });
   fs.writeFileSync('logs/latest-qa-report.md', renderQaMarkdownReport(qaResult));
 
@@ -122,6 +154,7 @@ async function main() {
     run_id: runId,
     timestamp: new Date().toISOString(),
     mode: liveMode ? 'LIVE_GRAPHQL' : 'DRY_RUN_SIMULATED',
+    verification,
     rows_processed: plannedActions.length,
     stores_updated: storesConfig.stores.map((s) => s.market_code),
     qa_passed: qaResult.passed,
@@ -134,7 +167,11 @@ async function main() {
     process.exit(1);
   }
 
-  console.log(`  ✓ QA Gate PASSED (0 leaked test SKUs, 0 currency mismatches, 100% delivery metafields verified).`);
+  console.log(
+    liveMode
+      ? `  ✓ QA Gate PASSED on live read-back (inventory + delivery metafields match the approved plan).`
+      : `  ✓ QA Gate PASSED on SIMULATED snapshot (dry-run: nothing was written, nothing was read back).`
+  );
   console.log(`  ✓ Logged run artifact -> logs/agent-runs.jsonl & logs/latest-qa-report.md\n`);
 }
 

@@ -18,7 +18,16 @@
     "demo:reset": "python3 src/live-demo-trainer.py --action reset",
     "market:launch:sg": "python3 src/enterprise-pod-suite.py --launch-market SG",
     "demo:engineer": "node src/webhook-rpa-engine.js",
-    "test": "node --test tests/pipeline.test.js"
+    "test": "node --test tests/pipeline.test.js tests/guard-hook.test.js && python3 -m unittest discover -s tests -p 'test_*.py'",
+    "live:3pl:plan": "python3 src/live-ops-cli.py sync-3pl",
+    "live:3pl:apply": "python3 src/live-ops-cli.py sync-3pl --apply",
+    "audit": "python3 src/store_audit.py",
+    "audit:record": "python3 src/store_audit.py --record",
+    "audit:baseline": "python3 src/store_audit.py --save-baseline",
+    "audit:diff": "python3 src/store_audit.py --diff-baseline",
+    "build:plan": "python3 src/store_build.py",
+    "build:apply": "python3 src/store_build.py --apply",
+    "validate:gql": "python3 src/validate_graphql.py"
   },
   "engines": {
     "node": ">=20.0.0"

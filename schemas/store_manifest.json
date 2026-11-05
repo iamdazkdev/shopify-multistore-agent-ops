@@ -67,7 +67,7 @@
       "title": "Transformer Table 4.0 — Expandable Dining Table (1 to 12 Seater)",
       "vendor": "Transformer Table International",
       "productType": "Expandable Dining Table",
-      "tags": ["flagship", "dining-table", "expandable", "in-stock-uk-eu-au", "vat-compliant", "version-4.0"],
+      "tags": ["flagship", "dining-table", "expandable", "in-stock-uk-eu-au", "tax-inclusive", "version-4.0"],
       "descriptionHtml": "<h3>From Console to 12-Person Banquet in 60 Seconds</h3><p>Engineered with solid FSC-certified hardwood and steel telescopic mechanisms, the <strong>Transformer Table 4.0</strong> expands seamlessly from an 18-inch (45 cm) entryway console to a 118-inch (300 cm) banquet table seating up to 12 guests.</p><ul><li><strong>6-in-1 Modular Design:</strong> Includes 5 insert panels that lock in effortlessly.</li><li><strong>750 lbs (340 kg) Load Capacity:</strong> Reinforced ball-bearing steel tracks with hidden center leg support.</li><li><strong>International D2C Fulfillment:</strong> Dispatched from local regional hubs (UK Midlands, Rotterdam EU, Sydney AU, Jebel Ali GCC) with all local VAT/GST included—zero customs surprises.</li></ul>",
       "metafields": {
         "ops.fulfillment_mode": "IN_STOCK_LOCAL_3PL",
@@ -90,7 +90,7 @@
       "title": "Transformer Bench 4.0 — Expandable Hardwood Bench (1 to 6 People)",
       "vendor": "Transformer Table International",
       "productType": "Expandable Bench",
-      "tags": ["seating", "bench", "expandable", "in-stock-uk-eu-au", "vat-compliant", "version-4.0"],
+      "tags": ["seating", "bench", "expandable", "in-stock-uk-eu-au", "tax-inclusive", "version-4.0"],
       "descriptionHtml": "<h3>The Only Bench That Grows With Your Guest List</h3><p>Designed as the companion to the Transformer Table 4.0, the <strong>Transformer Bench 4.0</strong> adjusts from a compact solo seat (28 in / 71 cm) to a 130-inch (330 cm) bench seating up to 6 adults comfortably—and stores its own 5 expansion panels inside the built-in compartment.</p><ul><li><strong>Self-Storing Panels:</strong> All 5 panels nest directly inside the bench frame.</li><li><strong>1,500 lbs (680 kg) Weight Capacity:</strong> Solid hardwood and triple-reinforced steel rails.</li></ul>",
       "metafields": {
         "ops.fulfillment_mode": "IN_STOCK_LOCAL_3PL",
@@ -112,7 +112,7 @@
       "title": "Transformer Coffee Table — Lift-Top & Hidden Panel Storage",
       "vendor": "Transformer Table International",
       "productType": "Coffee Table",
-      "tags": ["coffee-table", "storage", "living-room", "in-stock-uk-eu-au", "vat-compliant"],
+      "tags": ["coffee-table", "storage", "living-room", "in-stock-uk-eu-au", "tax-inclusive"],
       "descriptionHtml": "<h3>Smart Living Room Centerpiece + Panel Vault</h3><p>Engineered to house all 5 expansion panels of your Transformer Dining Table while serving as an everyday lift-top work and dining surface.</p><ul><li><strong>Dual-Purpose Storage:</strong> Dedicated felt-lined slots protect your dining table panels when not in use.</li><li><strong>Soft-Close Lift Top:</strong> Elevates smoothly for laptop work or casual sofa dining.</li></ul>",
       "metafields": {
         "ops.fulfillment_mode": "IN_STOCK_LOCAL_3PL",
@@ -134,7 +134,7 @@
       "title": "Transformer Round Table — 4 to 10 Seater Expandable Pedestal Table",
       "vendor": "Transformer Table International",
       "productType": "Expandable Dining Table",
-      "tags": ["dining-table", "round-table", "expandable", "backorder-batch", "vat-compliant"],
+      "tags": ["dining-table", "round-table", "expandable", "backorder-batch", "tax-inclusive"],
       "descriptionHtml": "<h3>Classic Round Intimacy, Banquet Capacity</h3><p>Transforms from a 47-inch (120 cm) round bistro table for 4 into a grand 107-inch (272 cm) oval dining table for up to 10 guests, complete with a matching storage sideboard/coffee unit.</p>",
       "metafields": {
         "ops.fulfillment_mode": "LOW_STOCK_PRIORITY",
@@ -155,7 +155,7 @@
       "title": "Transformer Stackable Dining Chairs (Set of 2) — Stain-Resistant Bouclé",
       "vendor": "Transformer Table International",
       "productType": "Dining Chairs",
-      "tags": ["seating", "chairs", "in-stock-uk-eu-au", "vat-compliant"],
+      "tags": ["seating", "chairs", "in-stock-uk-eu-au", "tax-inclusive"],
       "descriptionHtml": "<h3>Ergonomic Comfort That Stacks Away</h3><p>Crafted from solid hardwood with liquid-repellent performance fabric, these chairs stack up to 4 high for compact storage alongside your Transformer Table.</p>",
       "metafields": {
         "ops.fulfillment_mode": "IN_STOCK_LOCAL_3PL",
@@ -177,7 +177,7 @@
       "title": "The Complete Transformer Dining Bundle (Table 4.0 + Bench 4.0 + Coffee Table + 4 Chairs)",
       "vendor": "Transformer Table International",
       "productType": "Complete Dining Bundle",
-      "tags": ["bundle", "flagship", "dining-table", "seating", "coffee-table", "in-stock-uk-eu-au", "vat-compliant"],
+      "tags": ["bundle", "flagship", "dining-table", "seating", "coffee-table", "in-stock-uk-eu-au", "tax-inclusive"],
       "descriptionHtml": "<h3>The Ultimate Space-Saving Dining Ecosystem (Save 20%)</h3><p>Our highest-converting international bundle includes:</p><ul><li>1x <strong>Transformer Table 4.0</strong> (1 to 12 Seater)</li><li>1x <strong>Transformer Bench 4.0</strong> (1 to 6 Seater with Internal Storage)</li><li>1x <strong>Transformer Coffee Table</strong> (Panel Storage + Lift-Top)</li><li>4x <strong>Stackable Ergonomic Dining Chairs</strong></li></ul><p>Ships together in one consolidated white-glove delivery from your nearest regional warehouse (UK, EU, Australia, or GCC) with full 10-Year Structural Warranty.</p>",
       "metafields": {
         "ops.fulfillment_mode": "IN_STOCK_LOCAL_3PL",

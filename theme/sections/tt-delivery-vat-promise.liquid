@@ -1,26 +1,47 @@
 {% comment %}
-  Transformer Table — Online Store 2.0 Dynamic Delivery Window, Local VAT & Regional Warehouse Banner
-  Reads directly from Agent-synced Pinned Metafields (Zero manual theme hardcoding!)
+  Delivery promise, stock mode and tax note for the selected variant.
+  Reads the variant-level ops.* metafields first (one finish can be on backorder while others are in stock),
+  then falls back to the product-level value. If no value exists, nothing is promised.
 {% endcomment %}
+{%- assign tt_variant = product.selected_or_first_available_variant -%}
+{%- assign tt_eta = tt_variant.metafields.ops.estimated_delivery_window.value | default: product.metafields.ops.estimated_delivery_window.value -%}
+{%- assign tt_mode = tt_variant.metafields.ops.fulfillment_mode.value | default: product.metafields.ops.fulfillment_mode.value -%}
+{%- if tt_eta != blank -%}
 <div class="tt-regional-ops-widget" style="border:1px solid #d4af37;border-radius:10px;padding:16px;background:#111827;color:#f9fafb;margin:16px 0;">
   <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px;">
-    <span style="background:#065f46;color:#ecfdf5;padding:4px 10px;border-radius:999px;font-size:12px;font-weight:700;">
-      {{ product.metafields.ops.fulfillment_mode.value | default: 'IN_STOCK_LOCAL_3PL' }}
-    </span>
-    <span style="font-size:13px;color:#9ca3af;">
-      Warehouse Hub: <strong>{{ product.metafields.ops.warehouse_hub.value | default: 'EU-ROTTERDAM-HUB' }}</strong>
-    </span>
+    {%- if tt_mode != blank -%}
+    <span style="background:#065f46;color:#ecfdf5;padding:4px 10px;border-radius:999px;font-size:12px;font-weight:700;">{{ tt_mode }}</span>
+    {%- endif -%}
+    {%- if product.metafields.ops.warehouse_hub.value != blank -%}
+    <span style="font-size:13px;color:#9ca3af;">Warehouse hub: <strong>{{ product.metafields.ops.warehouse_hub.value }}</strong></span>
+    {%- endif -%}
   </div>
-  <p style="margin:10px 0 6px;font-size:15px;font-weight:600;color:#fbbf24;">
-    🚚 Estimated Delivery: {{ product.metafields.ops.estimated_delivery_window.value | default: '3–5 Business Days (Local 3PL Express)' }}
-  </p>
-  <p style="margin:0;font-size:12px;color:#d1d5db;">
-    🧾 Tax & Customs: {{ product.metafields.ops.vat_tax_class.value | default: 'DDP Tax Included (UK 20% VAT · DE 19% MwSt · FR 20% TVA · AU 10% GST · UAE 5% VAT)' }}
-  </p>
-  <!-- Hidden Line Item Property locks the promised delivery date onto the customer's order receipt at checkout -->
-  <input type="hidden" name="properties[Estimated Delivery]" value="{{ product.metafields.ops.estimated_delivery_window.value }}" form="{{ product_form_id }}">
-  <input type="hidden" name="properties[Regional Warehouse]" value="{{ product.metafields.ops.warehouse_hub.value }}" form="{{ product_form_id }}">
+  <p style="margin:10px 0 6px;font-size:15px;font-weight:600;color:#fbbf24;">🚚 Estimated delivery: <span id="tt-eta-text">{{ tt_eta }}</span></p>
+  {%- if product.metafields.ops.vat_tax_class.value != blank -%}
+  <p style="margin:0;font-size:12px;color:#d1d5db;">🧾 {{ product.metafields.ops.vat_tax_class.value }}</p>
+  {%- endif -%}
+  {%- if section.settings.lock_eta_at_checkout -%}
+  {%- comment -%} Map variant id -> promise, so the promise stored on the order matches the finish actually bought. {%- endcomment -%}
+  <script type="application/json" id="tt-eta-map">
+    { {%- for v in product.variants -%}{%- assign e = v.metafields.ops.estimated_delivery_window.value | default: product.metafields.ops.estimated_delivery_window.value -%}"{{ v.id }}": {{ e | json }}{%- unless forloop.last -%},{%- endunless -%}{%- endfor -%} }
+  </script>
+  <script>
+    (function () {
+      var map = JSON.parse(document.getElementById('tt-eta-map').textContent || '{}');
+      function stamp(form) {
+        var id = form.querySelector('[name="id"]'); if (!id || !map[id.value]) return;
+        var prop = form.querySelector('input[name="properties[Estimated Delivery]"]');
+        if (!prop) { prop = document.createElement('input'); prop.type = 'hidden'; prop.name = 'properties[Estimated Delivery]'; form.appendChild(prop); }
+        prop.value = map[id.value];
+        var label = document.getElementById('tt-eta-text'); if (label) label.textContent = map[id.value];
+      }
+      document.addEventListener('submit', function (e) { if (e.target.matches('form[action*="/cart/add"]')) stamp(e.target); }, true);
+      document.addEventListener('change', function () { document.querySelectorAll('form[action*="/cart/add"]').forEach(stamp); });
+    })();
+  </script>
+  {%- endif -%}
 </div>
+{%- endif -%}
 
 {% schema %}
 {

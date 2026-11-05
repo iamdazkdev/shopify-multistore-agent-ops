@@ -10,9 +10,12 @@ Covers the remaining JD Responsibilities on Live Shopify Store (dazk-dev-sandbox
 """
 
 import json
+import os
 import urllib.request
 from datetime import datetime, timezone
 from pathlib import Path
+
+API_VERSION = os.environ.get("SHOPIFY_API_VERSION", "2026-07")
 
 ROOT = Path(__file__).resolve().parent.parent
 ENV_PATH = ROOT / ".env"
@@ -41,8 +44,17 @@ def get_token(shop: str, client_id: str, client_secret: str) -> str:
         return json.loads(resp.read().decode("utf-8"))["access_token"]
 
 
+def _checked(payload: dict) -> dict:
+    """HTTP 200 is not success: raise on top-level GraphQL errors and on any mutation userErrors."""
+    if payload.get("errors"):
+        raise RuntimeError(f"Shopify GraphQL errors: {payload['errors']}")
+    for field, result in (payload.get("data") or {}).items():
+        if isinstance(result, dict) and result.get("userErrors"):
+            raise RuntimeError(f"{field} userErrors: {result['userErrors']}")
+    return payload
+
 def gql(shop: str, token: str, query: str, variables: dict | None = None) -> dict:
-    url = f"https://{shop}/admin/api/2025-01/graphql.json"
+    url = f"https://{shop}/admin/api/{API_VERSION}/graphql.json"
     body = {"query": query}
     if variables is not None:
         body["variables"] = variables
@@ -56,7 +68,7 @@ def gql(shop: str, token: str, query: str, variables: dict | None = None) -> dic
         method="POST",
     )
     with urllib.request.urlopen(req, timeout=30) as resp:
-        return json.loads(resp.read().decode("utf-8"))
+        return _checked(json.loads(resp.read().decode("utf-8")))
 
 
 def upsert_page(shop: str, token: str, existing_pages: dict, handle: str, title: str, body_html: str) -> str:
@@ -173,13 +185,13 @@ def main():
                     {"title": "🇩🇪 Deutschland (EUR € · Inkl. 19% MwSt. · Rotterdam Hub)", "url": "/collections/germany-de-market-eur-inkl-19-mwst"},
                     {"title": "🇫🇷 France (EUR € · TVA 20% Incluse · Entrepôt UE)", "url": "/collections/france-fr-market-eur-tva-20-incluse"},
                     {"title": "🇦🇺 Australia (AUD $ · 10% GST Incl. · Sydney NSW 3PL)", "url": "/collections/australia-au-market-aud-10-gst-included"},
-                    {"title": "🇦🇪 GCC / UAE & KSA (AED · 5% VAT Incl. · Dubai Jebel Ali 3PL)", "url": "/collections/gcc-uae-ksa-market-aed-5-vat-included"},
+                    {"title": "🇦🇪 GCC / UAE & KSA (AED · SAR · UAE 5% / KSA 15% VAT Incl. · Dubai Jebel Ali 3PL)", "url": "/collections/gcc-uae-ksa-market-aed-5-vat-included"},
                 ],
             },
             "footer-legal-compliance": {
                 "title": "Statutory Legal, VAT & Consumer Rights Footer Menu",
                 "items": [
-                    {"title": "🇩🇪 Impressum (§5 TMG) & 14-Tage-Widerrufsbelehrung", "url": "/pages/de-impressum-und-widerrufsbelehrung"},
+                    {"title": "🇩🇪 Impressum (§5 DDG) & 14-Tage-Widerrufsbelehrung", "url": "/pages/de-impressum-und-widerrufsbelehrung"},
                     {"title": "🇫🇷 Mentions Légales (LCEN) & Droit de Rétractation", "url": "/pages/fr-mentions-legales-et-retractation"},
                     {"title": "🇬🇧 UK HMRC VAT & Consumer Rights Act 2015", "url": "/pages/uk-hmrc-vat-and-consumer-rights-notice"},
                     {"title": "🇦🇺 Australia ACL Warranty & 10% GST Compliance", "url": "/pages/au-acl-warranty-and-gst-compliance"},
@@ -275,7 +287,7 @@ def main():
           <tr>
             <td><strong>🇦🇪 GCC (UAE &amp; KSA)</strong></td>
             <td><code>AED</code> · Psychological <code>AED x,x95</code></td>
-            <td>5% UAE VAT Included (FTA TRN)</td>
+            <td>VAT Included — UAE 5% (FTA TRN) · KSA 15% (ZATCA)</td>
             <td>Dubai Jebel Ali 3PL · Free White-Glove Assembly &gt; AED 3,500 (3–5 Days)</td>
             <td>Tabby (4 Payments), Tamara, Apple Pay, Mada / Cards</td>
           </tr>

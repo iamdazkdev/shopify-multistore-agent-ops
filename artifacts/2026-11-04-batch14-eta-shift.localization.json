@@ -1,0 +1,135 @@
+{
+  "artifact": "2026-11-04-batch14-eta-shift.localization",
+  "scenario": "ETA shift, step 3 (localization-reviewer) per .claude/commands/eta-shift.md",
+  "created": "2026-11-04",
+  "agent": "localization-reviewer",
+  "shopify_writes": "NONE. Proposal only. Nothing in this file has been applied to the live store or to schemas/store_manifest.json.",
+  "simulated_markets_note": "UK/DE/FR/AU/GCC are simulated with metafields on one dev store (dazk-dev-sandbox-store.myshopify.com); all locale lines live in one multi-line metafield value.",
+  "product_handle": "transformer-dining-table-4-0",
+  "affected_variant_sku": "TT-DT40-SEQ-INT",
+  "human_decisions_applied": [
+    "Only product transformer-dining-table-4-0 changes.",
+    "TT-DT40-SEQ-INT (Brazilian Sequoia) now ships Dec 02–09, 2026.",
+    "Customer-facing text carries no batch number or container number (no 'Batch #14', 'Batch #15', '#TT-884')."
+  ],
+  "field": {
+    "namespace": "localization",
+    "key": "multilingual_delivery_promise",
+    "type": "multi_line_text_field",
+    "ownerType": "PRODUCT",
+    "repo_location": "schemas/store_manifest.json:79"
+  },
+  "english_source_of_truth": {
+    "field": "ops.estimated_delivery_window",
+    "before": "UK/EU/AU: 3–5 Business Days | Backorder Finishes: Batch #14 (Nov 18–25, 2026)",
+    "after": "UK/EU/AU: 3–5 Business Days | Brazilian Sequoia Pre-Order: Ships Dec 02–09, 2026",
+    "sequoia_segment_used_as_source": "Brazilian Sequoia Pre-Order: Ships Dec 02–09, 2026"
+  },
+  "before": "🇬🇧 UK: Free White-Glove Delivery in 3–5 Days (20% VAT Included)\n🇩🇪 DE: Kostenlose Lieferung in 3–5 Werktagen (inkl. 19% MwSt., Versand aus EU-Lager)\n🇫🇷 FR: Livraison gratuite en 3 à 5 jours ouvrés (TVA 20% incluse)\n🇦🇺 AU: Metro Delivery in 4–6 Business Days (10% GST Included)\n🇦🇪 GCC: Express Delivery in 3–5 Days from Dubai Hub (5% VAT Included)",
+  "after": "🇬🇧 UK: Free White-Glove Delivery in 3–5 Days (20% VAT Included)\n🇬🇧 UK: Brazilian Sequoia Pre-Order — Ships Dec 02–09, 2026\n🇩🇪 DE: Kostenlose Lieferung in 3–5 Werktagen (inkl. 19% MwSt., Versand aus EU-Lager)\n🇩🇪 DE: Vorbestellung Brazilian Sequoia — Versand 02.–09.12.2026\n🇫🇷 FR: Livraison gratuite en 3 à 5 jours ouvrés (TVA 20% incluse)\n🇫🇷 FR: Précommande Brazilian Sequoia — expédition du 2 au 9 décembre 2026\n🇦🇺 AU: Metro Delivery in 4–6 Business Days (10% GST Included)\n🇦🇺 AU: Brazilian Sequoia Pre-Order — Ships Dec 02–09, 2026\n🇦🇪 GCC: Express Delivery in 3–5 Days from Dubai Hub (5% VAT Included)\n🇦🇪 GCC: Brazilian Sequoia Pre-Order — Ships Dec 02–09, 2026",
+  "change_strategy": "All 5 existing lines are kept byte-identical (they are already native-approved). One new line is inserted directly under each locale line, with the same flag + market prefix. Appending the date to the existing lines instead would push the DE line from 84 to about 140 characters (far over the 85-char PDP limit) and would force a re-review of copy that did not change. The em dash replaces a second colon so the English text stays word-for-word with the source and the FR line needs no colon spacing.",
+  "per_locale": {
+    "en-GB (UK)": {
+      "existing_line_unchanged": "🇬🇧 UK: Free White-Glove Delivery in 3–5 Days (20% VAT Included)",
+      "added_line": "🇬🇧 UK: Brazilian Sequoia Pre-Order — Ships Dec 02–09, 2026",
+      "date_as_written": "Dec 02–09, 2026",
+      "length_added_line": { "code_points": 58, "utf16_js_length": 60 },
+      "review_status": "NO_NATIVE_REVIEW_NEEDED (English, word-for-word with the source)"
+    },
+    "de-DE (DE)": {
+      "existing_line_unchanged": "🇩🇪 DE: Kostenlose Lieferung in 3–5 Werktagen (inkl. 19% MwSt., Versand aus EU-Lager)",
+      "added_line": "🇩🇪 DE: Vorbestellung Brazilian Sequoia — Versand 02.–09.12.2026",
+      "date_as_written": "02.–09.12.2026 (DD.MM.YYYY range per glossary; same as Dec 02–09, 2026)",
+      "length_added_line": { "code_points": 63, "utf16_js_length": 65 },
+      "review_status": "PENDING_NATIVE_REVIEW",
+      "alternative_for_reviewer": "🇩🇪 DE: Vorbestellung Brazilian Sequoia — Versand vom 02. bis 09.12.2026"
+    },
+    "fr-FR (FR)": {
+      "existing_line_unchanged": "🇫🇷 FR: Livraison gratuite en 3 à 5 jours ouvrés (TVA 20% incluse)",
+      "added_line": "🇫🇷 FR: Précommande Brazilian Sequoia — expédition du 2 au 9 décembre 2026",
+      "date_as_written": "du 2 au 9 décembre 2026 (same as Dec 02–09, 2026)",
+      "length_added_line": { "code_points": 73, "utf16_js_length": 75 },
+      "review_status": "PENDING_NATIVE_REVIEW",
+      "alternative_for_reviewer": "🇫🇷 FR: Précommande Séquoia du Brésil — expédition du 2 au 9 décembre 2026"
+    },
+    "en-AU (AU)": {
+      "existing_line_unchanged": "🇦🇺 AU: Metro Delivery in 4–6 Business Days (10% GST Included)",
+      "added_line": "🇦🇺 AU: Brazilian Sequoia Pre-Order — Ships Dec 02–09, 2026",
+      "date_as_written": "Dec 02–09, 2026",
+      "length_added_line": { "code_points": 58, "utf16_js_length": 60 },
+      "review_status": "NO_NATIVE_REVIEW_NEEDED (English, word-for-word with the source)"
+    },
+    "en (GCC)": {
+      "existing_line_unchanged": "🇦🇪 GCC: Express Delivery in 3–5 Days from Dubai Hub (5% VAT Included)",
+      "added_line": "🇦🇪 GCC: Brazilian Sequoia Pre-Order — Ships Dec 02–09, 2026",
+      "date_as_written": "Dec 02–09, 2026",
+      "length_added_line": { "code_points": 59, "utf16_js_length": 61 },
+      "review_status": "NO_NATIVE_REVIEW_NEEDED for English; OPS CONFIRMATION NEEDED (see issues: GCC is not in the source window and the Dubai hub has 0 Sequoia units)",
+      "arabic": "No Arabic line exists and none is proposed. No machine Arabic written. If an Arabic line is added later it needs native AR review and an RTL layout check."
+    }
+  },
+  "length_check": {
+    "rule": ".claude/agents/localization-reviewer.md: delivery badges ≤ 85 characters (PDP buy-box); src/lib/localizer.js uses JS .length > 85",
+    "result": "All 5 added lines are ≤ 75 UTF-16 units (≤ 73 code points). Counted by hand, not by tooling; re-check with the localizer guardrail before apply.",
+    "pre_existing_note": "The unchanged DE line is 84 code points / 86 UTF-16 units (each flag emoji = 2 code points = 4 UTF-16 units), so by the JS .length check it is already 1 over 85. Not changed because it was out of scope.",
+    "field_total": { "before_code_points": 346, "after_code_points": 662 },
+    "rendering_note": "No theme section in theme/ or live-theme/ renders localization.multilingual_delivery_promise; the PDP buy-box (tt-delivery-vat-promise.liquid) renders ops.estimated_delivery_window. The 85-char limit is applied per line here as a guideline."
+  },
+  "terminology_notes": [
+    "Ships = dispatch date, not arrival date. DE uses 'Versand', FR uses 'expédition', matching the source. Do NOT use 'Lieferung' or 'livraison' for this date; that would promise arrival on Dec 02–09.",
+    "Pre-Order → DE 'Vorbestellung', FR 'Précommande'. Proposed as glossary additions (pending review), not added to the locked protected_glossary.",
+    "'Brazilian Sequoia' is left as an English finish name in DE/FR so it matches the variant option label shoppers see (variant options are English on the store; translations are not pushed live). Reviewer decides: keep, or use 'Brasilianischer Mammutbaum' / 'Séquoia du Brésil' (no glossary entry exists yet).",
+    "No VAT figures or existing wording were changed. The existing lines use '19% MwSt.' and 'TVA 20% incluse' without the space the glossary asks for ('inkl. 19 % MwSt.', 'TVA 20 % incluse'). This was already there before this change and is flagged, not fixed.",
+    "FR spacing before colons: the new FR text has no ':' ';' '!' '?' after the 'FR:' market label. The existing 'FR:' label convention (no space) is kept so all lines match.",
+    "No legal terms (Widerrufsrecht, rétractation, Impressum, mentions légales) were used, so LEGAL_REVIEW is not needed."
+  ],
+  "issues": [
+    {
+      "severity": "HIGH",
+      "issue": "Variant option name still shows the batch number to customers: 'Brazilian Sequoia (Batch #14 Pre-Order)' (schemas/store_manifest.json:85, data/3pl_container_schedule.csv:5). This breaks the 'no batch number' decision in the variant picker and on order lines.",
+      "owner": "inventory-eta-planner / orchestrator (catalog change, out of localization scope)"
+    },
+    {
+      "severity": "HIGH",
+      "issue": "src/live-demo-trainer.py:201 (npm run demo:eta-shift) writes 'Batch #15 (Dec 02–09, 2026 — Rotterdam Container #TT-884)' into ops.estimated_delivery_window. Running it as-is would put the batch and container numbers on the PDP buy-box and lock them onto orders through the hidden 'Estimated Delivery' line item property.",
+      "owner": "orchestrator / shopify-graphql-engineer"
+    },
+    {
+      "severity": "MEDIUM",
+      "issue": "theme/sections/tt-international-flagship-storefront.liquid lines 713, 724, 727, 1036 hard-code 'Batch #15 (Dec 02–09, 2026)' into customer-facing text.",
+      "owner": "orchestrator (theme change)"
+    },
+    {
+      "severity": "MEDIUM",
+      "issue": "GCC: the source window ('UK/EU/AU: …') does not cover GCC, and data/3pl_container_schedule.csv shows gcc_dubai_stock = 0 for TT-DT40-SEQ-INT. The GCC Sequoia line was added only because the brief asked for it. Ops must confirm Sequoia ships to GCC on Dec 02–09, or drop that line.",
+      "owner": "inventory-eta-planner"
+    },
+    {
+      "severity": "LOW",
+      "issue": "Not caused by this change: the AU line says 'Metro Delivery in 4–6 Business Days' but the source window says UK/EU/AU 3–5 Business Days. Left unchanged as instructed.",
+      "owner": "inventory-eta-planner"
+    },
+    {
+      "severity": "LOW",
+      "issue": "data/3pl_container_schedule.csv:5 eta_delivery_window still reads 'Pre-Order Batch #14: Ships Nov 18–25 2026'. That is drift against the new window.",
+      "owner": "catalog-data-steward"
+    },
+    {
+      "severity": "LOW",
+      "issue": "src/enterprise-pod-suite.py (npm run live:enterprise) rebuilds exports/native_speaker_review_queue.json from scratch, which would delete the pending_review_items added for this change. Do not run it until review is done, or make it keep pending items.",
+      "owner": "shopify-graphql-engineer"
+    },
+    {
+      "severity": "INFO",
+      "issue": "No Arabic line exists for GCC. None was written; no machine Arabic.",
+      "owner": "localization-reviewer (future)"
+    }
+  ],
+  "review_status": "PENDING_NATIVE_REVIEW",
+  "review_queue_entries": [
+    "exports/native_speaker_review_queue.json → pending_review_items[id=2026-11-04-eta-shift-de-DE-sequoia]",
+    "exports/native_speaker_review_queue.json → pending_review_items[id=2026-11-04-eta-shift-fr-FR-sequoia]"
+  ],
+  "legal_review_required": false,
+  "rollback": "Restore localization.multilingual_delivery_promise to the 'before' value above (identical to schemas/store_manifest.json:79 at time of writing)."
+}

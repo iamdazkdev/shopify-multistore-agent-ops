@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 /**
  * Transformer Table — Role 3 Engineering Live Demo Runner (`npm run demo:engineer`)
- * Showcases Ha Luu Van Anh's Software Engineer & Tech Lead strengths on a LIVE Shopify Plus store:
+ * Showcases Ha Luu Van Anh's Software Engineer & Tech Lead strengths on the live development store:
  *   1. Webhook Security: HMAC-SHA256 raw-body verification, X-Shopify-Event-Id idempotency & <5s ACK rule
  *   2. GraphQL Engineering: Cost-based rate limit inspection (extensions.cost.throttleStatus) & userErrors trap check
  *   3. Multi-Hub Inventory & Order Line-Item Properties: Available vs Committed vs On-Hand + locked Estimated Delivery
@@ -28,6 +28,7 @@ loadEnv();
 const SHOP_DOMAIN = process.env.SHOPIFY_SHOP_DOMAIN || 'dazk-dev-sandbox-store.myshopify.com';
 const CLIENT_ID = process.env.SHOPIFY_CLIENT_ID;
 const CLIENT_SECRET = process.env.SHOPIFY_CLIENT_SECRET;
+const API_VERSION = process.env.SHOPIFY_API_VERSION || '2026-07';
 
 async function getAccessToken() {
   const res = await fetch(`https://${SHOP_DOMAIN}/admin/oauth/access_token`, {
@@ -39,12 +40,18 @@ async function getAccessToken() {
       client_secret: CLIENT_SECRET,
     }),
   });
+  if (!CLIENT_ID || !CLIENT_SECRET) {
+    throw new Error('Missing SHOPIFY_CLIENT_ID or SHOPIFY_CLIENT_SECRET in the environment');
+  }
   const data = await res.json();
+  if (!res.ok || !data.access_token) {
+    throw new Error(`Token exchange failed on ${SHOP_DOMAIN} (HTTP ${res.status})`);
+  }
   return data.access_token;
 }
 
 async function shopifyGraphql(token, query, variables = {}) {
-  const res = await fetch(`https://${SHOP_DOMAIN}/admin/api/2025-01/graphql.json`, {
+  const res = await fetch(`https://${SHOP_DOMAIN}/admin/api/${API_VERSION}/graphql.json`, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
@@ -52,18 +59,25 @@ async function shopifyGraphql(token, query, variables = {}) {
     },
     body: JSON.stringify({ query, variables }),
   });
-  return res.json();
+  const body = await res.json();
+  if (!res.ok || body.errors?.length) {
+    throw new Error(`Shopify GraphQL error on ${SHOP_DOMAIN}: HTTP ${res.status} ${JSON.stringify(body.errors ?? '')}`);
+  }
+  return body;
 }
 
 function verifyShopifyWebhookHmac(rawBodyBuffer, hmacHeader, secret) {
-  const computed = crypto.createHmac('sha256', secret).update(rawBodyBuffer).digest('base64');
-  return crypto.timingSafeEqual(Buffer.from(computed), Buffer.from(hmacHeader));
+  if (!secret || typeof hmacHeader !== 'string') return false;
+  const computed = Buffer.from(crypto.createHmac('sha256', secret).update(rawBodyBuffer).digest('base64'));
+  const received = Buffer.from(hmacHeader);
+  // timingSafeEqual throws on different lengths, so a forged short header must fail cleanly.
+  return computed.length === received.length && crypto.timingSafeEqual(computed, received);
 }
 
 async function main() {
   console.log('\n================================================================================');
   console.log(' TRANSFORMER TABLE — IT ENGINEERING & AGENTIC SHOPIFY OPS LIVE DEMO');
-  console.log(` Target Store: ${SHOP_DOMAIN} (Shopify Plus App Development)`);
+  console.log(` Target Store: ${SHOP_DOMAIN} (development store · Admin API ${API_VERSION})`);
   console.log('================================================================================\n');
 
   const token = await getAccessToken();
@@ -115,7 +129,7 @@ async function main() {
 
   console.log(`  ✓ Verified X-Shopify-Hmac-Sha256 (Timing-Safe Raw Body): ${hmacValid} in ${ackMs}ms (< 5,000ms timeout rule)`);
   console.log(
-    `  ✓ Idempotency Gate (X-Shopify-Event-Id: ${simulatedHeaders['X-Shopify-Event-Id']}): 1st Delivery=${!isDuplicateFirst ? 'ACCEPTED' : 'SKIPPED'} | Retry Delivery=${isDuplicateSecond ? 'DEDUPLICATED_SKIP' : 'ACCEPTED'}\n`
+    `  ✓ Idempotency Gate — in-memory demo (X-Shopify-Event-Id: ${simulatedHeaders['X-Shopify-Event-Id']}): 1st Delivery=${!isDuplicateFirst ? 'ACCEPTED' : 'SKIPPED'} | Retry Delivery=${isDuplicateSecond ? 'DEDUPLICATED_SKIP' : 'ACCEPTED'}\n`
   );
 
   // ---------------------------------------------------------------------------
@@ -124,7 +138,7 @@ async function main() {
   console.log('[FLOW 2/4] GraphQL Admin API Engineering: Leaky-Bucket Cost Monitor & userErrors Safety');
   const throttleStatus = whRes?.extensions?.cost?.throttleStatus;
   console.log(
-    `  ✓ Shopify Plus GraphQL Bucket: Available=${throttleStatus?.currentlyAvailable}/${throttleStatus?.maximumAvailable} pts | Restore Rate=${throttleStatus?.restoreRate} pts/sec (10x Standard)`
+    `  ✓ GraphQL Cost Bucket: Available=${throttleStatus?.currentlyAvailable}/${throttleStatus?.maximumAvailable} pts | Restore Rate=${throttleStatus?.restoreRate} pts/sec`
   );
   console.log(
     `  ✓ Enforced Mutation Contract: HTTP 200 OK !== Business Success -> Always inspect data.<mutation>.userErrors[] before committing state.\n`
@@ -188,7 +202,7 @@ async function main() {
   }
 
   console.log('\n================================================================================');
-  console.log(' ALL 4 ENGINEERING DEMO FLOWS VERIFIED LIVE ON SHOPIFY PLUS STORE!');
+  console.log(' ALL 4 ENGINEERING DEMO FLOWS RAN AGAINST THE LIVE DEVELOPMENT STORE');
   console.log('================================================================================\n');
 }
 
